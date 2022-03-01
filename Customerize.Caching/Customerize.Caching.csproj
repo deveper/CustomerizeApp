@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Customerize.Core\Customerize.Core.csproj" />
-  </ItemGroup>
-
 </Project>
