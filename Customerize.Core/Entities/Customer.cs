@@ -9,5 +9,6 @@ namespace Customerize.Core.Entities
     public class Customer
     {
         public DateTime CreatedDate { get; set; }
+        public string LastName { get; set; }
     }
 }
