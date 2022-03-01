@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Customerize.Core\Customerize.Core.csproj" />
+    <ProjectReference Include="..\Customerize.Repository\Customerize.Repository.csproj" />
   </ItemGroup>
 
 </Project>
