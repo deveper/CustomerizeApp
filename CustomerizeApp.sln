@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Core", "Customerize.Core\Customerize.Core.csproj", "{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Repository", "Customerize.Repository\Customerize.Repository.csproj", "{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
