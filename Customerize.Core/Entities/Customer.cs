@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Customerize.Core.Entities
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public DateTime CreatedDate { get; set; }
-        public int CustomerId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string CompanyName { get; set; }
+        public string Adress { get; set; }
     }
 }
