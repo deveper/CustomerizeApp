@@ -14,5 +14,9 @@
 
         //navigation property
         public ICollection<OrderLine> OrderLines { get; set; }
+
+        //navigation property
+        public int UserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

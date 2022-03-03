@@ -7,7 +7,8 @@
         public string TaxNumber { get; set; }
         public string WorkArea { get; set; }
 
-
+        //navigation property
+        public IQueryable<AppUser> AppUsers { get; set; }
         //navigation property
         public IQueryable<Order> Orders { get; set; }
     }

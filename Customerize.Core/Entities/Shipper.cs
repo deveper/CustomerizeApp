@@ -4,6 +4,8 @@
     {
         public string Name { get; set; }
         public string WorkRegion { get; set; }
+
+        //navigation property
         public ICollection<Order> Orders { get; set; }
     }
 }
