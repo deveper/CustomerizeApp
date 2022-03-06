@@ -9,6 +9,6 @@ namespace Customerize.Core.UnitOfWorks
     public interface IUnitOfWork
     {
         Task CommitAsync();
-        Task Commit();
+        void Commit();
     }
 }
