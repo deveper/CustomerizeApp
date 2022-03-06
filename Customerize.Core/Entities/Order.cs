@@ -2,6 +2,11 @@
 {
     public class Order : BaseEntity
     {
+        public Order()
+        {
+            Guid guid = new Guid();
+            this.OrderCode = guid.ToString();
+        }
         public string OrderCode { get; set; }
 
         //navigation property
@@ -17,6 +22,6 @@
 
         //navigation property
         public int UserId { get; set; }
-        public AppUser AppUser { get; set; }
+        public Shipper AppUser { get; set; }
     }
 }

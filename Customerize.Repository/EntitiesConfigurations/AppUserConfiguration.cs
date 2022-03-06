@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Customerize.Repository.EntitiesConfigurations
 {
-    internal class ProductTypeConfiguration : IEntityTypeConfiguration<ProductType>
+    internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<ProductType> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.HasKey(pt => pt.Id);
-            builder.Property(pt => pt.Id).UseIdentityColumn();
-            builder.Property(pt => pt.Name).IsRequired().HasMaxLength(100);
 
+            //Company
+            builder.HasOne(a => a.Company)
+                .WithMany(a => a.AppUsers)
+                .HasForeignKey(a => a.CompanyId);
         }
     }
 }

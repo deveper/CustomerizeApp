@@ -19,13 +19,18 @@ namespace Customerize.Repository.EntitiesConfigurations
             builder.Property(p => p.Stock).IsRequired();
             builder.Property(p => p.Price).IsRequired().HasColumnType("decimal(18,2)");//****************,**
 
+            //Category
             builder.HasOne(c => c.Category)//one Category
-                   .WithMany(p => p.Products)//n Products
+                   .WithMany(p => p.Products)//in Products
                    .HasForeignKey(p => p.CategoryId);//Products for FK CategoryId
-
-            builder.HasOne(p => p.productType)
-                   .WithMany(p => p.Products)
-                   .HasForeignKey(p => p.ProductTypeId);
+            //ProductType
+            builder.HasOne(p => p.ProductType)//one ProductType
+                   .WithMany(p => p.Products)//in products
+                   .HasForeignKey(p => p.ProductTypeId);//Products for FK ProductTypeId
+            //Order
+            builder.HasOne(p => p.OrderLine)
+                .WithOne(p => p.Product)
+                .HasForeignKey<Product>(p => p.OrderLineId);
         }
     }
 }
