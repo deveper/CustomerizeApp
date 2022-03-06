@@ -16,6 +16,7 @@ namespace Customerize.Repository.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).UseIdentityColumn();
             builder.Property(c => c.Name).IsRequired().HasMaxLength(75);
+
         }
     }
 }

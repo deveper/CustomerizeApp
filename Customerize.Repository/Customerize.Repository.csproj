@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Customerize.Core\Customerize.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SeedData\" />
+  </ItemGroup>
+
 </Project>
