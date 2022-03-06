@@ -4,8 +4,7 @@
     {
         public Order()
         {
-            Guid guid = new Guid();
-            this.OrderCode = guid.ToString();
+            this.OrderCode = DateTime.Now.ToString("M/d/yy") + new Guid().ToString().Substring(0, 3);
         }
         public string OrderCode { get; set; }
 
