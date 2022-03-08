@@ -21,6 +21,6 @@
 
         //navigation property
         public int UserId { get; set; }
-        public Shipper AppUser { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

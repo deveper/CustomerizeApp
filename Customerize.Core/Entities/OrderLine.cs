@@ -7,6 +7,7 @@
         public Order Order { get; set; }
 
         //navigation property
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
     }

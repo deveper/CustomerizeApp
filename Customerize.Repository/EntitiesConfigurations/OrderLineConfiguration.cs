@@ -23,8 +23,8 @@ namespace Customerize.Repository.EntitiesConfigurations
                 .HasForeignKey(o => o.OrderId);
             //Product
             builder.HasOne(o => o.Product)
-                .WithOne(o => o.OrderLine)
-                .HasForeignKey<OrderLine>(o => o.ProductId);
+                 .WithMany(o => o.OrderLines)
+                 .HasForeignKey(o => o.ProductId);
 
 
 

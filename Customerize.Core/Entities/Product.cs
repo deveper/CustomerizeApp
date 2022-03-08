@@ -8,7 +8,7 @@
 
 
 
-        
+
 
         //navigation property
         public int ProductTypeId { get; set; }
@@ -17,8 +17,8 @@
         //navigation property
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
         //navigation property
-        public int OrderLineId { get; set; }
-        public OrderLine OrderLine { get; set; }
+        public ICollection<OrderLine> OrderLines { get; set; }
     }
 }

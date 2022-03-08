@@ -28,9 +28,10 @@ namespace Customerize.Repository.EntitiesConfigurations
                    .WithMany(p => p.Products)//in products
                    .HasForeignKey(p => p.ProductTypeId);//Products for FK ProductTypeId
             //Order
-            builder.HasOne(p => p.OrderLine)
-                .WithOne(p => p.Product)
-                .HasForeignKey<Product>(p => p.OrderLineId);
+            //builder.HasMany
+            //builder.HasOne(p => p.)
+            //    .WithOne(p => p.Product)
+            //    .HasForeignKey<Product>(p => p.OrderLineId);
         }
     }
 }
