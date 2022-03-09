@@ -20,11 +20,13 @@ namespace Customerize.Repository.EntitiesConfigurations
             //Order
             builder.HasOne(o => o.Order)
                 .WithMany(o => o.OrderLines)
-                .HasForeignKey(o => o.OrderId);
+                .HasForeignKey(o => o.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
             //Product
             builder.HasOne(o => o.Product)
                  .WithMany(o => o.OrderLines)
-                 .HasForeignKey(o => o.ProductId);
+                 .HasForeignKey(o => o.ProductId)
+                 .OnDelete(DeleteBehavior.NoAction);
 
 
 

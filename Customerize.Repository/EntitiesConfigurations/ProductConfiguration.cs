@@ -22,16 +22,13 @@ namespace Customerize.Repository.EntitiesConfigurations
             //Category
             builder.HasOne(c => c.Category)//one Category
                    .WithMany(p => p.Products)//in Products
-                   .HasForeignKey(p => p.CategoryId);//Products for FK CategoryId
+                   .HasForeignKey(p => p.CategoryId)
+                   .OnDelete(DeleteBehavior.NoAction);//Products for FK CategoryId
             //ProductType
             builder.HasOne(p => p.ProductType)//one ProductType
                    .WithMany(p => p.Products)//in products
-                   .HasForeignKey(p => p.ProductTypeId);//Products for FK ProductTypeId
-            //Order
-            //builder.HasMany
-            //builder.HasOne(p => p.)
-            //    .WithOne(p => p.Product)
-            //    .HasForeignKey<Product>(p => p.OrderLineId);
+                   .HasForeignKey(p => p.ProductTypeId)//Products for FK ProductTypeId
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

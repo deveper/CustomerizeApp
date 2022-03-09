@@ -19,15 +19,18 @@ namespace Customerize.Repository.EntitiesConfigurations
             //Company
             builder.HasOne(o => o.Company)
                 .WithMany(o => o.Orders)
-                .HasForeignKey(o => o.CompanyId);
+                .HasForeignKey(o => o.CompanyId)
+                .OnDelete(DeleteBehavior.NoAction);
             //AppUser
             builder.HasOne(o => o.AppUser)
                 .WithMany(o => o.Orders)
-                .HasForeignKey(o => o.UserId);
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
             //Shipper
             builder.HasOne(o => o.Shipper)
                 .WithMany(o => o.Orders)
-                .HasForeignKey(o => o.ShipperId);
+                .HasForeignKey(o => o.ShipperId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
