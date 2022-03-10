@@ -6,10 +6,6 @@
         public int Stock { get; set; }
         public decimal Price { get; set; }
 
-
-
-
-
         //navigation property
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
