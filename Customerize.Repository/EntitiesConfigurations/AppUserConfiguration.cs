@@ -13,7 +13,7 @@ namespace Customerize.Repository.EntitiesConfigurations
             builder.HasOne(a => a.Company)
                 .WithMany(a => a.AppUsers)
                 .HasForeignKey(a => a.CompanyId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
