@@ -35,7 +35,7 @@ namespace Customerize.Repository.Repostories
             return await _dbset.AnyAsync(expression);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public IQueryable<T> GetAll()
         {
             return _dbset.AsNoTracking().AsQueryable();//AsNoTracking Ef core show data without memory
         }

@@ -5,7 +5,7 @@ namespace Customerize.Core.Repositories
     public interface IGenericRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int id,int? id_2);
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
