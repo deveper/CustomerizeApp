@@ -1,6 +1,6 @@
 ﻿namespace Customerize.Core.DTOs.Product
 {
-    public class ProductDtoList :BaseDto
+    public class ProductDtoList : BaseDto
     {
         public string Name { get; set; }
         public int Stock { get; set; }

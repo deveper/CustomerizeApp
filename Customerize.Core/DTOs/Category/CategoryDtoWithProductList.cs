@@ -2,7 +2,7 @@
 
 namespace Customerize.Core.DTOs.Category
 {
-    public class CategoryWithProductListDto
+    public class CategoryDtoWithProductList : BaseDto
     {
         public string Name { get; set; }
         public ICollection<ProductDto> ProductDtos { get; set; }

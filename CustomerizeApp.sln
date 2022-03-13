@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Core", "Customerize.Core\Customerize.Core.csproj", "{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customerize.Core", "Customerize.Core\Customerize.Core.csproj", "{17A120A4-97F7-4B16-ABD0-DCB5DECED80D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Repository", "Customerize.Repository\Customerize.Repository.csproj", "{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customerize.Repository", "Customerize.Repository\Customerize.Repository.csproj", "{9953B8D3-4D6C-4DD7-90CE-5906F4E2E06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Service", "Customerize.Service\Customerize.Service.csproj", "{1554BE67-14D2-42EF-9600-A15CC2069277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customerize.Service", "Customerize.Service\Customerize.Service.csproj", "{1554BE67-14D2-42EF-9600-A15CC2069277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Web", "Customerize.Web\Customerize.Web.csproj", "{F7E45CA8-3E7A-47B0-9BA0-D81456BB9F3E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customerize.Caching", "Customerize.Caching\Customerize.Caching.csproj", "{5B7CECC8-2A9C-419E-8662-13522A27625D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customerize.Web", "Customerize.Web\Customerize.Web.csproj", "{F7E45CA8-3E7A-47B0-9BA0-D81456BB9F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{F7E45CA8-3E7A-47B0-9BA0-D81456BB9F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E45CA8-3E7A-47B0-9BA0-D81456BB9F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7E45CA8-3E7A-47B0-9BA0-D81456BB9F3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B7CECC8-2A9C-419E-8662-13522A27625D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B7CECC8-2A9C-419E-8662-13522A27625D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B7CECC8-2A9C-419E-8662-13522A27625D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B7CECC8-2A9C-419E-8662-13522A27625D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
