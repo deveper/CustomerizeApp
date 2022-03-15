@@ -282,7 +282,7 @@ namespace Customerize.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Region");
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.RegionShipper", b =>

@@ -23,6 +23,7 @@ namespace Customerize.Repository
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
+        public DbSet<Region> Regions { get; set; }
         public DbSet<RegionShipper> RegionShippers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
