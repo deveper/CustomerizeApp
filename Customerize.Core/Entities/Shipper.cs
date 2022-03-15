@@ -7,5 +7,9 @@
 
         //navigation property
         public ICollection<Order> Orders { get; set; }
+
+        //navigation property
+        public ICollection<RegionShipper> RegionShippers { get; set; }
+
     }
 }
