@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Customerize.Repository
 {
-    public class AppDbContext : DbContext, IUnitOfWork
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -33,7 +33,7 @@ namespace Customerize.Repository
             base.OnModelCreating(modelBuilder);
         }
 
-        public void Commit()
+        public void Commit1()
         {
             foreach (var entry in ChangeTracker.Entries<BaseEntity>())
             {
@@ -53,7 +53,7 @@ namespace Customerize.Repository
             base.SaveChanges();
         }
 
-        public Task CommitAsync()
+        public Task CommitAsync1()
         {
             foreach (var entry in ChangeTracker.Entries<BaseEntity>())
             {

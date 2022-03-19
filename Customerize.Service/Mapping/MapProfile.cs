@@ -31,10 +31,10 @@ namespace Customerize.Service.Mapping
 
             #region Category
             CreateMap<Category, CategoryDto>().ReverseMap();
-            CreateMap<CategoryDtoInsert, Category>();
-            CreateMap<CategoryDtoUpdate, Category>();
-            CreateMap<Category, CategoryDtoList>();
-            CreateMap<Category, CategoryDtoWithProductList>();
+            CreateMap<Category, CategoryDtoInsert>().ReverseMap();
+            CreateMap<Category, CategoryDtoUpdate>().ReverseMap();
+            CreateMap<Category, CategoryDtoList>().ReverseMap();
+            CreateMap<Category, CategoryDtoWithProductList>().ReverseMap();
             #endregion
 
             #region Order
@@ -80,7 +80,7 @@ namespace Customerize.Service.Mapping
             CreateMap<Region, RegionDto>().ReverseMap();
             CreateMap<RegionDtoInsert, Region>();
             CreateMap<RegionDtoUpdate, Region>();
-            CreateMap<Region, RegionDtoList>(); 
+            CreateMap<Region, RegionDtoList>();
             #endregion
 
 

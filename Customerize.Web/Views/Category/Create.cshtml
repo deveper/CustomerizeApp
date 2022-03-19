@@ -1,0 +1,14 @@
+﻿@model Customerize.Core.DTOs.Category.CategoryDtoInsert
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<form asp-controller="Category" asp-action="Create" method="post">
+    <label>Category Adi:</label>
+    <input asp-for="Name" />
+
+    <input type="submit" class="btn-primary" />
+
+</form>
+

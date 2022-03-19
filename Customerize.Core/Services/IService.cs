@@ -6,7 +6,7 @@ namespace Customerize.Core.Services
     {
         Task<T> GetByIdAsync(int id, int? id_2);
         Task<IEnumerable<T>> GetAllAsync();
-        IQueryable<T> Where(Expression<Func<T, bool>> expression);
+        Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<T> AddAsync(T entity);
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);

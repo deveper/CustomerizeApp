@@ -1,8 +1,7 @@
 ﻿namespace Customerize.Core.DTOs.Category
 {
-    public class CategoryDtoInsert : BaseDto
+    public class CategoryDtoInsert 
     {
         public string Name { get; set; }
-
     }
 }
