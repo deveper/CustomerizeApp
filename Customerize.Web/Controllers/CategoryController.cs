@@ -11,11 +11,13 @@ namespace Customerize.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IService<Category> _categoryService;
+        private readonly ICategoryService _categoryService1;
 
-        public CategoryController(IMapper mapper, IService<Category> categoryService)
+        public CategoryController(IMapper mapper, IService<Category> categoryService, ICategoryService categoryService1)
         {
             _mapper = mapper;
             _categoryService = categoryService;
+            _categoryService1 = categoryService1;
         }
 
         #region CategoryEdit
@@ -54,11 +56,20 @@ namespace Customerize.Web.Controllers
         #endregion
 
         #region CategoryList
+        [HttpGet]
         public async Task<IActionResult> GetAllList()
         {
-            return View(_mapper.Map<IEnumerable<CategoryDtoList>>(await _categoryService.GetAllAsync()));
+            var categoryList = await _categoryService.GetAllAsync();
+            return View(_mapper.Map<IEnumerable<CategoryDtoList>>(categoryList));
         }
         #endregion
+
+        [HttpGet]
+        public async Task<IActionResult> GetCategoryListWithProduct()
+        {
+            var categorylistWithProduct = await _categoryService1.GetCategoryWithProduct();
+            return View(categorylistWithProduct);
+        }
         public IActionResult Index()
         {
             return View();

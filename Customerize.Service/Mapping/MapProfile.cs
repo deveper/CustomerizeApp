@@ -22,11 +22,14 @@ namespace Customerize.Service.Mapping
         public MapProfile()
         {
 
+
+
+
             #region Product
             CreateMap<Product, ProductDto>().ReverseMap();
-            CreateMap<ProductDtoInsert, Product>();
-            CreateMap<ProductDtoUpdate, Product>();
-            CreateMap<Product, ProductDtoList>();
+            CreateMap<Product, ProductDtoInsert>().ReverseMap();
+            CreateMap<Product, ProductDtoUpdate>().ReverseMap();
+            CreateMap<Product, ProductDtoList>().ReverseMap();
             #endregion
 
             #region Category

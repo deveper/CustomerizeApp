@@ -1,0 +1,30 @@
+﻿@model List<CategoryDtoWithProductList>
+@{
+    ViewData["Title"] = "GetCategoryListWithProduct";
+}
+
+<h1>GetCategoryListWithProduct</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Adı</th>
+            <th scope="col">Oluşturma Zamanı</th>
+            <th scope="col">Güncelleme Zamanı</th>
+            <th scope="col">Bu Kategorideki Ürünler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.UpdatedDate</td>
+                <td>@String.Join(",", item.Products.ToList())</td>
+            </tr>
+        }
+    </tbody>
+</table>
