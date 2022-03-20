@@ -18,6 +18,7 @@ namespace Customerize.Web.Controllers
             _categoryService = categoryService;
         }
 
+        #region CategoryEdit
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -34,6 +35,9 @@ namespace Customerize.Web.Controllers
             _categoryService.UpdateAsync(category);
             return View(_mapper.Map<CategoryDto>(category));
         }
+        #endregion
+
+        #region CategoryCreate
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -47,10 +51,14 @@ namespace Customerize.Web.Controllers
             return View();
         }
 
+        #endregion
+
+        #region CategoryList
         public async Task<IActionResult> GetAllList()
         {
             return View(_mapper.Map<IEnumerable<CategoryDtoList>>(await _categoryService.GetAllAsync()));
         }
+        #endregion
         public IActionResult Index()
         {
             return View();
