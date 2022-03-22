@@ -11,6 +11,7 @@
             <th scope="col">Adı</th>
             <th scope="col">Oluşturma Zamanı</th>
             <th scope="col">Güncelleme Zamanı</th>
+            <th scope="col">İşlemler</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,11 @@
                 <td>@item.Name</td>
                 <td>@item.CreatedDate</td>
                 <td>@item.UpdatedDate</td>
+                <td>
+                   <a class="btn btn-warning" asp-controller="Category" asp-action="Edit"  asp-route-id="@item.Id">Güncelle</a>
+                   <a class="btn btn-danger"  asp-controller="Category" asp-action=""      asp-route-id="@item.Id">Sil</a>
+                   <a class="btn btn-success" asp-controller="Category" asp-action="Remove"      asp-route-id="@item.Id">Detay</a>
+                </td>
             </tr>
         }
     </tbody>

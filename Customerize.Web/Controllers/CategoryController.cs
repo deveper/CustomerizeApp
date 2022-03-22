@@ -35,7 +35,7 @@ namespace Customerize.Web.Controllers
             category.Name = model.Name;
             category.UpdatedDate = DateTime.Now;
             _categoryService.UpdateAsync(category);
-            return View(_mapper.Map<CategoryDto>(category));
+            return RedirectToAction("GetAllList");
         }
         #endregion
 
@@ -50,7 +50,7 @@ namespace Customerize.Web.Controllers
         {
             var mappedCategory = _mapper.Map<Category>(model);
             var insertCategory = await _categoryService.AddAsync(mappedCategory);
-            return View();
+            return RedirectToAction("GetAllList");
         }
 
         #endregion
@@ -64,11 +64,23 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
+        #region CategoyListWithProduct
         [HttpGet]
         public async Task<IActionResult> GetCategoryListWithProduct()
         {
             var categorylistWithProduct = await _categoryService1.GetCategoryWithProduct();
             return View(categorylistWithProduct);
+        }
+        #endregion
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(int id)
+        {
+            var category = _categoryService.Where(x => x.Id == id).Result.FirstOrDefault();
+
+            await _categoryService.RemoveAsync(category);
+
+            return RedirectToAction("GetCategoryListWithProduct");
         }
         public IActionResult Index()
         {
