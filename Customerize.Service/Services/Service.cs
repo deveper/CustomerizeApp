@@ -51,7 +51,7 @@ namespace Customerize.Service.Services
 
         public async Task RemoveAsync(T entity)
         {
-            _repository.Remove(entity);
+             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
         }
 

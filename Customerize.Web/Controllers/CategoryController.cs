@@ -32,10 +32,21 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Edit(CategoryDtoUpdate model)
         {
             var category = _categoryService.Where(x => x.Id == model.Id).Result.FirstOrDefault();
-            category.Name = model.Name;
-            category.UpdatedDate = DateTime.Now;
-            _categoryService.UpdateAsync(category);
-            return RedirectToAction("GetAllList");
+            if (model.Name != null)
+            {
+                category.Name = model.Name;
+                category.UpdatedDate = DateTime.Now;
+                _categoryService.UpdateAsync(category);
+                return RedirectToAction("GetAllList");
+            }
+            var model1 = new CategoryDto
+            {
+                Id = model.Id,
+                Name = category.Name
+            };
+            //var mappedCategory = _mapper.Map<Category>(model);
+            //_categoryService.UpdateAsync(mappedCategory);
+            return View("Edit", model1);
         }
         #endregion
 
@@ -73,13 +84,10 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
-        [HttpPost]
         public async Task<IActionResult> Remove(int id)
         {
-            var category = _categoryService.Where(x => x.Id == id).Result.FirstOrDefault();
-
-            await _categoryService.RemoveAsync(category);
-
+            var category =  await _categoryService1.GetCategoryWithProduct(id);
+            _categoryService.RemoveAsync(category);
             return RedirectToAction("GetCategoryListWithProduct");
         }
         public IActionResult Index()

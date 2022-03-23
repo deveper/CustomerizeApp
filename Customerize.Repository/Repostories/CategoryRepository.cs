@@ -22,5 +22,12 @@ namespace Customerize.Repository.Repostories
                 .ToListAsync();
             return categoryWithProduct;
         }
+
+        public async Task<Category> GetCategoryWithProduct(int id)
+        {
+            var categoryWithProduct = _context.Categories.Where(x => x.Id == id)
+                         .Include(x => x.Products).FirstOrDefault();
+            return categoryWithProduct;
+        }
     }
 }

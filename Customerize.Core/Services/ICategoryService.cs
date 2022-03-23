@@ -11,5 +11,7 @@ namespace Customerize.Core.Services
     public interface ICategoryService : IService<Category>
     {
         Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct();
+        Task<Category> GetCategoryWithProduct(int id);
+
     }
 }

@@ -28,5 +28,12 @@ namespace Customerize.Service.Services
             var mapperCategories = _mapper.Map<List<CategoryDtoWithProductList>>(categories);
             return mapperCategories;
         }
+
+        public async Task<Category> GetCategoryWithProduct(int id)
+        {
+            var category = await _categoryRepository.GetCategoryWithProduct(id);
+            return category;
+        }
     }
+
 }
