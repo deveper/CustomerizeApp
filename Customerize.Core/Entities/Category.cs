@@ -5,6 +5,6 @@
         public string Name { get; set; }
 
         //navigation property
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

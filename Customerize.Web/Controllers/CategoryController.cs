@@ -86,9 +86,13 @@ namespace Customerize.Web.Controllers
 
         public async Task<IActionResult> Remove(int id)
         {
-            var category =  await _categoryService1.GetCategoryWithProduct(id);
-            _categoryService.RemoveAsync(category);
-            return RedirectToAction("GetCategoryListWithProduct");
+
+                var category = await _categoryService1.GetCategoryWithProduct(id);
+                _categoryService.RemoveAsync(category);
+                return RedirectToAction("GetCategoryListWithProduct");
+            
+         
+
         }
         public IActionResult Index()
         {

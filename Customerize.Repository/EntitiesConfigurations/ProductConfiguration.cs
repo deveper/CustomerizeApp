@@ -23,12 +23,12 @@ namespace Customerize.Repository.EntitiesConfigurations
             builder.HasOne(c => c.Category)//one Category
                    .WithMany(p => p.Products)//in Products
                    .HasForeignKey(p => p.CategoryId)
-                   .OnDelete(DeleteBehavior.NoAction);//Products for FK CategoryId
+                   .OnDelete(DeleteBehavior.SetNull);
             //ProductType
             builder.HasOne(p => p.ProductType)//one ProductType
                    .WithMany(p => p.Products)//in products
-                   .HasForeignKey(p => p.ProductTypeId)//Products for FK ProductTypeId
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .HasForeignKey(p => p.ProductTypeId)
+                   .OnDelete(DeleteBehavior.SetNull);//Products for FK ProductTypeId
         }
     }
 }

@@ -7,12 +7,12 @@
         public decimal Price { get; set; }
 
         //navigation property
-        public int ProductTypeId { get; set; }
-        public ProductType ProductType { get; set; }
+        public int? ProductTypeId { get; set; }
+        public ProductType? ProductType { get; set; }
 
         //navigation property
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
         //navigation property
         public ICollection<OrderLine> OrderLines { get; set; }
