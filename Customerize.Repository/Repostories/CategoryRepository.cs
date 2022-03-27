@@ -1,11 +1,6 @@
 ﻿using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Customerize.Repository.Repostories
 {

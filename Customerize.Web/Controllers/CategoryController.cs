@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Customerize.Core.DTOs.Category;
-using Customerize.Core.DTOs.Product;
 using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -87,11 +86,11 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Remove(int id)
         {
 
-                var category = await _categoryService1.GetCategoryWithProduct(id);
-                _categoryService.RemoveAsync(category);
-                return RedirectToAction("GetCategoryListWithProduct");
-            
-         
+            var category = await _categoryService1.GetCategoryWithProduct(id);
+            _categoryService.RemoveAsync(category);
+            return RedirectToAction("GetCategoryListWithProduct");
+
+
 
         }
         public IActionResult Index()

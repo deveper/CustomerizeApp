@@ -9,11 +9,6 @@ using Customerize.Core.DTOs.ProductType;
 using Customerize.Core.DTOs.Region;
 using Customerize.Core.DTOs.Shipper;
 using Customerize.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Customerize.Service.Mapping
 {
