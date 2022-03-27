@@ -1,11 +1,6 @@
 ﻿using Customerize.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Customerize.Repository.Repostories
 {
@@ -37,7 +32,7 @@ namespace Customerize.Repository.Repostories
 
         public IQueryable<T> GetAll()
         {
-            return _dbset.AsNoTracking().AsQueryable();//AsNoTracking Ef core show data without memory
+            return _dbset.AsNoTracking().AsQueryable();
         }
 
         public async Task<T> GetByIdAsync(int id, int? id_2)
