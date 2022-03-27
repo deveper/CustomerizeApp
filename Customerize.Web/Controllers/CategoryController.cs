@@ -83,6 +83,7 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
+        #region CategoryRemove
         public async Task<IActionResult> Remove(int id)
         {
 
@@ -92,7 +93,8 @@ namespace Customerize.Web.Controllers
 
 
 
-        }
+        } 
+        #endregion
         public IActionResult Index()
         {
             return View();

@@ -1,0 +1,25 @@
+﻿@model ProductDtoInsert
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form asp-controller="Product" asp-action="Create" method="post">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+
+    <label asp-for="Stock"></label>
+    <input asp-for="Stock" class="form-control" />
+
+    <label asp-for="Price"></label>
+    <input asp-for="Price" class="form-control" />
+
+    <label asp-for="CategoryId"></label>
+    <select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control"></select>
+
+    <div class="form-group">
+        <input type="submit" value="Kaydet" class="btn  btn-primary" />
+    </div>
+</form>
