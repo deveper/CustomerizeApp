@@ -8,8 +8,10 @@ namespace Customerize.Web.Controllers
 {
     public class CategoryController : Controller
     {
+        #region DI
         private readonly IMapper _mapper;
-        private readonly ICategoryService _categoryService1;
+        private readonly ICategoryService _categoryService1; 
+        #endregion
 
         public CategoryController(IMapper mapper, IService<Category> categoryService, ICategoryService categoryService1)
         {

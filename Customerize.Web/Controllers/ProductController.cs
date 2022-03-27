@@ -10,9 +10,11 @@ namespace Customerize.Web.Controllers
 {
     public class ProductController : Controller
     {
+        #region DI
         private readonly IMapper _mapper;
         private readonly IProductService _productService1;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryService _categoryService; 
+        #endregion
         public ProductController(IMapper mapper, IService<Product> service, IProductService productService1, ICategoryService categoryService)
         {
             _mapper = mapper;
@@ -28,6 +30,7 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
+        #region ProductInsert
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -47,7 +50,8 @@ namespace Customerize.Web.Controllers
             var mappedProduct = _mapper.Map<Product>(model);
             var insertProduct = await _productService1.AddAsync(mappedProduct);
             return RedirectToAction("GetAllList");
-        }
+        } 
+        #endregion
         public IActionResult Index()
         {
             return View();
