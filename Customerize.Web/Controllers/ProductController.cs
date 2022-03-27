@@ -11,13 +11,11 @@ namespace Customerize.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _prodcutService;
         private readonly IProductService _productService1;
         private readonly ICategoryService _categoryService;
         public ProductController(IMapper mapper, IService<Product> service, IProductService productService1, ICategoryService categoryService)
         {
             _mapper = mapper;
-            _prodcutService = service;
             _productService1 = productService1;
             _categoryService = categoryService;
         }
