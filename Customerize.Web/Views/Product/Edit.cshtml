@@ -1,11 +1,11 @@
-﻿@model ProductDtoInsert
+﻿@model ProductDtoUpdate
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<form asp-controller="Product" asp-action="Create" method="post">
+<form asp-controller="Product" asp-action="Edit" method="post">
 
     <label asp-for="Name"></label>
     <input asp-for="Name" class="form-control" />
@@ -15,7 +15,7 @@
 
     <label asp-for="Price"></label>
     <input asp-for="Price" class="form-control" />
-
+    
     <label asp-for="CategoryId"></label>
     <select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control"></select>
 

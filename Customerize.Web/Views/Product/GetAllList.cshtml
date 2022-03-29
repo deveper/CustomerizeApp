@@ -28,7 +28,7 @@
                 <td>@item.CreatedDate</td>
                 <td>@item.UpdatedDate</td>
                 <td>
-                   <a class="btn btn-warning" asp-controller="" asp-action=""      asp-route-id="@item.Id">Güncelle</a>
+                   <a class="btn btn-warning" asp-controller="Product" asp-action="Edit"      asp-route-id="@item.Id">Güncelle</a>
                    <a class="btn btn-danger"  asp-controller="" asp-action=""      asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
