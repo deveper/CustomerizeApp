@@ -64,9 +64,17 @@ namespace Customerize.Service.Services
 
         public async Task UpdateAsync(T entity)
         {
+            try
+            {
+                _repository.Update(entity);
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception e)
+            {
 
-            _repository.Update(entity);
-            await _unitOfWork.CommitAsync();
+                Console.WriteLine(e);
+            }
+           ;
         }
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)
