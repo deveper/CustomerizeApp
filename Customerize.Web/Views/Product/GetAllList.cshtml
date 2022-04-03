@@ -32,8 +32,8 @@
                 <td>@item.CreatedDate</td>
                 <td>@item.UpdatedDate</td>
                 <td>
-                   <a class="btn btn-xs btn-info" asp-controller="Product" asp-action="Edit"asp-route-id="@item.Id"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
-                   <a class="btn btn-xs btn-danger"  asp-controller="" asp-action=""      asp-route-id="@item.Id"><i class="ace-icon fa fa-trash bigger-120"></i></a>
+                    <a class="btn btn-xs btn-info" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                    <a class="btn btn-xs btn-danger" asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id"><i class="ace-icon fa fa-trash bigger-120"></i></a>
                 </td>
             </tr>
         }

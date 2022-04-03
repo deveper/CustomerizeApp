@@ -67,6 +67,7 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
+        #region Product Edit
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -99,6 +100,21 @@ namespace Customerize.Web.Controllers
                 return RedirectToAction("GetAllList");
             }
             return RedirectToAction("Edit");
+        }
+        #endregion
+
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            var result = _productService1.Where(x => x.Id == id).Result.FirstOrDefault();
+            if (result != null)
+            {
+                _productService1.RemoveAsync(result);
+                return RedirectToAction("GetAllList");
+            }
+            //ToDo:Need Message
+            return null;
+
         }
         public IActionResult Index()
         {
