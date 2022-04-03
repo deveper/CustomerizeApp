@@ -911,6 +911,7 @@
 
 					<div class="page-content">
 						@RenderBody()
+						
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
@@ -954,14 +955,59 @@
 		<script src="~/Panel/assets/js/jquery.flot.min.js"></script>
 		<script src="~/Panel/assets/js/jquery.flot.pie.min.js"></script>
 		<script src="~/Panel/assets/js/jquery.flot.resize.min.js"></script>
-
+		<script src="~/Panel/assets/js/jquery.dataTables.min.js"></script>
+		<script src="~/Panel/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="~/Panel/assets/js/dataTables.buttons.min.js"></script>
+		<script src="~/Panel/assets/js/buttons.flash.min.js"></script>
+		<script src="~/Panel/assets/js/buttons.html5.min.js"></script>
+		<script src="~/Panel/assets/js/buttons.print.min.js"></script>
+		<script src="~/Panel/assets/js/buttons.colVis.min.js"></script>
+		<script src="~/Panel/assets/js/dataTables.select.min.js"></script>
 		<!-- ace scripts -->
 		<script src="~/Panel/assets/js/ace-elements.min.js"></script>
 		<script src="~/Panel/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
+
 			jQuery(function($) {
+				$('#dynamic-table')
+				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+				.DataTable( {
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],
+					
+					
+					//"bProcessing": true,
+			        //"bServerSide": true,
+			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
+			
+					//,
+					//"sScrollY": "200px",
+					//"bPaginate": false,
+			
+					//"sScrollX": "100%",
+					//"sScrollXInner": "120%",
+					//"bScrollCollapse": true,
+					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+			
+					//"iDisplayLength": 50
+			
+			
+					select: {
+						style: 'multi'
+					}
+
+
+
+
+
 				$('.easy-pie-chart.percentage').each(function(){
 					var $box = $(this).closest('.infobox');
 					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');

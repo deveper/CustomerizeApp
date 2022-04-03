@@ -42,22 +42,28 @@ namespace Customerize.Web.Controllers
             var categories = await _categoryService.GetAllAsync();
             var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
             ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(ProductDtoInsert model)
         {
-            var productTypes = await _productTypeService.GetAllProductType();
-            ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
+            var result = await _productService1.AnyAsync(x => x.Name == model.Name);
+            if (result == false)
+            {
+                var productTypes = await _productTypeService.GetAllProductType();
+                ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
+                var categories = await _categoryService.GetAllAsync();
+                var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
+                ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
 
-            var categories = await _categoryService.GetAllAsync();
-            var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-            ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+                var mappedProduct = _mapper.Map<Product>(model);
+                var insertProduct = await _productService1.AddAsync(mappedProduct);
+                return RedirectToAction("GetAllList");
+            }
 
-            var mappedProduct = _mapper.Map<Product>(model);
-            var insertProduct = await _productService1.AddAsync(mappedProduct);
-            return RedirectToAction("GetAllList");
+            return RedirectToAction("Create");
         }
         #endregion
 

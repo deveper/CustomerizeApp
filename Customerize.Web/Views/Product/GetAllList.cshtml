@@ -10,6 +10,8 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Adı</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Stok Adedi</th>
             <th scope="col">Kategori Adı</th>
             <th scope="col">Ürün Tipi</th>
             <th scope="col">Oluşturulma Zamanı</th>
@@ -23,13 +25,15 @@
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
                 <td>@item.CategoryName</td>
                 <td>@item.ProductTypeName</td>
                 <td>@item.CreatedDate</td>
                 <td>@item.UpdatedDate</td>
                 <td>
-                   <a class="btn btn-warning" asp-controller="Product" asp-action="Edit"      asp-route-id="@item.Id">Güncelle</a>
-                   <a class="btn btn-danger"  asp-controller="" asp-action=""      asp-route-id="@item.Id">Sil</a>
+                   <a class="btn btn-xs btn-info" asp-controller="Product" asp-action="Edit"asp-route-id="@item.Id"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                   <a class="btn btn-xs btn-danger"  asp-controller="" asp-action=""      asp-route-id="@item.Id"><i class="ace-icon fa fa-trash bigger-120"></i></a>
                 </td>
             </tr>
         }

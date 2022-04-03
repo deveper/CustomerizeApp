@@ -1,6 +1,7 @@
 ﻿@model ProductDtoInsert
 @{
     ViewData["Title"] = "Create";
+
 }
 
 <h1>Create</h1>
@@ -23,6 +24,43 @@
     <select asp-for="ProductTypeId" asp-items="ViewBag.productTypes" class="form-control"></select>
 
     <div class="form-group">
-        <input type="submit" value="Kaydet" class="btn  btn-primary" />
+        <a type="button" href="#modal-table" role="button" class="btn btn btn-succes" data-toggle="modal"> Kaydet</a>
+        <div id="modal-table" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+
+                            Kayıt İşlemini Onaylıyor Musunuz?
+                        </div>
+                    </div>
+                    <div class="modal-body no-padding text-center">
+                        <br />
+                        <br />
+                        <button type="submit" class="btn btn-success">Onayla</button>
+                        <button class="btn btn-dark" data-dismiss="modal">Vazgeç</button>
+                        <br />
+                        <br />
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
     </div>
+
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
