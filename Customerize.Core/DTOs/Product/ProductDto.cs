@@ -1,4 +1,5 @@
 ﻿using Customerize.Core.DTOs.Category;
+using System.Web.Mvc;
 
 namespace Customerize.Core.DTOs.Product
 {
@@ -7,6 +8,5 @@ namespace Customerize.Core.DTOs.Product
         public string Name { get; set; }
         public CategoryDtoWithProductList Category { get; set; }
         public int CategoryId { get; set; }
-
     }
 }

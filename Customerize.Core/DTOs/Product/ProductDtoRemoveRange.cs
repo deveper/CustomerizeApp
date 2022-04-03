@@ -1,8 +1,13 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Customerize.Core.DTOs.Product
 {
-    public class ProductDtoList : BaseDto
+    public class ProductDtoRemoveRange: BaseDto
     {
         public string Name { get; set; }
         public int Stock { get; set; }
@@ -12,6 +17,5 @@ namespace Customerize.Core.DTOs.Product
         public string CategoryName { get; set; }
         public string ProductTypeName { get; set; }
         public SelectListItem DeleteProducts { get; set; }
-
     }
 }

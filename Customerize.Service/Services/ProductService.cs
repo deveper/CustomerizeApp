@@ -17,6 +17,8 @@ namespace Customerize.Service.Services
             _mapper = mapper;
         }
 
+      
+
         public async Task<List<ProductDtoList>> GetFullProduct()
         {
             var products = await _productRepositroy.GetFullProduct();

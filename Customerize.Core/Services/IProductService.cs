@@ -6,5 +6,6 @@ namespace Customerize.Core.Services
     public interface IProductService : IService<Product>
     {
         Task<List<ProductDtoList>> GetFullProduct();
+
     }
 }

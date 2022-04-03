@@ -28,7 +28,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var productList = await _productService1.GetFullProduct();
-            return View(_mapper.Map<IEnumerable<ProductDtoList>>(productList));
+            return View(/*_mapper.Map<IEnumerable<ProductDtoList>>(productList)*/productList);
         }
         #endregion
 
@@ -103,7 +103,7 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
-
+        #region Product Remove
         public async Task<IActionResult> Remove(int id)
         {
             var result = _productService1.Where(x => x.Id == id).Result.FirstOrDefault();
@@ -116,6 +116,34 @@ namespace Customerize.Web.Controllers
             return null;
 
         }
+        #endregion
+
+        #region ProductRemoveRange
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveRange()
+        {
+            var productList = await _productService1.GetFullProduct();
+            var map = _mapper.Map<List<ProductDtoRemoveRange>>(productList);
+            return View(map);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveRange(List<ProductDtoRemoveRange> model)
+        {
+            List<Product> products = new List<Product>();
+            foreach (var product in model)
+            {
+                if (product.DeleteProducts.Selected)
+                {
+                    var selectedProduct = _productService1.Where(x => x.Id == product.Id).Result.First();
+                    products.Add(selectedProduct);
+                }
+            }
+            await _productService1.RemoveRangeAsync(products);
+            return View("RemoveRange");
+        } 
+        #endregion
+
         public IActionResult Index()
         {
             return View();
