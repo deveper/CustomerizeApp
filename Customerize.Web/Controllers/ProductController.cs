@@ -89,13 +89,11 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDtoUpdate model)
         {
-            var product = await _productService1.AnyAsync(x => x.Id == model.Id);
-            if (product)
+            var product =  _productService1.Where(x => x.Id == model.Id).Result.FirstOrDefault();
+            if (product!=null)
             {
-
                 var mapperdProduct = _mapper.Map<Product>(model);
                 mapperdProduct.UpdatedDate = DateTime.Now;
-
                 await _productService1.UpdateAsync(mapperdProduct);
                 return RedirectToAction("GetAllList");
             }

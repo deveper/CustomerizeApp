@@ -70,7 +70,7 @@ namespace Customerize.Service.Services
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)
         {
-            return _repository.Where(expression);
+            return _repository.Where(expression).AsNoTracking();
         }
     }
 }
