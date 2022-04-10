@@ -142,12 +142,12 @@ namespace Customerize.Web.Controllers
                     products.Add(selectedProduct);
                 }
             }
-            if (products!=null)
+            if (products != null)
             {
                 await _productService1.RemoveRangeAsync(products);
-                RedirectToAction("RemoveRange");
+                return RedirectToAction("RemoveRange");
             }
-            
+
 
             return View("RemoveRange");
         }
