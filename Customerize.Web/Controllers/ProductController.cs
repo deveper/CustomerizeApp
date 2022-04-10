@@ -89,8 +89,8 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDtoUpdate model)
         {
-            var product =  _productService1.Where(x => x.Id == model.Id).Result.FirstOrDefault();
-            if (product!=null)
+            var product = _productService1.Where(x => x.Id == model.Id).Result.FirstOrDefault();
+            if (product != null)
             {
                 var mapperdProduct = _mapper.Map<Product>(model);
                 mapperdProduct.UpdatedDate = DateTime.Now;
@@ -122,13 +122,18 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> RemoveRange()
         {
             var productList = await _productService1.GetFullProduct();
+            if (productList == null)
+            {
+                return View();
+            }
             var map = _mapper.Map<List<ProductDtoRemoveRange>>(productList);
             return View(map);
         }
         [HttpPost]
-        public async Task<IActionResult> RemoveRange(List<ProductDtoRemoveRange> model)
+        public async Task<IActionResult> RemoveRangeConfirm(IList<ProductDtoRemoveRange> model)
         {
             List<Product> products = new List<Product>();
+
             foreach (var product in model)
             {
                 if (product.DeleteProducts.Selected)
@@ -137,9 +142,15 @@ namespace Customerize.Web.Controllers
                     products.Add(selectedProduct);
                 }
             }
-            await _productService1.RemoveRangeAsync(products);
+            if (products!=null)
+            {
+                await _productService1.RemoveRangeAsync(products);
+                RedirectToAction("RemoveRange");
+            }
+            
+
             return View("RemoveRange");
-        } 
+        }
         #endregion
 
         public IActionResult Index()
