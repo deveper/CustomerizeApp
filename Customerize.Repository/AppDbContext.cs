@@ -27,48 +27,34 @@ namespace Customerize.Repository
             base.OnModelCreating(modelBuilder);
         }
 
-        public void Commit1()
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+            foreach (var item in ChangeTracker.Entries())
             {
-                switch (entry.State)
+                if (item.Entity is BaseEntity entityReferance)
                 {
-                    case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTime.Now;
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.UpdatedDate = DateTime.Now;
-                        break;
-                    case EntityState.Deleted:
-                        entry.Entity.DeletedDate = DateTime.Now;
-                        break;
+                    switch (item.State)
+                    {
+                        case EntityState.Added:
+                            {
+                                entityReferance.CreatedDate = DateTime.Now;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                Entry(entityReferance).Property(x => x.CreatedDate).IsModified = false;
+                                entityReferance.UpdatedDate = DateTime.Now;
+                                break;
+                            }
+                    }
                 }
+
             }
-            base.SaveChanges();
+
+
+            return base.SaveChangesAsync(cancellationToken);
         }
 
-        public Task CommitAsync1()
-        {
-            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        //ToDo:  Added user property
-                        entry.Entity.CreatedDate = DateTime.Now;
-                        break;
-                    case EntityState.Modified:
-                        //ToDo: Updated  user property
-                        entry.Entity.UpdatedDate = DateTime.Now;
-                        break;
 
-                    case EntityState.Deleted:
-                        //ToDo: Deleted user property
-                        entry.Entity.DeletedDate = DateTime.Now;
-                        break;
-                }
-            }
-            return base.SaveChangesAsync();
-        }
     }
 }

@@ -34,7 +34,6 @@ namespace Customerize.Web.Controllers
             if (model.Name != null)
             {
                 category.Name = model.Name;
-                category.UpdatedDate = DateTime.Now;
                 _categoryService1.UpdateAsync(category);
                 return RedirectToAction("GetAllList");
             }
