@@ -28,7 +28,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var productList = await _productService1.GetFullProduct();
-            return View(/*_mapper.Map<IEnumerable<ProductDtoList>>(productList)*/productList);
+            return View(productList);
         }
         #endregion
 
