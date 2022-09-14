@@ -4,6 +4,7 @@ using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Customerize.Service.Services
 {
@@ -16,6 +17,8 @@ namespace Customerize.Service.Services
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
+
+        
 
         public async Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct()
         {

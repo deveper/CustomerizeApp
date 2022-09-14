@@ -58,18 +58,18 @@ namespace Customerize.Service.Services
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
-              _repository.RemoveRange(entities);
-                await _unitOfWork.CommitAsync();
+            _repository.RemoveRange(entities);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task UpdateAsync(T entity)
         {
-                _repository.Update(entity);
-                await _unitOfWork.CommitAsync();
+            _repository.Update(entity);
+            await _unitOfWork.CommitAsync();
 
-           
-         
-                
+
+
+
         }
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)

@@ -10,6 +10,8 @@ namespace Customerize.Repository.Repostories
         {
         }
 
+       
+
         public async Task<List<Category>> GetCategoryWithProduct()
         {
             var categoryWithProduct = await _context.Categories

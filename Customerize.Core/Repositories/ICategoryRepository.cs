@@ -6,6 +6,5 @@ namespace Customerize.Core.Repositories
     {
         Task<List<Category>> GetCategoryWithProduct();
         Task<Category> GetCategoryWithProduct(int id);
-
     }
 }
