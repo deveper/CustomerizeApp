@@ -35,9 +35,9 @@ namespace Customerize.Repository.Repostories
             return _dbset.AsNoTracking().AsQueryable();
         }
 
-        public async Task<T> GetByIdAsync(int id, int? id_2)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbset.FindAsync(id, id_2);
+            return await _dbset.FindAsync(id);
         }
 
         public void Remove(T entity)
@@ -52,7 +52,8 @@ namespace Customerize.Repository.Repostories
 
         public void Update(T entity)
         {
-            _dbset.Update(entity);
+           
+                _dbset.Update(entity);
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)

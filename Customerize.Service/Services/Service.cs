@@ -44,9 +44,9 @@ namespace Customerize.Service.Services
             return await _repository.GetAll().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id, int? id_2)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id, id_2);
+            return await _repository.GetByIdAsync(id);
         }
 
         public async Task RemoveAsync(T entity)
@@ -64,12 +64,9 @@ namespace Customerize.Service.Services
 
         public async Task UpdateAsync(T entity)
         {
-            _repository.Update(entity);
-            await _unitOfWork.CommitAsync();
-
-
-
-
+            
+                _repository.Update(entity);
+                await _unitOfWork.CommitAsync();
         }
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)

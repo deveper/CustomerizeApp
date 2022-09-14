@@ -34,6 +34,7 @@ namespace Customerize.Service.Mapping
             CreateMap<Category, CategoryDtoUpdate>().ReverseMap();
             CreateMap<Category, CategoryDtoList>().ReverseMap();
             CreateMap<Category, CategoryDtoWithProductList>().ReverseMap();
+            CreateMap<CategoryDto, CategoryDtoUpdate>().ReverseMap();
             #endregion
 
             #region Order

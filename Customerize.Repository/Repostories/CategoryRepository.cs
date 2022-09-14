@@ -20,7 +20,7 @@ namespace Customerize.Repository.Repostories
             return categoryWithProduct;
         }
 
-        public async Task<Category> GetCategoryWithProduct(int id)
+        public async Task<Category> GetCategoryWithProductId(int id)
         {
             var categoryWithProduct = _context.Categories.Where(x => x.Id == id)
                          .Include(x => x.Products).FirstOrDefault();

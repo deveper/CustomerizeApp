@@ -10,7 +10,7 @@ namespace Customerize.Web.Controllers
     {
         #region DI
         private readonly IMapper _mapper;
-        private readonly ICategoryService _categoryService1; 
+        private readonly ICategoryService _categoryService1;
         #endregion
 
         public CategoryController(IMapper mapper, IService<Category> categoryService, ICategoryService categoryService1)
@@ -23,28 +23,21 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var category = _categoryService1.Where(x => x.Id == id).Result.FirstOrDefault();
-            var categoryDto = _mapper.Map<CategoryDto>(category);
-            return View(categoryDto);
+            var result = await _categoryService1.GetCategoryById(id);
+            var map = _mapper.Map<CategoryDtoUpdate>(result);
+            return View(map);
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryDtoUpdate model)
         {
-            var category = _categoryService1.Where(x => x.Id == model.Id).Result.FirstOrDefault();
-            if (model.Name != null)
+            var result = await _categoryService1.UpdateCategory(model);
+            if (result.IsSuccess = true)
             {
-                category.Name = model.Name;
-                _categoryService1.UpdateAsync(category);
-                return RedirectToAction("GetAllList");
+                return Json(result.Message);
             }
-            var model1 = new CategoryDto
-            {
-                Id = model.Id,
-                Name = category.Name
-            };
-            //var mappedCategory = _mapper.Map<Category>(model);
-            //_categoryService.UpdateAsync(mappedCategory);
-            return View("Edit", model1);
+            return Json(result.Message);
+
         }
         #endregion
 
@@ -86,10 +79,10 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Remove(int id)
         {
 
-            var category = await _categoryService1.GetCategoryWithProduct(id);
-            _categoryService1.RemoveAsync(category);
-            return RedirectToAction("GetCategoryListWithProduct");
-
+            //var category = await _categoryService1.GetCategoryWithProductId(id);
+            //_categoryService1.RemoveAsync()
+            //return RedirectToAction("GetCategoryListWithProduct");
+            return null;
 
 
         }

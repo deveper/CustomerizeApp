@@ -1,12 +1,13 @@
-﻿using Customerize.Core.DTOs.Category;
+﻿using Common.Dtos;
+using Customerize.Core.DTOs.Category;
 using Customerize.Core.Entities;
-
 namespace Customerize.Core.Services
 {
     public interface ICategoryService : IService<Category>
     {
         Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct();
-        Task<Category> GetCategoryWithProduct(int id);
-
+        Task<CategoryDtoWithProductList> GetCategoryWithProductId(int id);
+        Task<CategoryDto> GetCategoryById(int Id);
+        Task<ResultDto> UpdateCategory(CategoryDtoUpdate input);
     }
 }
