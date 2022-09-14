@@ -22,19 +22,26 @@ namespace Customerize.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<CategoryDto> GetCategoryById(int Id)
+        public async Task<ResultDto<Category>> GetCategoryById(int Id)
         {
             var category = await _categoryRepository.GetByIdAsync(Id);
             if (category != null)
             {
-                var mappedCategory = _mapper.Map<CategoryDto>(category);
-                return mappedCategory;
+                return new ResultDto<Category>()
+                {
+                    Data = category,
+                    IsSuccess = true,
+                    Message = ResultMessages.CategoryFound
+                };
 
             }
             else
             {
-                //ToDo:Error messages
-                return null;
+                return new ResultDto<Category>()
+                {
+                    IsSuccess = false,
+                    Message = ResultMessages.NotFoundCategory
+                };
             }
         }
 
@@ -76,9 +83,9 @@ namespace Customerize.Service.Services
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
+                throw;
             }
             return new ResultDto()
             {

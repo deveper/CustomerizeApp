@@ -3,6 +3,7 @@ using Customerize.Core.DTOs.Category;
 using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.JSInterop;
 
 namespace Customerize.Web.Controllers
 {
@@ -24,8 +25,12 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var result = await _categoryService1.GetCategoryById(id);
-            var map = _mapper.Map<CategoryDtoUpdate>(result);
-            return View(map);
+            if (result.IsSuccess == true)
+            {
+                var map = _mapper.Map<CategoryDtoUpdate>(result.Data);
+                return View(map);
+            }
+            return Json(result.Message);
         }
 
         [HttpPost]

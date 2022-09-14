@@ -7,7 +7,7 @@ namespace Customerize.Core.Services
     {
         Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct();
         Task<CategoryDtoWithProductList> GetCategoryWithProductId(int id);
-        Task<CategoryDto> GetCategoryById(int Id);
+        Task<ResultDto<Category>> GetCategoryById(int Id);
         Task<ResultDto> UpdateCategory(CategoryDtoUpdate input);
     }
 }

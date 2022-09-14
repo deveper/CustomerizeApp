@@ -12,5 +12,6 @@ namespace Common.StaticClasses
 
         public const string NotFoundCategory = "Böyle bir kategori bulunamadı";
         public const string CategoryUpdate = "Kategori Güncellendi";
+        public const string CategoryFound = "Kategori Bulundu";
     }
 }
