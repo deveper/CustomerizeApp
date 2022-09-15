@@ -83,7 +83,18 @@ namespace Customerize.Service.Mapping
             CreateMap<Region, RegionDtoList>();
             #endregion
 
+            var configuration = new MapperConfiguration(cfg => cfg.CreateMap(typeof(Source<>), typeof(Destination<>)));
 
         }
+        public class Source<T>
+        {
+            public T Value { get; set; }
+        }
+
+        public class Destination<T>
+        {
+            public T Value { get; set; }
+        }
+
     }
 }

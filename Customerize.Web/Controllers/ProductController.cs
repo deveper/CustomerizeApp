@@ -39,9 +39,9 @@ namespace Customerize.Web.Controllers
             var productTypes = await _productTypeService.GetAllProductType();
             ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
 
-            var categories = await _categoryService.GetAllAsync();
-            var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-            ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+            //var categories = await _categoryService.GetAllAsync();
+            //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
+            //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
 
             return View();
         }
@@ -54,9 +54,9 @@ namespace Customerize.Web.Controllers
             {
                 var productTypes = await _productTypeService.GetAllProductType();
                 ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
-                var categories = await _categoryService.GetAllAsync();
-                var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-                ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+                //var categories = await _categoryService.GetAllAsync();
+                //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
+                //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
 
                 var mappedProduct = _mapper.Map<Product>(model);
                 var insertProduct = await _productService1.AddAsync(mappedProduct);
@@ -77,9 +77,9 @@ namespace Customerize.Web.Controllers
                 var productTypes = await _productTypeService.GetAllProductType();
                 ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
 
-                var categories = await _categoryService.GetAllAsync();
-                var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-                ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+                //var categories = await _categoryService.GetAllAsync();
+                //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
+                //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
                 var productDto = _mapper.Map<ProductDtoUpdate>(product);
                 return View(productDto);
             }

@@ -1,9 +1,15 @@
-﻿using Common.Dtos;
+﻿using AutoMapper;
+using Common.Dtos;
+using Common.StaticClasses;
+using Customerize.Core.DTOs.Category;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using static Customerize.Service.Mapping.MapProfile;
 
 namespace Customerize.Service.Services
 {
@@ -11,20 +17,38 @@ namespace Customerize.Service.Services
     {
         private readonly IGenericRepository<T> _repository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public Service(IGenericRepository<T> repository, IUnitOfWork unitOfWork)
+        public Service(IGenericRepository<T> repository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<ResultDto<T>> AddAsync(T entity)
         {
-
             await _repository.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
-            return entity;
-
+            var success = await _unitOfWork.CommitAsync();
+            if (success)
+            {
+                return new ResultDto<T>()
+                {
+                    Data = entity,
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralAddedMessage
+                };
+            }
+            else
+            {
+                return new ResultDto<T>()
+                {
+                    Data = entity,
+                    IsSuccess = false,
+                    Message = ResultMessages.GeneralErrorMessage
+                };
+            }
+            //ToDo:ExceptionHandling
 
         }
 
@@ -43,6 +67,7 @@ namespace Customerize.Service.Services
         public async Task<IEnumerable<T>> GetAllAsync()
         {
 
+            return await _repository.GetAll().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -50,11 +75,35 @@ namespace Customerize.Service.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task RemoveAsync(T entity)
+        public async Task<ResultDto<T>> RemoveAsync(T entity)
         {
+            if (entity != null)
+            {
+                _repository.Remove(entity);
+                var success = await _unitOfWork.CommitAsync();
+                if (success)
+                {
+                    return new ResultDto<T>()
+                    {
+                        IsSuccess = true,
+                        Message = ResultMessages.GeneralRemoveMessage
+                    };
+                }
+                else
+                {
+                    return new ResultDto<T>()
+                    {
+                        IsSuccess = false,
+                        Message = ResultMessages.GeneralErrorMessage
+                    };
+                }
+            }
+            return new ResultDto<T>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.GeneralErrorMessage
+            };
 
-            _repository.Remove(entity);
-            await _unitOfWork.CommitAsync();
         }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)

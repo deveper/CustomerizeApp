@@ -15,9 +15,12 @@ namespace Customerize.Service.UnitOfWork
             _context.SaveChanges();
         }
 
-        public async Task CommitAsync()
+        public async Task<bool> CommitAsync()
         {
+
             await _context.SaveChangesAsync();
+            return true;
+
         }
     }
 }

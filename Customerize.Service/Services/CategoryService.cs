@@ -14,21 +14,23 @@ namespace Customerize.Service.Services
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public CategoryService(IGenericRepository<Category> repository, ICategoryRepository categoryRepository, IMapper mapper, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
+        public CategoryService(IGenericRepository<Category> repository, ICategoryRepository categoryRepository, IMapper mapper, IUnitOfWork unitOfWork) : base(repository, unitOfWork, mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResultDto<Category>> GetCategoryById(int Id)
+        public async Task<ResultDto<CategoryDtoUpdate>> GetCategoryById(int Id)
         {
             var category = await _categoryRepository.GetByIdAsync(Id);
+
             if (category != null)
             {
-                return new ResultDto<Category>()
+                var map = _mapper.Map<CategoryDtoUpdate>(category);
+                return new ResultDto<CategoryDtoUpdate>()
                 {
-                    Data = category,
+                    Data = map,
                     IsSuccess = true,
                     Message = ResultMessages.CategoryFound
                 };
@@ -36,7 +38,7 @@ namespace Customerize.Service.Services
             }
             else
             {
-                return new ResultDto<Category>()
+                return new ResultDto<CategoryDtoUpdate>()
                 {
                     IsSuccess = false,
                     Message = ResultMessages.NotFoundCategory

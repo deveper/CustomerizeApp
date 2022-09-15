@@ -8,7 +8,10 @@ namespace Common.StaticClasses
 {
     public class ResultMessages
     {
+        public const string GeneralAddedMessage = "Ekleme İşlemi Başarılı";
+        public const string GeneralRemoveMessage = "Silme İşlemi Başarılı";
         public const string GeneralErrorMessage = "Bir hata meydana geldi!";
+
 
         public const string NotFoundCategory = "Böyle bir kategori bulunamadı";
         public const string CategoryUpdate = "Kategori Güncellendi";

@@ -16,7 +16,7 @@ namespace Customerize.Service.Services
     {
         private readonly IProductTypeRepository _productTypeRepository;
         private readonly IMapper _mapper;
-        public ProductTypeService(IGenericRepository<ProductType> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductTypeRepository productTypeRepository) : base(repository, unitOfWork)
+        public ProductTypeService(IGenericRepository<ProductType> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductTypeRepository productTypeRepository) : base(repository, unitOfWork, mapper)
         {
             _mapper = mapper;
             _productTypeRepository = productTypeRepository;

@@ -4,6 +4,7 @@ using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop;
+using System.Collections.Generic;
 
 namespace Customerize.Web.Controllers
 {
@@ -27,8 +28,7 @@ namespace Customerize.Web.Controllers
             var result = await _categoryService.GetCategoryById(id);
             if (result.IsSuccess)
             {
-                var map = _mapper.Map<CategoryDtoUpdate>(result.Data);
-                return View(map);
+                return View(result);
             }
             return Json(result.Message);
         }
@@ -55,14 +55,14 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryDtoInsert model)
         {
-            var mappedCategory = _mapper.Map<Category>(model);
-            var result = await _categoryService.AddAsync(mappedCategory);
-            if (result != null)
+            var map = _mapper.Map<Category>(model);
+            var result = await _categoryService.AddAsync(map);
+            if (result.IsSuccess)
             {
-                return Json(result.Name);
+                return Json(result.Message);
             }
-            //ToDo ErrorControls
-            return null;
+            //ToDo ErrorControl
+            return Json(result.Message);
         }
 
         #endregion
@@ -72,7 +72,8 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var categoryList = await _categoryService.GetAllAsync();
-            return View(_mapper.Map<IEnumerable<CategoryDtoList>>(categoryList));
+            var map = _mapper.Map<IEnumerable<CategoryDtoList>>(categoryList);
+            return View(map);
         }
         #endregion
 
@@ -89,10 +90,14 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Remove(int id)
         {
 
-            //var category = await _categoryService1.GetCategoryWithProductId(id);
-            //_categoryService1.RemoveAsync()
-            //return RedirectToAction("GetCategoryListWithProduct");
-            return null;
+            var category = await _categoryService.GetByIdAsync(id);
+            var result = await _categoryService.RemoveAsync(category);
+            if (result.IsSuccess)
+            {
+                return Json(result.Message);
+            }
+            //ToDo ErrorControl
+            return Json(result.Message);
 
 
         }
