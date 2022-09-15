@@ -11,21 +11,21 @@ namespace Customerize.Web.Controllers
     {
         #region DI
         private readonly IMapper _mapper;
-        private readonly ICategoryService _categoryService1;
+        private readonly ICategoryService _categoryService;
         #endregion
 
-        public CategoryController(IMapper mapper, IService<Category> categoryService, ICategoryService categoryService1)
+        public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
             _mapper = mapper;
-            _categoryService1 = categoryService1;
+            _categoryService = categoryService;
         }
 
         #region CategoryEdit
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var result = await _categoryService1.GetCategoryById(id);
-            if (result.IsSuccess == true)
+            var result = await _categoryService.GetCategoryById(id);
+            if (result.IsSuccess)
             {
                 var map = _mapper.Map<CategoryDtoUpdate>(result.Data);
                 return View(map);
@@ -36,8 +36,8 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryDtoUpdate model)
         {
-            var result = await _categoryService1.UpdateCategory(model);
-            if (result.IsSuccess = true)
+            var result = await _categoryService.UpdateCategory(model);
+            if (result.IsSuccess)
             {
                 return Json(result.Message);
             }
@@ -56,8 +56,13 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Create(CategoryDtoInsert model)
         {
             var mappedCategory = _mapper.Map<Category>(model);
-            var insertCategory = await _categoryService1.AddAsync(mappedCategory);
-            return RedirectToAction("GetAllList");
+            var result = await _categoryService.AddAsync(mappedCategory);
+            if (result != null)
+            {
+                return Json(result.Name);
+            }
+            //ToDo ErrorControls
+            return null;
         }
 
         #endregion
@@ -66,7 +71,7 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllList()
         {
-            var categoryList = await _categoryService1.GetAllAsync();
+            var categoryList = await _categoryService.GetAllAsync();
             return View(_mapper.Map<IEnumerable<CategoryDtoList>>(categoryList));
         }
         #endregion
@@ -75,7 +80,7 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategoryListWithProduct()
         {
-            var categorylistWithProduct = await _categoryService1.GetCategoryWithProduct();
+            var categorylistWithProduct = await _categoryService.GetCategoryWithProduct();
             return View(categorylistWithProduct);
         }
         #endregion

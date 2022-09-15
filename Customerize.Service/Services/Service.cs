@@ -1,4 +1,5 @@
-﻿using Customerize.Core.Repositories;
+﻿using Common.Dtos;
+using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
@@ -64,9 +65,9 @@ namespace Customerize.Service.Services
 
         public async Task UpdateAsync(T entity)
         {
-            
-                _repository.Update(entity);
-                await _unitOfWork.CommitAsync();
+
+            _repository.Update(entity);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)

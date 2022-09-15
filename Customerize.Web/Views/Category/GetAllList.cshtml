@@ -18,13 +18,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Id</td>
+                <td>@item.Code</td>
                 <td>@item.Name</td>
                 <td>@item.CreatedDate</td>
                 <td>@item.UpdatedDate</td>
                 <td>
-                   <a class="btn btn-warning" asp-controller="Category" asp-action="Edit"        asp-route-id="@item.Id">Güncelle</a>
-                   <a class="btn btn-danger"  asp-controller="Category" asp-action="Remove"      asp-route-id="@item.Id">Sil</a>
+                    <a class="btn btn-warning" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">Güncelle</a>
+                    <a class="btn btn-danger" asp-controller="Category" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
         }

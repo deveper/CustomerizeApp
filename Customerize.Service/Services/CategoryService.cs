@@ -65,7 +65,6 @@ namespace Customerize.Service.Services
             {
                 if (category != null)
                 {
-
                     category.Name = input.Name;
                     _categoryRepository.Update(category);
                     await _unitOfWork.CommitAsync();
@@ -78,19 +77,19 @@ namespace Customerize.Service.Services
                 }
                 else
                 {
+                    return new ResultDto()
+                    {
+                        IsSuccess = false,
+                        Message = ResultMessages.NotFoundCategory
+                    };
 
                 }
-
             }
             catch (Exception)
             {
                 throw;
             }
-            return new ResultDto()
-            {
-                IsSuccess = false,
-                Message = ResultMessages.NotFoundCategory
-            };
+
         }
     }
 
