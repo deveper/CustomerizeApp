@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Common\Customerize.Common.csproj" />
     <ProjectReference Include="..\Customerize.Repository\Customerize.Repository.csproj" />
   </ItemGroup>
 

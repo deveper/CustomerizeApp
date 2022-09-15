@@ -6,7 +6,6 @@ using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Customerize.Service.Services
 {
