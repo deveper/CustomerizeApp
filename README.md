@@ -14,6 +14,3 @@
 *Bootstrap
 *Javascript
 *UnitOfWork
-
-
-
