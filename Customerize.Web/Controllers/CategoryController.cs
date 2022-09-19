@@ -28,7 +28,7 @@ namespace Customerize.Web.Controllers
             var result = await _categoryService.GetCategoryById(id);
             if (result.IsSuccess)
             {
-                return View(result);
+                return View(result.Data);
             }
             return Json(result.Message);
         }
@@ -91,7 +91,7 @@ namespace Customerize.Web.Controllers
         {
 
             var category = await _categoryService.GetByIdAsync(id);
-            var result = await _categoryService.RemoveAsync(category);
+            var result = await _categoryService.RemoveAsync(category.Data);
             if (result.IsSuccess)
             {
                 return Json(result.Message);

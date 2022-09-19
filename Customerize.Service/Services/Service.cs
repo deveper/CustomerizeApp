@@ -70,9 +70,26 @@ namespace Customerize.Service.Services
             return await _repository.GetAll().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<ResultDto<T>> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity == null)
+            {
+                return new ResultDto<T>()
+                {
+                    IsSuccess = false,
+                    Message = ResultMessages.GeneralErrorMessage
+                };
+            }
+            else
+            {
+                return new ResultDto<T>()
+                {
+                    Data = entity,
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess
+                };
+            }
         }
 
         public async Task<ResultDto<T>> RemoveAsync(T entity)

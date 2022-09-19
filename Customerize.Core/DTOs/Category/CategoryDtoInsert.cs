@@ -1,7 +1,17 @@
-﻿namespace Customerize.Core.DTOs.Category
+﻿using Customerize.Common.Helpers;
+
+namespace Customerize.Core.DTOs.Category
 {
-    public class CategoryDtoInsert
+    public class CategoryDtoInsert : BaseDto
     {
+
+        public CategoryDtoInsert()
+        {
+            var random = new RandomGenerators();
+            this.Code = random.GenarateNumberCode();
+        }
         public string Name { get; set; }
+
+
     }
 }

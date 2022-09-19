@@ -14,27 +14,40 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Name</td>
-                @{
-                    string products = "";
-                    foreach (var product in item.Products)
-                    {
-                        products += product.Name + "—";
+            if (item.Products.Count > 0)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    @{
+                        string products = "";
+                        foreach (var product in item.Products)
+                        {
+                            products += product.Name + "—";
+                        }
+                        if (item.Products.Count() == 0)
+                        {
+                            products = "";
+                        }
+                        else
+                        {
+                            products = products.Remove(products.Length - 2, 2);
+                        }
                     }
-                    if (item.Products.Count() == 0)
-                    {
-                        products = "";
-                    }
-                    else
-                    {
-                        products = products.Remove(products.Length - 2, 2);
-                    }
-                }
-                <td><b>@products</b></td>
+                    <td><b>@products</b></td>
 
 
-            </tr>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td><b>Bu Kategoride Ürün Yok</b></td>
+
+
+                </tr>
+            }
+
         }
     </tbody>
 </table>

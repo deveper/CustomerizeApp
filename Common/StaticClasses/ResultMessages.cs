@@ -11,6 +11,7 @@ namespace Common.StaticClasses
         public const string GeneralAddedMessage = "Ekleme İşlemi Başarılı";
         public const string GeneralRemoveMessage = "Silme İşlemi Başarılı";
         public const string GeneralErrorMessage = "Bir hata meydana geldi!";
+        public const string GeneralSuccess = "Başarılı";
 
 
         public const string NotFoundCategory = "Böyle bir kategori bulunamadı";
