@@ -71,8 +71,8 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllList()
         {
-            var categoryList = await _categoryService.GetAllAsync();
-            var map = _mapper.Map<IEnumerable<CategoryDtoList>>(categoryList);
+            var result = await _categoryService.GetAllAsync();
+            var map = _mapper.Map<IEnumerable<CategoryDtoList>>(result);
             return View(map);
         }
         #endregion
@@ -81,8 +81,8 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategoryListWithProduct()
         {
-            var categorylistWithProduct = await _categoryService.GetCategoryWithProduct();
-            return View(categorylistWithProduct);
+            var result = await _categoryService.GetCategoryWithProduct();
+            return View(result);
         }
         #endregion
 

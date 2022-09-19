@@ -77,6 +77,7 @@ namespace Customerize.Service.Services
 
         public async Task<ResultDto<T>> RemoveAsync(T entity)
         {
+
             if (entity != null)
             {
                 _repository.Remove(entity);

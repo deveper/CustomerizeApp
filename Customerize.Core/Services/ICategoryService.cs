@@ -5,7 +5,7 @@ namespace Customerize.Core.Services
 {
     public interface ICategoryService : IService<Category>
     {
-        Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct();
+        Task<IEnumerable<CategoryDtoWithProductList>> GetCategoryWithProduct();
         Task<CategoryDtoWithProductList> GetCategoryWithProductId(int id);
         Task<ResultDto<CategoryDtoUpdate>> GetCategoryById(int Id);
         Task<ResultDto> UpdateCategory(CategoryDtoUpdate input);

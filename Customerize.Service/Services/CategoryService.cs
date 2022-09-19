@@ -46,10 +46,10 @@ namespace Customerize.Service.Services
             }
         }
 
-        public async Task<List<CategoryDtoWithProductList>> GetCategoryWithProduct()
+        public async Task<IEnumerable<CategoryDtoWithProductList>> GetCategoryWithProduct()
         {
             var categories = await _categoryRepository.GetCategoryWithProduct();
-            var mappedCategories = _mapper.Map<List<CategoryDtoWithProductList>>(categories);
+            var mappedCategories = _mapper.Map<IEnumerable<CategoryDtoWithProductList>>(categories);
             return mappedCategories;
         }
 
