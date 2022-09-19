@@ -1,29 +1,30 @@
-﻿using Customerize.Web.Models;
+﻿using AutoMapper;
+using Customerize.Core.DTOs.Advertisement;
+using Customerize.Core.Entities;
+using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Customerize.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        #region DI
+        private readonly IMapper _mapper;
+        private readonly IService<Advertisement> _service;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        #endregion
+        public HomeController(IMapper mapper, IService<Advertisement> service)
         {
-            _logger = logger;
+            _mapper = mapper;
+            _service = service;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var result = await _service.GetAllAsync();
+            var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result);
+            return View(map);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-     
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

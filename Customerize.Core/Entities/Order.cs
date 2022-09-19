@@ -1,6 +1,6 @@
 ﻿namespace Customerize.Core.Entities
 {
-    public class Order : BaseEntity
+    public class Order : BaseEntity 
     {
         public Order()
         {

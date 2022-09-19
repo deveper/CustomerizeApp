@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Customerize.Core.DTOs;
+using Customerize.Core.DTOs.Advertisement;
 using Customerize.Core.DTOs.Category;
 using Customerize.Core.DTOs.Company;
 using Customerize.Core.DTOs.Order;
@@ -82,6 +83,13 @@ namespace Customerize.Service.Mapping
             CreateMap<RegionDtoUpdate, Region>();
             CreateMap<Region, RegionDtoList>();
             #endregion
+
+            #region Advertisement
+
+            CreateMap<Advertisement, AdvertisementDtoList>().ReverseMap();
+            #endregion
+
+
 
             var configuration = new MapperConfiguration(cfg => cfg.CreateMap(typeof(Source<>), typeof(Destination<>)));
 
