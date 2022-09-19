@@ -87,11 +87,14 @@ namespace Customerize.Web.Controllers
         #endregion
 
         #region CategoryRemove
+        [HttpGet]
         public async Task<IActionResult> Remove(int id)
         {
 
+            #region :)
             var category = await _categoryService.GetByIdAsync(id);
             var result = await _categoryService.RemoveAsync(category.Data);
+            #endregion
             if (result.IsSuccess)
             {
                 return Json(result.Message);

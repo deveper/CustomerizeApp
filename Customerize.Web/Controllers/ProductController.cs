@@ -94,16 +94,18 @@ namespace Customerize.Web.Controllers
         #endregion
 
         #region Product Remove
+        [HttpGet]
         public async Task<IActionResult> Remove(int id)
         {
-            var result = _productService.Where(x => x.Id == id).Result.FirstOrDefault();
-            if (result != null)
+            #region :)
+            var product = await _productService.GetByIdAsync(id);
+            var result = await _productService.RemoveAsync(product.Data);
+            #endregion
+            if (result.IsSuccess)
             {
-                _productService.RemoveAsync(result);
-                return RedirectToAction("GetAllList");
+                return Json(result.Message);
             }
-            //ToDo:Need Message
-            return null;
+            return Json(result.Message);
 
         }
         #endregion
