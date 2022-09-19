@@ -11,7 +11,7 @@ namespace Customerize.Core.Services
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<ResultDto<T>> AddAsync(T entity);
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
-        Task UpdateAsync(T entity);
+        Task<ResultDto<T>> UpdateAsync(T entity);
         Task<ResultDto<T>> RemoveAsync(T entity);
         Task RemoveRangeAsync(IEnumerable<T> entities);
     }

@@ -5,6 +5,7 @@ using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.Json.Serialization;
 
 namespace Customerize.Web.Controllers
 {
@@ -12,14 +13,14 @@ namespace Customerize.Web.Controllers
     {
         #region DI
         private readonly IMapper _mapper;
-        private readonly IProductService _productService1;
+        private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IProductTypeService _productTypeService;
         #endregion
-        public ProductController(IMapper mapper, IService<Product> service, IProductService productService1, ICategoryService categoryService, IProductTypeService productTypeService)
+        public ProductController(IMapper mapper, IProductService productService, ICategoryService categoryService, IProductTypeService productTypeService)
         {
             _mapper = mapper;
-            _productService1 = productService1;
+            _productService = productService;
             _categoryService = categoryService;
             _productTypeService = productTypeService;
         }
@@ -27,21 +28,20 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllList()
         {
-            var productList = await _productService1.GetFullProduct();
-            return View(productList);
+            var result = await _productService.GetProductAllDetail();
+            return View(result.Data);
         }
         #endregion
 
-        #region ProductInsert
+        #region ProductCreate
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var productTypes = await _productTypeService.GetAllProductType();
+            var productTypes = await _productTypeService.GetAllAsync();
             ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
 
-            //var categories = await _categoryService.GetAllAsync();
-            //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-            //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
+            var categories = await _categoryService.GetAllAsync();
+            ViewBag.categories = new SelectList(categories, "Id", "Name");
 
             return View();
         }
@@ -49,21 +49,14 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductDtoInsert model)
         {
-            var result = await _productService1.AnyAsync(x => x.Name == model.Name);
-            if (result == false)
+
+            var map = _mapper.Map<Product>(model);
+            var result = await _productService.AddAsync(map);
+            if (result.IsSuccess)
             {
-                var productTypes = await _productTypeService.GetAllProductType();
-                ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
-                //var categories = await _categoryService.GetAllAsync();
-                //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-                //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
-
-                var mappedProduct = _mapper.Map<Product>(model);
-                var insertProduct = await _productService1.AddAsync(mappedProduct);
-                return RedirectToAction("GetAllList");
+                return Json(result.Message);
             }
-
-            return RedirectToAction("Create");
+            return Json(result.Message);
         }
         #endregion
 
@@ -71,16 +64,17 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var product = _productService1.Where(x => x.Id == id).Result.FirstOrDefault();
-            if (product != null)
+
+            var result = await _productService.GetByIdAsync(id);
+            if (result.IsSuccess)
             {
                 var productTypes = await _productTypeService.GetAllProductType();
                 ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
 
-                //var categories = await _categoryService.GetAllAsync();
-                //var categoryMapper = _mapper.Map<List<CategoryDtoList>>(categories);
-                //ViewBag.categories = new SelectList(categoryMapper, "Id", "Name");
-                var productDto = _mapper.Map<ProductDtoUpdate>(product);
+                var categories = await _categoryService.GetAllAsync();
+                ViewBag.categories = new SelectList(categories, "Id", "Name");
+
+                var productDto = _mapper.Map<ProductDtoUpdate>(result.Data);
                 return View(productDto);
             }
             return RedirectToAction("GetAllList");
@@ -89,13 +83,11 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDtoUpdate model)
         {
-            var product = _productService1.Where(x => x.Id == model.Id).Result.FirstOrDefault();
-            if (product != null)
+            var map = _mapper.Map<Product>(model);
+            var result = await _productService.UpdateAsync(map);
+            if (result.IsSuccess)
             {
-                var mapperdProduct = _mapper.Map<Product>(model);
-                mapperdProduct.UpdatedDate = DateTime.Now;
-                await _productService1.UpdateAsync(mapperdProduct);
-                return RedirectToAction("GetAllList");
+                return Json(result.Message);
             }
             return RedirectToAction("Edit");
         }
@@ -104,10 +96,10 @@ namespace Customerize.Web.Controllers
         #region Product Remove
         public async Task<IActionResult> Remove(int id)
         {
-            var result = _productService1.Where(x => x.Id == id).Result.FirstOrDefault();
+            var result = _productService.Where(x => x.Id == id).Result.FirstOrDefault();
             if (result != null)
             {
-                _productService1.RemoveAsync(result);
+                _productService.RemoveAsync(result);
                 return RedirectToAction("GetAllList");
             }
             //ToDo:Need Message
@@ -121,13 +113,14 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> RemoveRange()
         {
-            var productList = await _productService1.GetFullProduct();
-            if (productList == null)
-            {
-                return View();
-            }
-            var map = _mapper.Map<List<ProductDtoRemoveRange>>(productList);
-            return View(map);
+            //var productList = await _productService.GetFullProduct();
+            //if (productList == null)
+            //{
+            //    return View();
+            //}
+            //var map = _mapper.Map<List<ProductDtoRemoveRange>>(productList);
+            //return View(map);
+            return null;
         }
         [HttpPost]
         public async Task<IActionResult> RemoveRangeConfirm(IList<ProductDtoRemoveRange> model)
@@ -138,13 +131,13 @@ namespace Customerize.Web.Controllers
             {
                 if (product.DeleteProducts.Selected)
                 {
-                    var selectedProduct = _productService1.Where(x => x.Id == product.Id).Result.First();
+                    var selectedProduct = _productService.Where(x => x.Id == product.Id).Result.First();
                     products.Add(selectedProduct);
                 }
             }
             if (products != null)
             {
-                await _productService1.RemoveRangeAsync(products);
+                await _productService.RemoveRangeAsync(products);
                 return RedirectToAction("RemoveRange");
             }
 

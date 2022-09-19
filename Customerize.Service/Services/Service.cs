@@ -130,11 +130,24 @@ namespace Customerize.Service.Services
             await _unitOfWork.CommitAsync();
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<ResultDto<T>> UpdateAsync(T entity)
         {
-
-            _repository.Update(entity);
-            await _unitOfWork.CommitAsync();
+            if (entity != null)
+            {
+                _repository.Update(entity);
+                var success = await _unitOfWork.CommitAsync();
+                return new ResultDto<T>()
+                {
+                    Data = entity,
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess
+                };
+            }
+            return new ResultDto<T>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.GeneralErrorMessage
+            };
         }
 
         public async Task<IQueryable<T>> Where(Expression<Func<T, bool>> expression)

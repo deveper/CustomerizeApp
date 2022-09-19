@@ -1,13 +1,9 @@
 ﻿using Customerize.Core.DTOs.ProductType;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Customerize.Core.Entities;
 
 namespace Customerize.Core.Services
 {
-    public interface IProductTypeService
+    public interface IProductTypeService : IService<ProductType>
     {
         Task<List<ProductTypeDtoList>> GetAllProductType();
     }

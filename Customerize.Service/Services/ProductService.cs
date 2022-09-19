@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Common.Dtos;
+using Common.StaticClasses;
 using Customerize.Core.DTOs.Product;
 using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
@@ -17,16 +19,26 @@ namespace Customerize.Service.Services
             _mapper = mapper;
         }
 
-      
 
-        public async Task<List<ProductDtoList>> GetFullProduct()
+
+        public async Task<ResultDto<IEnumerable<ProductDtoList>>> GetProductAllDetail()
         {
             var products = await _productRepositroy.GetFullProduct();
-          
-                var mapperProducts = _mapper.Map<List<ProductDtoList>>(products);
-                return mapperProducts;
-           
-          
+            if (products != null)
+            {
+                var map = _mapper.Map<IEnumerable<ProductDtoList>>(products);
+                return new ResultDto<IEnumerable<ProductDtoList>>()
+                {
+                    Data = map,
+                    IsSuccess = true,
+                    Message = ResultMessages.ProductsAllDetail
+                };
+            }
+            return new ResultDto<IEnumerable<ProductDtoList>>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.NotFoundProducts
+            };
         }
     }
 }

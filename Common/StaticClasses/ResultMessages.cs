@@ -17,5 +17,10 @@ namespace Common.StaticClasses
         public const string NotFoundCategory = "Böyle bir kategori bulunamadı";
         public const string CategoryUpdate = "Kategori Güncellendi";
         public const string CategoryFound = "Kategori Bulundu";
+
+        public const string ProductsAllDetail = "Ürünler Detaylı Olarak Bulundu";
+        public const string NotFoundProducts = "Ürünler ve Detayları Bulunamadı";
+
+
     }
 }
