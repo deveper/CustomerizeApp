@@ -13,7 +13,6 @@ Project is created with:
 * UnitOfWork 
 * LINQ
 * JSON
-* Session
 * N Layer Architecture
 * Bootstrap
 * Javascript
