@@ -5,7 +5,10 @@ using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Customerize.Web.Controllers
 {
@@ -115,35 +118,24 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> RemoveRange()
         {
-            //var productList = await _productService.GetFullProduct();
-            //if (productList == null)
-            //{
-            //    return View();
-            //}
-            //var map = _mapper.Map<List<ProductDtoRemoveRange>>(productList);
-            //return View(map);
-            return null;
+            var productList = await _productService.GetProductAllDetail();
+            if (productList.Data == null)
+            {
+                return View();
+            }
+            var map = _mapper.Map<IList<ProductDtoRemoveRange>>(productList.Data);
+            return View(map);
         }
         [HttpPost]
         public async Task<IActionResult> RemoveRangeConfirm(IList<ProductDtoRemoveRange> model)
         {
-            List<Product> products = new List<Product>();
+            var result = await _productService.RemoveRangeProduct(model);
+            string jsonString = JsonSerializer.Serialize(result);
 
-            foreach (var product in model)
+            if (result.IsSuccess)
             {
-                if (product.DeleteProducts.Selected)
-                {
-                    var selectedProduct = _productService.Where(x => x.Id == product.Id).Result.First();
-                    products.Add(selectedProduct);
-                }
+                return Json(jsonString);
             }
-            if (products != null)
-            {
-                await _productService.RemoveRangeAsync(products);
-                return RedirectToAction("RemoveRange");
-            }
-
-
             return View("RemoveRange");
         }
         #endregion

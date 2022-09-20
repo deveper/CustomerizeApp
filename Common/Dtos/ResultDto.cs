@@ -10,6 +10,7 @@ namespace Common.Dtos
     {
         public bool IsSuccess { get; set; }
         public string? Message { get; set; }
+        public int? Total { get; set; }
     }
     public class ResultDto<T>
     {

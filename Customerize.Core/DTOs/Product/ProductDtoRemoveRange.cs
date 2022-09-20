@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Customerize.Core.DTOs.Product
 {
-    public class ProductDtoRemoveRange: BaseDto
+    public class ProductDtoRemoveRange : BaseDto
     {
         public string? Name { get; set; }
         public int? Stock { get; set; }

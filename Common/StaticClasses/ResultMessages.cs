@@ -20,6 +20,10 @@ namespace Common.StaticClasses
 
         public const string ProductsAllDetail = "Ürünler Detaylı Olarak Bulundu";
         public const string NotFoundProducts = "Ürünler ve Detayları Bulunamadı";
+        public const string NotFoundDeletedProducts = "Silenecek Ürün Bulunamadı";
+        public const string DeletedProduct = "Ürünler Başarıyla Silindi";
+
+
 
 
     }

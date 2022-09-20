@@ -27,6 +27,7 @@ namespace Customerize.Service.Mapping
             CreateMap<Product, ProductDtoUpdate>().ReverseMap();
             CreateMap<Product, ProductDtoList>().ReverseMap();
             CreateMap<ProductDtoRemoveRange, ProductDtoList>().ReverseMap();
+            CreateMap<Product, ProductDtoRemoveRange>().ReverseMap();
             #endregion
 
             #region Category

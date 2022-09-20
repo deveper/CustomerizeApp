@@ -13,10 +13,14 @@ namespace Customerize.Service.Services
     {
         private readonly IProductRepositroy _productRepositroy;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+
+
         public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepositroy productRepository, IMapper mapper) : base(repository, unitOfWork, mapper)
         {
             _productRepositroy = productRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -39,6 +43,44 @@ namespace Customerize.Service.Services
                 IsSuccess = false,
                 Message = ResultMessages.NotFoundProducts
             };
+        }
+
+        public async Task<ResultDto> RemoveRangeProduct(IList<ProductDtoRemoveRange> input)
+        {
+            var deleteItem = input.Select(x => x.DeleteProducts).Where(x => x.Selected == true).ToList();
+            if (deleteItem.Any())
+            {
+                List<Product> deletedProducts = new List<Product>();
+                foreach (var item in input)
+                {
+                    if (item.DeleteProducts.Selected)
+                    {
+                        var selectedProduct = await _productRepositroy.GetByIdAsync(item.Id);
+                        deletedProducts.Add(selectedProduct);
+                    }
+                }
+                if (deletedProducts != null)
+                {
+                    _productRepositroy.RemoveRange(deletedProducts);
+                    var success = await _unitOfWork.CommitAsync();
+                    if (success)
+                    {
+                        return new ResultDto()
+                        {
+                            IsSuccess = true,
+                            Message = ResultMessages.DeletedProduct,
+                            Total = deleteItem.Count,
+                        };
+                    }
+                }
+            }
+            return new ResultDto()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.NotFoundDeletedProducts,
+
+            };
+
         }
     }
 }
