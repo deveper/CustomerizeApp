@@ -443,32 +443,30 @@
                                 </li>
 
                                 <li class="">
-                                    <a href="mobile-menu-1.html">
+                                    <a asp-controller="Product" asp-action="GetAllList">
                                         <i class="menu-icon fa fa-pencil orange"></i>
                                         Ürün Güncelle
                                     </a>
 
                                     <b class="arrow"></b>
                                 </li>
-
                                 <li class="">
-                                    <a href="two-menu-1.html">
-                                        <i class="menu-icon fa fa-trash red"></i>
-                                        Ürün Sil
+                                    <a asp-controller="Product" asp-action="RemoveRange">
+                                        <i class="menu-icon fa fa-trash pink"></i>
+                                        Ürün Silme
                                     </a>
 
                                     <b class="arrow"></b>
                                 </li>
-
                                 <li class="">
-                                    <a href="two-menu-2.html">
+                                    <a asp-controller="Product" asp-action="GetAllList">
                                         <i class="menu-icon fa fa-eye pink"></i>
                                         Ürün Listesi
                                     </a>
 
                                     <b class="arrow"></b>
                                 </li>
-
+                              
 
                             </ul>
                         </li>
@@ -920,7 +918,7 @@
 
 
 
-                        $('.easy-pie-chart.percentage').each(function () {
+                                        $('.easy-pie-chart.percentage').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
                         var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
@@ -936,7 +934,7 @@
                         });
                     })
 
-                        $('.sparkline').each(function () {
+                                        $('.sparkline').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
                         $(this).sparkline('html',
@@ -961,7 +959,7 @@
                         { label: "direct traffic", data: 18.6, color: "#DA5430" },
                         { label: "other", data: 10, color: "#FEE074" }
                     ]
-                      function drawPieChart(placeholder, data, position) {
+                                      function drawPieChart(placeholder, data, position) {
                     $.plot(placeholder, data, {
                         series: {
                             pie: {
@@ -990,7 +988,7 @@
                         }
                     })
                 }
-                     drawPieChart(placeholder, data);
+                                     drawPieChart(placeholder, data);
 
             /**
             we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically

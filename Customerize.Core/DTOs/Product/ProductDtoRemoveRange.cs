@@ -9,6 +9,11 @@ namespace Customerize.Core.DTOs.Product
 {
     public class ProductDtoRemoveRange : BaseDto
     {
+        public ProductDtoRemoveRange()
+        {
+
+            DeleteProducts = new SelectListItem();
+        }
         public string? Name { get; set; }
         public int? Stock { get; set; }
         public decimal? Price { get; set; }

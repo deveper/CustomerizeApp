@@ -7,7 +7,7 @@ namespace Customerize.Core.Services
     public interface IProductService : IService<Product>
     {
         Task<ResultDto<IEnumerable<ProductDtoList>>> GetProductAllDetail();
-        Task<ResultDto> RemoveRangeProduct(IList<ProductDtoRemoveRange> input);
+        Task<ResultDto<IList<ProductDtoRemoveRange>>> RemoveRangeProduct(IList<ProductDtoRemoveRange> input);
 
     }
 }

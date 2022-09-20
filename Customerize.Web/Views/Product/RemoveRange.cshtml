@@ -2,8 +2,6 @@
 @{
     ViewData["Title"] = "RemoveRange";
 }
-
-<h1>RemoveRange</h1>
 @if (@Model == null)
 {
     <table class="table">
@@ -33,7 +31,7 @@ else
                     <th scope="col">Stok Adedi</th>
                     <th scope="col">Kategori Adı</th>
                     <th scope="col">Ürün Tipi</th>
-                    <th scope="col">Toplu Seçim</th>
+                    <th scope="col">Silmek İstenilen Ürün</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,10 +54,17 @@ else
                 }
 
             </tbody>
+
         </table>
-        <div class="mt-3">
-            <input type="submit" class="btn btn btn-danger" />
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                
+                    <input value="Sil" type="submit" class="btn btn-danger btn-block" />
+                
+            </div>
         </div>
     </form>
+
 }
+
 

@@ -131,7 +131,7 @@ namespace Customerize.Web.Controllers
             {
                 return Json(jsonString);
             }
-            return View("RemoveRange");
+            return RedirectToAction("RemoveRange");
         }
         #endregion
 

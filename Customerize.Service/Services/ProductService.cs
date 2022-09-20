@@ -45,7 +45,7 @@ namespace Customerize.Service.Services
             };
         }
 
-        public async Task<ResultDto> RemoveRangeProduct(IList<ProductDtoRemoveRange> input)
+        public async Task<ResultDto<IList<ProductDtoRemoveRange>>> RemoveRangeProduct(IList<ProductDtoRemoveRange> input)
         {
             var deleteItem = input.Select(x => x.DeleteProducts).Where(x => x.Selected == true).ToList();
             if (deleteItem.Any())
@@ -65,7 +65,7 @@ namespace Customerize.Service.Services
                     var success = await _unitOfWork.CommitAsync();
                     if (success)
                     {
-                        return new ResultDto()
+                        return new ResultDto<IList<ProductDtoRemoveRange>>()
                         {
                             IsSuccess = true,
                             Message = ResultMessages.DeletedProduct,
@@ -74,8 +74,9 @@ namespace Customerize.Service.Services
                     }
                 }
             }
-            return new ResultDto()
+            return new ResultDto<IList<ProductDtoRemoveRange>>()
             {
+                Data = input,
                 IsSuccess = false,
                 Message = ResultMessages.NotFoundDeletedProducts,
 

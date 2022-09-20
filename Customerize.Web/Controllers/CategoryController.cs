@@ -3,8 +3,6 @@ using Customerize.Core.DTOs.Category;
 using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.JSInterop;
-using System.Collections.Generic;
 
 namespace Customerize.Web.Controllers
 {
