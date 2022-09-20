@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Customerize.Core.DTOs.Category;
 using Customerize.Core.DTOs.Product;
 using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Customerize.Web.Controllers
 {
@@ -130,7 +125,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> RemoveRangeConfirm(IList<ProductDtoRemoveRange> model)
         {
             var result = await _productService.RemoveRangeProduct(model);
-            string jsonString = JsonSerializer.Serialize(result);
+            string jsonString = System.Text.Json.JsonSerializer.Serialize(result);
 
             if (result.IsSuccess)
             {
