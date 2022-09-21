@@ -92,11 +92,12 @@ namespace Customerize.Web.Controllers
         #endregion
 
         #region Product Remove
-        [HttpGet]
-        public async Task<IActionResult> Remove(int id)
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(int Id)
         {
             #region :)
-            var product = await _productService.GetByIdAsync(id);
+            var product = await _productService.GetByIdAsync(Id);
             var result = await _productService.RemoveAsync(product.Data);
             #endregion
             if (result.IsSuccess)
