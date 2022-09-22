@@ -297,7 +297,7 @@
 
             <div class="sidebar-shortcuts" id="sidebar-shortcuts">
                 <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <button id="btnAddAdvertisement" data-toggle="modal" data-target="#userDetails" OnClientClick="return openmodal();return false;" class="btn btn-info">
+                    <button id="btnAddAdvertisement" data-toggle="modal" data-target="#AddAdvertisement" OnClientClick="return openmodal();return false;" class="btn btn-info">
                         <i class="ace-icon fa fa-pencil"></i>
                     </button>
                     <button class="btn btn-warning">
@@ -327,7 +327,7 @@
 
                     <b class="arrow"></b>
                 </li>
-
+             
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-product-hunt orange"></i>
@@ -592,7 +592,15 @@
 
                     <b class="arrow"></b>
                 </li>
+                <li class="active">
+                    <a asp-controller="Order" asp-action="Create">
 
+                        <i class="menu-icon fa fa-plus orange"></i>
+                        <span class="menu-text">Sipariş Oluştur</span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -642,19 +650,20 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <!--Advertisement Added Modal> -->
-    <form id="CreateForm" action="javascript:void(0);">
-        <div class="modal fade" id="userDetails" tabindex="-1" role="dialog">
+    <form id="CreateAdvertisement" action="javascript:void(0);">
+        <div class="modal fade" id="AddAdvertisement" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Duyuru Ekle</h5>
+                        <h5 class="modal-title">Duyuru Ekle</h5>
                     </div>
-                    <div class="modal-body">
-
-                        <label>Name:</label>
-                        <input type="text" id="Title" name="Title"><br />
-                        <label>E-mail:</label>
-                        <input type="text" id="Description" name="Description"><br />
+                    <div class="modal-body ">
+                        <div class="form-group">
+                            <label>Başlık:</label>
+                            <input type="text" id="Title" name="Title" class="form-control"><br />
+                            <label>Açıklama:</label>
+                            <input type="text" id="Description" name="Description" class="form-control"><br />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Ekle</button>
@@ -765,7 +774,7 @@
 
 
 
-                                                                                                                                $('.easy-pie-chart.percentage').each(function () {
+                                                                                                                                                                                $('.easy-pie-chart.percentage').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
                         var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
@@ -781,7 +790,7 @@
                         });
                     })
 
-                                                                                                                                $('.sparkline').each(function () {
+                                                                                                                                                                                $('.sparkline').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
                         $(this).sparkline('html',
@@ -806,7 +815,7 @@
                         { label: "direct traffic", data: 18.6, color: "#DA5430" },
                         { label: "other", data: 10, color: "#FEE074" }
                     ]
-                                                                                                                              function drawPieChart(placeholder, data, position) {
+                                                                                                                                                                              function drawPieChart(placeholder, data, position) {
                     $.plot(placeholder, data, {
                         series: {
                             pie: {
@@ -835,7 +844,7 @@
                         }
                     })
                 }
-                                                                                                                             drawPieChart(placeholder, data);
+                                                                                                                                                                             drawPieChart(placeholder, data);
 
             /**
             we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
@@ -982,13 +991,13 @@
         })
 
         $('#btnAddAdvertisement').click(function () {
-            $('#userDetails').modal('show');
+            $('#AddAdvertisement').modal('show');
         });
     </script>
 
-        <!-- Advertisement Post -->
+    <!-- Advertisement Post -->
     <script>
-        $('#CreateForm').submit(function (e) {
+        $('#CreateAdvertisement').submit(function (e) {
             var model = {
                 Title: $('#Title').val(),
                 Description: $('#Description').val()
@@ -1008,6 +1017,7 @@
 
 
     </script>
+   
     <!-- end -->
 </body>
 </html>

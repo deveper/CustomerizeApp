@@ -42,7 +42,7 @@ namespace Customerize.Service.Mapping
 
             #region Order
             CreateMap<Order, OrderDto>().ReverseMap();
-            CreateMap<OrderDtoInsert, Order>();
+            CreateMap<OrderDtoInsert, Order>().ReverseMap();
             CreateMap<OrderDtoUpdate, Order>();
             CreateMap<Order, OrderDtoList>();
             CreateMap<Order, OrderDtoWithOrderLineList>();

@@ -4,6 +4,6 @@
     {
 
         public int OrderId { get; set; }
-        public int PorductId { get; set; }
+        public List<int> PorductId { get; set; }//birden fazla ürün olacak
     }
 }

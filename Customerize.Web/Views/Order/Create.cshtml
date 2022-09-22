@@ -1,0 +1,81 @@
+﻿@model OrderDtoInsert
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create</h1>
+@*<form asp-controller="Category" asp-action="Edit" method="post">
+    <input asp-for="UserId" value="@Model.UserId" type="hidden" />
+    <input asp-for="CompanyId" value="@Model.CompanyId" type="hidden" />
+
+    <input type="submit" class="btn-primary" value="Sipariş Oluştur" />
+</form>*@
+
+
+<h1>Ürün Listesi</h1>
+
+
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Code</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#example tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('
+                    < input type = "text" placeholder = "Search ' + title + '" /> ');
+                            });
+
+            // DataTable
+            var table = $('#example').DataTable({
+                initComplete: function () {
+                    // Apply the search
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change clear', function () {
+                                if (that.search() !== this.value) {
+                                    that.search(this.value).draw();
+                                }
+                            });
+                        });
+                },
+            });
+        });
+    </script>
+
+   }
+
+
+
+
+
+
+
+
+
+
