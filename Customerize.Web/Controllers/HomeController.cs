@@ -19,12 +19,8 @@ namespace Customerize.Web.Controllers
             _mapper = mapper;
             _service = service;
         }
-        public async Task<IActionResult> Index()
-        {
-            var result = await _service.GetAllAsync();
-            var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result);
-            return View(map);
-        }
+
+        #region CreateAdvertisement
         [HttpPost]
         public async Task<IActionResult> CreateAdvertisement([FromBody] AdvertisementDtoInsert model)
         {
@@ -35,6 +31,13 @@ namespace Customerize.Web.Controllers
                 return Json(result.Message);
             }
             return Json(result);
+        }
+        #endregion
+        public async Task<IActionResult> Index()
+        {
+            var result = await _service.GetAllAsync();
+            var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result);
+            return View(map);
         }
 
     }
