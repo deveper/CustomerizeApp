@@ -15,7 +15,7 @@
     <!-- page specific plugin styles -->
     <!-- text fonts -->
     <link rel="stylesheet" href="~/Panel/assets/css/fonts.googleapis.com.css" />
- 
+
 
     <!-- ace styles -->
     <link rel="stylesheet" href="~/Panel/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
@@ -64,87 +64,12 @@
 
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
-                    <li class="grey dropdown-modal">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="ace-icon fa fa-tasks"></i>
-                            <span class="badge badge-grey">4</span>
-                        </a>
-
-                        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                            <li class="dropdown-header">
-                                <i class="ace-icon fa fa-check"></i>
-                                4 Tasks to complete
-                            </li>
-
-                            <li class="dropdown-content">
-                                <ul class="dropdown-menu dropdown-navbar">
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Software Update</span>
-                                                <span class="pull-right">65%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:65%" class="progress-bar"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Hardware Upgrade</span>
-                                                <span class="pull-right">35%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Unit Testing</span>
-                                                <span class="pull-right">15%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini">
-                                                <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Bug Fixes</span>
-                                                <span class="pull-right">90%</span>
-                                            </div>
-
-                                            <div class="progress progress-mini progress-striped active">
-                                                <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown-footer">
-                                <a href="#">
-                                    See tasks with details
-                                    <i class="ace-icon fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                 
 
                     <li class="purple dropdown-modal">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                            <span class="badge badge-important">8</span>
+                            <span class="badge badge-important">5</span>
                         </a>
 
                         <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
@@ -405,9 +330,9 @@
 
                 <li class="">
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-desktop"></i>
+                        <i class="menu-icon fa fa-product-hunt orange"></i>
                         <span class="menu-text">
-                            İşlemler
+                            <small> Ürün-Kategori İşlemleri</small>
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -518,11 +443,12 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="">
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-list"></i>
-                        <span class="menu-text"> Tables </span>
+                        <i class="menu-icon fa  fa-exchange red"></i>
+                        <span class="menu-text">
+                            <small>Stok İşlemleri</small>
+                        </span>
 
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -531,29 +457,65 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="tables.html">
+                            <a class="dropdown-toggle">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Simple &amp; Dynamic
+
+                                Stok Haraketleri
+                                <b class="arrow fa fa-angle-down"></b>
                             </a>
 
                             <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="Create">
+                                        <i class="menu-icon fa fa-plus blue"></i>
+                                        Stok Girişi
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="GetAllList">
+                                        <i class="menu-icon fa fa-minus orange"></i>
+                                        Stok Çıkışı
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
                         </li>
-
+                    </ul>
+                    <ul class="submenu">
                         <li class="">
-                            <a href="jqgrid.html">
+                            <a class="dropdown-toggle">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                jqGrid plugin
+                                Stok Raporları
+                                <b class="arrow fa fa-angle-down"></b>
                             </a>
 
                             <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="Category" asp-action="Create">
+                                        <i class="menu-icon fa fa-plus blue"></i>
+                                        Null
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
-
                 <li class="">
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-pencil-square-o"></i>
-                        <span class="menu-text"> Forms </span>
+                        <i class="menu-icon fa fa-credit-card blue"></i>
+                        <span class="menu-text">
+                            <small>Satış İşlemleri</small>
+                        </span>
 
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -562,233 +524,75 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="form-elements.html">
+                            <a class="dropdown-toggle">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Form Elements
+                                Müşteriler
+                                <b class="arrow fa fa-angle-down"></b>
                             </a>
-
                             <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="Create">
+                                        <i class="menu-icon fa fa-eye pink"></i>
+                                        Müşteri Durumları
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="GetAllList">
+                                        <i class="menu-icon fa fa-file orange"></i>
+                                        Müşteri Raporları
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
                         </li>
 
-                        <li class="">
-                            <a href="form-elements-2.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Form Elements 2
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="form-wizard.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Wizard &amp; Validation
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="wysiwyg.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Wysiwyg &amp; Markdown
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="dropzone.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Dropzone File Upload
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
                     </ul>
+                    <ul class="submenu">
+                        <li class="">
+                            <a class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Raporlar
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+                            <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="Create">
+                                        <i class="menu-icon fa  fa-bookmark pink"></i>
+                                        Fatura
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a asp-controller="Product" asp-action="GetAllList">
+                                        <i class="menu-icon fa fa-briefcase orange"></i>
+                                        Tahsilat
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
                 </li>
+
 
                 <li class="">
                     <a href="widgets.html">
-                        <i class="menu-icon fa fa-list-alt"></i>
-                        <span class="menu-text"> Widgets </span>
+                        <i class="menu-icon fa fa-list-alt green"></i>
+                        <span class="menu-text"><small>Nakit</small></span>
                     </a>
 
                     <b class="arrow"></b>
                 </li>
 
-                <li class="">
-                    <a href="calendar.html">
-                        <i class="menu-icon fa fa-calendar"></i>
-
-                        <span class="menu-text">
-                            Calendar
-
-                            <span class="badge badge-transparent tooltip-error" title="2 Important Events">
-                                <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-                            </span>
-                        </span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="gallery.html">
-                        <i class="menu-icon fa fa-picture-o"></i>
-                        <span class="menu-text"> Gallery </span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-tag"></i>
-                        <span class="menu-text"> More Pages </span>
-
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-
-                    <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="profile.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                User Profile
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="inbox.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Inbox
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="pricing.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Pricing Tables
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="invoice.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Invoice
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="timeline.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Timeline
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="search.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Search Results
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="email.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Email Templates
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="login.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Login &amp; Register
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-file-o"></i>
-
-                        <span class="menu-text">
-                            Other Pages
-
-                            <span class="badge badge-primary">5</span>
-                        </span>
-
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-
-                    <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="faq.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                FAQ
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="error-404.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Error 404
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="error-500.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Error 500
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="grid.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Grid
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="blank.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Blank Page
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
-                </li>
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -936,7 +740,7 @@
 
 
 
-                                                $('.easy-pie-chart.percentage').each(function () {
+                                                                                $('.easy-pie-chart.percentage').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
                         var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
@@ -952,7 +756,7 @@
                         });
                     })
 
-                                                $('.sparkline').each(function () {
+                                                                                $('.sparkline').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
                         $(this).sparkline('html',
@@ -977,7 +781,7 @@
                         { label: "direct traffic", data: 18.6, color: "#DA5430" },
                         { label: "other", data: 10, color: "#FEE074" }
                     ]
-                                              function drawPieChart(placeholder, data, position) {
+                                                                              function drawPieChart(placeholder, data, position) {
                     $.plot(placeholder, data, {
                         series: {
                             pie: {
@@ -1006,7 +810,7 @@
                         }
                     })
                 }
-                                             drawPieChart(placeholder, data);
+                                                                             drawPieChart(placeholder, data);
 
             /**
             we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
