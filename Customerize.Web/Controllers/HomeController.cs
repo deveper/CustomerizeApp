@@ -25,6 +25,17 @@ namespace Customerize.Web.Controllers
             var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result);
             return View(map);
         }
+        [HttpPost]
+        public async Task<IActionResult> CreateAdvertisement([FromBody] AdvertisementDtoInsert model)
+        {
+            var map = _mapper.Map<Advertisement>(model);
+            var result = await _service.AddAsync(map);
+            if (result.IsSuccess)
+            {
+                return Json(result.Message);
+            }
+            return Json(result);
+        }
 
     }
 }

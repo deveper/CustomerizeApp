@@ -89,6 +89,7 @@ namespace Customerize.Service.Mapping
             #region Advertisement
 
             CreateMap<Advertisement, AdvertisementDtoList>().ReverseMap();
+            CreateMap<Advertisement, AdvertisementDtoInsert>().ReverseMap();
             #endregion
 
 

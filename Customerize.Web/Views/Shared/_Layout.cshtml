@@ -64,7 +64,7 @@
 
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
-                 
+
 
                     <li class="purple dropdown-modal">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -297,7 +297,7 @@
 
             <div class="sidebar-shortcuts" id="sidebar-shortcuts">
                 <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <button class="btn btn-info">
+                    <button id="btnAddAdvertisement" data-toggle="modal" data-target="#userDetails" OnClientClick="return openmodal();return false;" class="btn btn-info">
                         <i class="ace-icon fa fa-pencil"></i>
                     </button>
                     <button class="btn btn-warning">
@@ -641,6 +641,31 @@
     </div><!-- /.main-container -->
     <!-- basic scripts -->
     <!--[if !IE]> -->
+    <!--Advertisement Added Modal> -->
+    <form id="CreateForm" action="javascript:void(0);">
+        <div class="modal fade" id="userDetails" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Duyuru Ekle</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>Name:</label>
+                        <input type="text" id="Title" name="Title"><br />
+                        <label>E-mail:</label>
+                        <input type="text" id="Description" name="Description"><br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- <![endif]-->
+
     <script src="~/Panel/assets/js/jquery-2.1.4.min.js"></script>
 
     <!-- <![endif]-->
@@ -740,7 +765,7 @@
 
 
 
-                                                                                $('.easy-pie-chart.percentage').each(function () {
+                                                                                                                                $('.easy-pie-chart.percentage').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
                         var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
@@ -756,7 +781,7 @@
                         });
                     })
 
-                                                                                $('.sparkline').each(function () {
+                                                                                                                                $('.sparkline').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
                         $(this).sparkline('html',
@@ -781,7 +806,7 @@
                         { label: "direct traffic", data: 18.6, color: "#DA5430" },
                         { label: "other", data: 10, color: "#FEE074" }
                     ]
-                                                                              function drawPieChart(placeholder, data, position) {
+                                                                                                                              function drawPieChart(placeholder, data, position) {
                     $.plot(placeholder, data, {
                         series: {
                             pie: {
@@ -810,7 +835,7 @@
                         }
                     })
                 }
-                                                                             drawPieChart(placeholder, data);
+                                                                                                                             drawPieChart(placeholder, data);
 
             /**
             we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
@@ -955,6 +980,34 @@
             });
 
         })
+
+        $('#btnAddAdvertisement').click(function () {
+            $('#userDetails').modal('show');
+        });
     </script>
+
+        <!-- Advertisement Post -->
+    <script>
+        $('#CreateForm').submit(function (e) {
+            var model = {
+                Title: $('#Title').val(),
+                Description: $('#Description').val()
+            }
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("CreateAdvertisement", "Home")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    location.reload();
+                }
+
+            });
+        });
+
+
+    </script>
+    <!-- end -->
 </body>
 </html>
