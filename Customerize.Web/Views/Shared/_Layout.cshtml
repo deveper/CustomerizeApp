@@ -32,12 +32,16 @@
     <!-- inline styles related to this page -->
     <!-- ace settings handler -->
     <script src="~/Panel/assets/js/ace-extra.min.js"></script>
-    <script src="assets/js/widget_.js"></script>
+    <script src="~/Panel/assets/js/widget_.js"></script>
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
     <!--[if lte IE 8]>
     <script src="assets/js/html5shiv.min.js"></script>
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+
+
+
+
 </head>
 
 <body class="no-skin">
@@ -327,7 +331,7 @@
 
                     <b class="arrow"></b>
                 </li>
-             
+
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-product-hunt orange"></i>
@@ -631,7 +635,6 @@
 
                 <div class="page-content">
                     @RenderBody()
-                    @RenderSection("scripts", required: false)
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
@@ -774,7 +777,7 @@
 
 
 
-                                                                                                                                                                                $('.easy-pie-chart.percentage').each(function () {
+                                                                                                                                                                                                        $('.easy-pie-chart.percentage').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
                         var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
@@ -790,7 +793,7 @@
                         });
                     })
 
-                                                                                                                                                                                $('.sparkline').each(function () {
+                                                                                                                                                                                                        $('.sparkline').each(function () {
                         var $box = $(this).closest('.infobox');
                         var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
                         $(this).sparkline('html',
@@ -815,7 +818,7 @@
                         { label: "direct traffic", data: 18.6, color: "#DA5430" },
                         { label: "other", data: 10, color: "#FEE074" }
                     ]
-                                                                                                                                                                              function drawPieChart(placeholder, data, position) {
+                                                                                                                                                                                                      function drawPieChart(placeholder, data, position) {
                     $.plot(placeholder, data, {
                         series: {
                             pie: {
@@ -844,7 +847,7 @@
                         }
                     })
                 }
-                                                                                                                                                                             drawPieChart(placeholder, data);
+                                                                                                                                                                                                     drawPieChart(placeholder, data);
 
             /**
             we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
@@ -1017,7 +1020,7 @@
 
 
     </script>
-   
+    @RenderSection("scripts", required: false)
     <!-- end -->
 </body>
 </html>

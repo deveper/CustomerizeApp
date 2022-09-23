@@ -20,11 +20,10 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var products = await _productService.GetAllAsync();
-            var map = _mapper.Map<List<ProductDtoList>>(products);
+            var products = await _productService.GetProductAllDetail();
             var model = new OrderDtoInsert()
             {
-                Products = map
+                Products = products.Data.ToList()
             };
 
             return View(model);
