@@ -15,33 +15,45 @@
 <div class="container">
     <div class="bg-info">
         <h3 class="text-center">Ürün Listesi</h3>
+        <form>
 
-        <table id="ProductList" class="table table-striped table-bordered table-hover">
 
-            <thead>
+            <table id="ProductList" class="table table-striped table-bordered table-hover">
 
-                <tr>
-                    <th>Ürün Adı</th>
-                    <th>Kategori Adı</th>
-                    <th>Ürün Tipi</th>
-                    <th>Fiyatı</th>
-                    <th>Stok Adedi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Products)
-                {
+                <thead>
+
                     <tr>
-                        <td>@item.Name</td>
-                        <td>@item.CategoryName</td>
-                        <td>@item.ProductTypeName</td>
-                        <td>@item.Price</td>
-                        <td>@item.Stock</td>
+                        <th>Ürün Adı</th>
+                        <th>Kategori Adı</th>
+                        <th>Ürün Tipi</th>
+                        <th>Fiyatı</th>
+                        <th>Stok Adedi</th>
+                        <th>Seçim</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.ProductTypeName</td>
+                            <td>@item.Price</td>
+                            <td>@item.Stock</td>
+                            <td>
+                                <label class="pos-rel">
+                                    <input value="@item.Id" type="checkbox" class="ace">
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                        </tr>
+                    }
 
-            </tbody>
-        </table>
+
+
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
 
