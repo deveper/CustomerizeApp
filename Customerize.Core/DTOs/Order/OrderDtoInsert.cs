@@ -10,9 +10,9 @@ namespace Customerize.Core.DTOs.Order
         {
             Products = new List<ProductDtoList>();
         }
-        public int UserId { get; set; }
-        public int CompanyId { get; set; }
-        public ICollection<OrderLineDtoInsert> OrderLines { get; set; }
+        public int UserId { get; set; } = 1;
+        public int CompanyId { get; set; } = 2;
+        public List<OrderLineDtoInsert> OrderLines { get; set; }
         public List<ProductDtoList> Products { get; set; }
     }
 }

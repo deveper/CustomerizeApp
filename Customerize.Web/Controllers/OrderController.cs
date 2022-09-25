@@ -28,9 +28,8 @@ namespace Customerize.Web.Controllers
 
             return View(model);
         }
-
         [HttpPost]
-        public async Task<IActionResult> Create(string model)
+        public async Task<IActionResult> Create([FromBody] OrderDtoInsert model)
         {
             return Json("boş");
         }

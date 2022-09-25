@@ -6,8 +6,7 @@
 
 <h1>Create</h1>
 @*<form asp-controller="Category" asp-action="Edit" method="post">
-    <input asp-for="UserId" value="@Model.UserId" type="hidden" />
-    <input asp-for="CompanyId" value="@Model.CompanyId" type="hidden" />
+
 
     <input type="submit" class="btn-primary" value="Sipariş Oluştur" />
 </form>*@
@@ -15,7 +14,11 @@
 <div class="container">
     <div class="bg-info">
         <h3 class="text-center">Ürün Listesi</h3>
-        <form>
+    </div>
+    <form id="CreateOrder" action="javascript:void(0);">
+        <input asp-for="UserId" value="@Model.UserId" type="hidden" />
+        <input asp-for="CompanyId" value="@Model.CompanyId" type="hidden" />
+        <div>
             <table id="ProductList" class="table table-striped table-bordered table-hover">
 
                 <thead>
@@ -41,13 +44,13 @@
                             <td>@item.Stock</td>
                             <td>
                                 <label class="pos-rel">
-                                    <input id="" value="@item.Id"  class="ace">
+                                    <input id="piece" type="number" class="ace">
                                     <span class="lbl"></span>
                                 </label>
                             </td>
                             <td>
                                 <label class="pos-rel">
-                                    <input id="" value="@item.Id" type="checkbox" class="ace">
+                                    <input value="@item.Id" type="checkbox" class="checkBoxer">
                                     <span class="lbl"></span>
                                 </label>
                             </td>
@@ -55,11 +58,13 @@
                     }
                 </tbody>
                 <tfoot>
-                    <button id="send">Sipariş İlet</button>
                 </tfoot>
             </table>
-        </form>
-    </div>
+        </div>
+        <div class="bg-black mt-2">
+            <button type="submit" class="btn btn-success btn-block mt-2">Sipariş Oluştur</button>
+        </div>
+    </form>
 </div>
 
 @section scripts
@@ -69,6 +74,33 @@
         $(document).ready(function () {
             $('#ProductList').DataTable({
                 "processing": true,
+            });
+        });
+
+        $('#CreateOrder').submit(function (e) {
+            e.preventDefault();
+            var data = [];
+            var i = 0;
+            $('input:checkbox.checkBoxer').each(function () {
+                if ($(this).prop('checked')) {
+                    var productId = $(this).attr("value");
+                    data[i] = { ProductId: productId };
+                    i++;
+                }
+            });
+            var model = {
+                UserId: $('#UserId').val(),
+                CompanyId: $('#CompanyId').val(),
+                OrderLines: data
+            }
+            $.ajax({
+                url: '@Url.Action("Create", "Order")',
+                type: 'POST',
+                data: JSON.stringify(model),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    location.reload();
+                }
             });
         });
     </script>
