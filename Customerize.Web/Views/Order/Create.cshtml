@@ -71,9 +71,14 @@
     {
 
     <script>
+        var table = $('#ProductList').DataTable({
+
+        });
+
         $(document).ready(function () {
-            $('#ProductList').DataTable({
-                "processing": true,
+
+            $('#ProductList tbody').on('click', 'tr', function () {
+                $(this).toggleClass('selected');
             });
         });
 
@@ -81,6 +86,8 @@
             e.preventDefault();
             var data = [];
             var i = 0;
+            var selectedRow = table.rows('.selected').data();
+
             $('input:checkbox.checkBoxer').each(function () {
                 if ($(this).prop('checked')) {
                     var productId = $(this).attr("value");
