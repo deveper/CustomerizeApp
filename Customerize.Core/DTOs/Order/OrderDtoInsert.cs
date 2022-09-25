@@ -12,7 +12,7 @@ namespace Customerize.Core.DTOs.Order
         }
         public int UserId { get; set; }
         public int CompanyId { get; set; }
-        public ICollection<OrderLineDto> OrderLineDtos { get; set; }
+        public ICollection<OrderLineDtoInsert> OrderLines { get; set; }
         public List<ProductDtoList> Products { get; set; }
     }
 }

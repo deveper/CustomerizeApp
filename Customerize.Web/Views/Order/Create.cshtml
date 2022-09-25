@@ -26,6 +26,7 @@
                         <th>Ürün Tipi</th>
                         <th>Fiyatı</th>
                         <th>Stok Adedi</th>
+                        <th>Adet</th>
                         <th>Seçim</th>
                     </tr>
                 </thead>
@@ -38,6 +39,12 @@
                             <td>@item.ProductTypeName</td>
                             <td>@item.Price</td>
                             <td>@item.Stock</td>
+                            <td>
+                                <label class="pos-rel">
+                                    <input id="" value="@item.Id"  class="ace">
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
                             <td>
                                 <label class="pos-rel">
                                     <input id="" value="@item.Id" type="checkbox" class="ace">

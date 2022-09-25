@@ -3,6 +3,7 @@
     public class OrderLineDto : BaseDto
     {
 
-        public List<int> PorductId { get; set; }//birden fazla ürün olacak
+        public int ProductId { get; set; }
+        public int OrderId { get; set; }
     }
 }

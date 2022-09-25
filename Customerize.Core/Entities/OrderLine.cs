@@ -2,6 +2,7 @@
 {
     public class OrderLine : BaseEntity
     {
+        public int ProductPiece { get; set; }
         //navigation property
         public int OrderId { get; set; }
         public Order Order { get; set; }
