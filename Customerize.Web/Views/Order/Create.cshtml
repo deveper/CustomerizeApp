@@ -49,10 +49,7 @@
                                 </label>
                             </td>
                             <td>
-                                <label class="pos-rel">
-                                    <input value="@item.Id" type="checkbox" class="checkBoxer">
-                                    <span class="lbl"></span>
-                                </label>
+                                <input id="productId" value="@item.Id" disabled>
                             </td>
                         </tr>
                     }
@@ -74,7 +71,6 @@
         var table = $('#ProductList').DataTable({
 
         });
-
         $(document).ready(function () {
 
             $('#ProductList tbody').on('click', 'tr', function () {
@@ -82,19 +78,21 @@
             });
         });
 
-        $('#CreateOrder').submit(function (e) {
+        $('#CreateOrder').on('submit', function (e) {
             e.preventDefault();
             var data = [];
-            var i = 0;
             var selectedRow = table.rows('.selected').data();
+            for (var i = 0; i < selectedRow.length; i++) {
 
-            $('input:checkbox.checkBoxer').each(function () {
-                if ($(this).prop('checked')) {
-                    var productId = $(this).attr("value");
-                    data[i] = { ProductId: productId };
-                    i++;
-                }
-            });
+                var productId = $(selectedRow[i][6]).val();
+
+                var modelOrderLines = {
+                    ProductId: productId
+                    //ProductPiece: productPiece
+                };
+                data.push(modelOrderLines);
+            }
+
             var model = {
                 UserId: $('#UserId').val(),
                 CompanyId: $('#CompanyId').val(),
