@@ -4,8 +4,6 @@
 
 }
 
-<h1>Create</h1>
-
 <div class="container">
     <div class="bg-info">
         <h3 class="text-center">Ürün Listesi</h3>
@@ -36,7 +34,7 @@
                             <td>@item.Price</td>
                             <td>@item.Stock</td>
                             <td>
-                                <input id="productPiece" class="productPiece" type="number">
+                                <input id="productPiece" class="productPiece" min="1" type="number">
                             </td>
                             <td>
                                 <input id="productId" value="@item.Id" disabled type="hidden">
@@ -96,6 +94,12 @@
                     }
                 });
             });
+        });
+        $('input[type="number"]').on('keypress', function (e) {
+            if (e.which < 48 || e.which > 57) {
+                e.preventDefault();
+                return false;
+            }
         });
         $('#ProductList tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
