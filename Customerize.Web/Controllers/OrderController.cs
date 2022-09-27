@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Customerize.Core.DTOs.Order;
-using Customerize.Core.DTOs.Product;
-using Customerize.Core.Entities;
 using Customerize.Core.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Customerize.Web.Controllers

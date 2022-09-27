@@ -8,48 +8,46 @@
     <div class="bg-info">
         <h3 class="text-center">Ürün Listesi</h3>
     </div>
-    <form id="CreateOrder" action="javascript:void(0);">
-        <input asp-for="UserId" value="@Model.UserId" type="hidden" />
-        <input asp-for="CompanyId" value="@Model.CompanyId" type="hidden" />
-        <div>
-            <table id="ProductList" class="table table-striped table-bordered table-hover">
-                <thead>
+    <input name="UserId" value="@Model.UserId" type="hidden" />
+    <input name="CompanyId" value="@Model.CompanyId" type="hidden" />
+    <div>
+        <table id="ProductList" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Kategori Adı</th>
+                    <th>Ürün Tipi</th>
+                    <th>Fiyatı</th>
+                    <th>Stok Adedi</th>
+                    <th>Adet</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
                     <tr>
-                        <th>Ürün Adı</th>
-                        <th>Kategori Adı</th>
-                        <th>Ürün Tipi</th>
-                        <th>Fiyatı</th>
-                        <th>Stok Adedi</th>
-                        <th>Adet</th>
-                        <th></th>
+                        <td>@item.Name</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.ProductTypeName</td>
+                        <td>@item.Price</td>
+                        <td><input id="producStock" value="@item.Stock" disabled></td>
+                        <td>
+                            <input id="productPiece" class="productPiece" min="1" type="number">
+                        </td>
+                        <td>
+                            <input id="productId" value="@item.Id" disabled type="hidden">
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Products)
-                    {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.CategoryName</td>
-                            <td>@item.ProductTypeName</td>
-                            <td>@item.Price</td>
-                            <td>@item.Stock</td>
-                            <td>
-                                <input id="productPiece" class="productPiece" min="1" type="number">
-                            </td>
-                            <td>
-                                <input id="productId" value="@item.Id" disabled type="hidden">
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-                <tfoot>
-                </tfoot>
-            </table>
-        </div>
-        <div class="bg-black mt-2">
-            <button type="button" id="submitOrder" class="btn btn-success btn-block mt-2 test">Sipariş Oluştur</button>
-        </div>
-    </form>
+                }
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    <div class="bg-black mt-2">
+        <button type="button" id="submitOrder" class="btn btn-success btn-block mt-2 test">Sipariş Oluştur</button>
+    </div>
 </div>
 
 @section scripts
@@ -64,14 +62,20 @@
                         rowData.MarkupValue = $(this).val();
                     });
                 }
-
             });
             $("#submitOrder").click(function () {
+
                 var data = [];
                 var selectedRow = table.rows('.selected').data();
                 for (var i = 0; i < selectedRow.length; i++) {
+
                     var productId = $(selectedRow[i][6]).val();
                     var productPiece = Object.values(selectedRow[i]);
+                    var producStock = $(selectedRow[i][4]).val();
+                    //if (productPiece[7] > producStock) {
+                    //    window.alert("büyük");
+                    //ToDo:ErrorModal
+                    //}
 
                     var modelOrderLines = {
                         ProductId: productId,
@@ -104,6 +108,7 @@
         $('#ProductList tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
         });
+
     </script>
 
 }
