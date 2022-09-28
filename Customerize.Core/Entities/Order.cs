@@ -1,10 +1,13 @@
-﻿namespace Customerize.Core.Entities
+﻿using Customerize.Core.DTOs.Product;
+
+namespace Customerize.Core.Entities
 {
     public class Order : BaseEntity
     {
         public Order()
         {
             this.OrderCode = DateTime.Now.ToString("M/d/yy") + new Guid().ToString().Substring(0, 3);
+
         }
         public string OrderCode { get; set; }
         public long OrderStatusId { get; set; }

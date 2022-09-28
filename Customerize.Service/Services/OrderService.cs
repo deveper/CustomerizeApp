@@ -15,15 +15,17 @@ namespace Customerize.Service.Services
     {
         private readonly IGenericRepository<Order> _repository;
         private readonly IGenericRepository<OrderLine> _orderLineRepository;
+        private readonly IOrderRepository _orderRepository;
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository) : base(repository, unitOfWork, mapper)
+        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository) : base(repository, unitOfWork, mapper)
         {
             _orderLineRepository = orderLineRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _repository = repository;
+            _orderRepository = orderRepository;
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
@@ -63,6 +65,29 @@ namespace Customerize.Service.Services
                 Message = ResultMessages.GeneralErrorMessage,
                 Total = 0
             };
+        }
+
+        public async Task<ResultDto<IEnumerable<OrderDtoList>>> GetOrders()
+        {
+            var orders = await _orderRepository.GetFullOrder();
+            if (orders != null)
+            {
+                var map = _mapper.Map<IEnumerable<OrderDtoList>>(orders);
+                return new ResultDto<IEnumerable<OrderDtoList>>()
+                {
+                    Data = map,
+                    IsSuccess = true,
+                    Message = ResultMessages.OrderSearch,
+                    Total = map.Count()
+                };
+            }
+            return new ResultDto<IEnumerable<OrderDtoList>>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.NotFoundOrders,
+                Total = 0
+            };
+
         }
     }
 }

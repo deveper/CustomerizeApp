@@ -40,9 +40,8 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllList()
         {
-            var result = await _orderService.GetAllAsync();
-            var map = _mapper.Map<IEnumerable<OrderDtoList>>(result.Data);
-            return View(map);
+            var result = await _orderService.GetOrders();
+            return View(result.Data);
         }
         #endregion
 

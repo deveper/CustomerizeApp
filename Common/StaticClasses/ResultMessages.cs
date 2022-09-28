@@ -24,6 +24,8 @@ namespace Common.StaticClasses
         public const string DeletedProduct = "Ürünler Başarıyla Silindi";
 
         public const string CreateOrder = "Siparişiniz Alınmıştır";
+        public const string OrderSearch = "Siparişler Getirildi";
+        public const string NotFoundOrders = "Siparişler Bulunamdı";
 
 
 
