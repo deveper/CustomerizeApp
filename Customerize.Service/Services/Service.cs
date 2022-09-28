@@ -154,5 +154,10 @@ namespace Customerize.Service.Services
         {
             return _repository.Where(expression).AsNoTracking();
         }
+
+        public async Task<List<T>> WhereList(Expression<Func<T, bool>> expression)
+        {
+            return await _repository.Where(expression).ToListAsync();
+        }
     }
 }

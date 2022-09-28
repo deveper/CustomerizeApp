@@ -14,6 +14,7 @@ namespace Customerize.Web.Controllers
             _productService = productService;
             _orderService = orderService;
         }
+        #region OrderCreate
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -30,6 +31,7 @@ namespace Customerize.Web.Controllers
             }
             return Json(result.Message);
         }
+        #endregion
         public IActionResult Index()
         {
             return View();

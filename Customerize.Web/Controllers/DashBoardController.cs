@@ -1,18 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Customerize.Core.DTOs.DashBoard;
+using Customerize.Core.Entities;
+using Customerize.Core.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Customerize.Web.Controllers
 {
     public class DashBoardController : Controller
     {
-
-        public DashBoardController()
+        private readonly IDashBoardService _dashboardService;
+        public DashBoardController(IDashBoardService dashboardService)
         {
-
+            _dashboardService = dashboardService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _dashboardService.Dailygeneral();
+            if (result.IsSuccess)
+            {
+                return View(result.Data);
+            }
+            return Json(result.Message);
         }
     }
 }
