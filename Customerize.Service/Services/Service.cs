@@ -64,10 +64,28 @@ namespace Customerize.Service.Services
             return await _repository.AnyAsync(expression);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<ResultDto<IEnumerable<T>>> GetAllAsync()
         {
 
-            return await _repository.GetAll().ToListAsync();
+            var entities = await _repository.GetAll().ToListAsync();
+            if (entities == null)
+            {
+                return new ResultDto<IEnumerable<T>>()
+                {
+                    IsSuccess = false,
+                    Message = ResultMessages.GeneralErrorMessage
+                };
+            }
+            else
+            {
+                return new ResultDto<IEnumerable<T>>()
+                {
+                    Data = entities,
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess
+                };
+            }
+
         }
 
         public async Task<ResultDto<T>> GetByIdAsync(int id)

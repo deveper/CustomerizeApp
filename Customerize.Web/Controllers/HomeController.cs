@@ -36,7 +36,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var result = await _service.GetAllAsync();
-            var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result);
+            var map = _mapper.Map<IEnumerable<AdvertisementDtoList>>(result.Data);
             return View(map);
         }
 

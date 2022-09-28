@@ -70,7 +70,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var result = await _categoryService.GetAllAsync();
-            var map = _mapper.Map<IEnumerable<CategoryDtoList>>(result);
+            var map = _mapper.Map<IEnumerable<CategoryDtoList>>(result.Data);
             return View(map);
         }
         #endregion

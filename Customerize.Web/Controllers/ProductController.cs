@@ -36,10 +36,10 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Create()
         {
             var productTypes = await _productTypeService.GetAllAsync();
-            ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
+            ViewBag.productTypes = new SelectList(productTypes.Data, "Id", "Name");
 
             var categories = await _categoryService.GetAllAsync();
-            ViewBag.categories = new SelectList(categories, "Id", "Name");
+            ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
 
             return View();
         }
@@ -70,7 +70,7 @@ namespace Customerize.Web.Controllers
                 ViewBag.productTypes = new SelectList(productTypes, "Id", "Name");
 
                 var categories = await _categoryService.GetAllAsync();
-                ViewBag.categories = new SelectList(categories, "Id", "Name");
+                ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
 
                 var productDto = _mapper.Map<ProductDtoUpdate>(result.Data);
                 return View(productDto);

@@ -9,10 +9,12 @@ namespace Customerize.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        public OrderController(IProductService productService, IOrderService orderService)
+        private readonly IMapper _mapper;
+        public OrderController(IProductService productService, IOrderService orderService, IMapper mapper)
         {
             _productService = productService;
             _orderService = orderService;
+            _mapper = mapper;
         }
         #region OrderCreate
         [HttpGet]
@@ -32,6 +34,18 @@ namespace Customerize.Web.Controllers
             return Json(result.Message);
         }
         #endregion
+
+        #region GetAllList
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllList()
+        {
+            var result = await _orderService.GetAllAsync();
+            var map = _mapper.Map<IEnumerable<OrderDtoList>>(result.Data);
+            return View(map);
+        }
+        #endregion
+
         public IActionResult Index()
         {
             return View();
