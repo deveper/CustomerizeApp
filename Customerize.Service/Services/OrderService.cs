@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Common.Dtos;
 using Common.StaticClasses;
+using Customerize.Common.StaticClasses;
 using Customerize.Core.DTOs.Order;
 using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
@@ -31,6 +32,7 @@ namespace Customerize.Service.Services
             {
                 UserId = input.UserId,
                 CompanyId = input.CompanyId,
+                OrderStatusId = OrderStatuses.Beklemede
             };
             await _repository.AddAsync(order);
             await _unitOfWork.CommitAsync();

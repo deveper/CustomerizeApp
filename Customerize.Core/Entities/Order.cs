@@ -7,7 +7,7 @@
             this.OrderCode = DateTime.Now.ToString("M/d/yy") + new Guid().ToString().Substring(0, 3);
         }
         public string OrderCode { get; set; }
-        public string OrderStatusId { get; set; }
+        public long OrderStatusId { get; set; }
         //navigation property
         public int? ShipperId { get; set; }
         public Shipper? Shipper { get; set; }
