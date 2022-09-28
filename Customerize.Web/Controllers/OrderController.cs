@@ -7,28 +7,28 @@ namespace Customerize.Web.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly IProductService _productService;
-        public OrderController(IMapper mapper, IProductService productService)
+        private readonly IOrderService _orderService;
+        public OrderController(IProductService productService, IOrderService orderService)
         {
-            _mapper = mapper;
             _productService = productService;
+            _orderService = orderService;
         }
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             var products = await _productService.GetProductAllDetail();
-            var model = new OrderDtoInsert()
-            {
-                Products = products.Data.ToList()
-            };
-
-            return View(model);
+            return View(new OrderDtoInsert() { Products = products.Data.ToList() });
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OrderDtoInsert model)
         {
-            return Json("boş");
+            var result = await _orderService.Create(model);
+            if (result.IsSuccess)
+            {
+                return Json(result.Message);
+            }
+            return Json(result.Message);
         }
         public IActionResult Index()
         {

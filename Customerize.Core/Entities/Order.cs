@@ -1,6 +1,6 @@
 ﻿namespace Customerize.Core.Entities
 {
-    public class Order : BaseEntity 
+    public class Order : BaseEntity
     {
         public Order()
         {
@@ -9,8 +9,8 @@
         public string OrderCode { get; set; }
 
         //navigation property
-        public int ShipperId { get; set; }
-        public Shipper Shipper { get; set; }
+        public int? ShipperId { get; set; }
+        public Shipper? Shipper { get; set; }
 
         //navigation property
         public int CompanyId { get; set; }

@@ -11,7 +11,7 @@ namespace Customerize.Core.DTOs.Order
             Products = new List<ProductDtoList>();
         }
         public int UserId { get; set; } = 1;
-        public int CompanyId { get; set; } = 2;
+        public int CompanyId { get; set; } = 3;
         public List<OrderLineDtoInsert> OrderLines { get; set; }
         public List<ProductDtoList> Products { get; set; }
     }

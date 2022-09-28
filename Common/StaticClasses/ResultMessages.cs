@@ -23,6 +23,7 @@ namespace Common.StaticClasses
         public const string NotFoundDeletedProducts = "Silenecek Ürün Bulunamadı";
         public const string DeletedProduct = "Ürünler Başarıyla Silindi";
 
+        public const string CreateOrder = "Siparişiniz Alınmıştır";
 
 
 
