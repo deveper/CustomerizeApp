@@ -41,7 +41,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var result = await _orderService.GetOrders();
-            return View(result.Data);
+            return View(result.Data.ToList());
         }
         #endregion
 
