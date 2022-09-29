@@ -21,7 +21,7 @@ namespace Customerize.Web.Controllers
             {
                 return View(result.Data);
             }
-            return Json(result.Message);
+            return View(result.Message);
         }
     }
 }

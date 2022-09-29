@@ -31,7 +31,7 @@ namespace Customerize.Service.Services
             var newProductCount = newProduct.Count();
             var newAdvertisementCount = newAdvertisement.Count();
             var ordersWaitingCount = ordersWaiting.Count();
-            if (ordersCount > 0 || newProductCount > 0 || newAdvertisementCount > 0)
+            if (ordersCount > 0 || newProductCount > 0 || newAdvertisementCount > 0 || ordersWaitingCount > 0)
             {
                 return new ResultDto<DashBoardDtoDetail>()
                 {
@@ -46,13 +46,33 @@ namespace Customerize.Service.Services
                     Message = ResultMessages.GeneralSuccess
                 };
             }
-            return new ResultDto<DashBoardDtoDetail>()
+            if (ordersCount == 0 & newProductCount == 0 & newAdvertisementCount == 0 & ordersWaitingCount == 0)
             {
-                IsSuccess = false,
-                Message = ResultMessages.GeneralErrorMessage
-            };
+                return new ResultDto<DashBoardDtoDetail>()
+                {
+                    Data = new DashBoardDtoDetail()
+                    {
+                        OrdersCount = 0,
+                        NewProductCount = 0,
+                        AdvertisementCount = 0,
+                        WaitingOrderCount = 0,
+                    },
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess
+                };
+
+            }
+            else
+            {
+                return new ResultDto<DashBoardDtoDetail>()
+                {
+                    IsSuccess = false,
+                    Message = ResultMessages.GeneralErrorMessage
+                };
+            }
+
         }
 
-        //
+
     }
 }
