@@ -44,7 +44,12 @@ namespace Customerize.Web.Controllers
             return View(result.Data.ToList());
         }
         #endregion
-
+        [HttpGet]
+        public async Task<IActionResult> OrderDetail(int Id)
+        {
+            var result = await _orderService.GetOrders();
+            return View(result.Data.ToList());
+        }
         public IActionResult Index()
         {
             return View();
