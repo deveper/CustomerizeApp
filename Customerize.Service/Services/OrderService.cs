@@ -67,6 +67,28 @@ namespace Customerize.Service.Services
             };
         }
 
+        public async Task<ResultDto<OrderDtoDetails>> GetByIdOrderDetails(int Id)
+        {
+            var orders = await _repository.GetByIdAsync(Id);
+            if (orders != null)
+            {
+                var map = _mapper.Map<OrderDtoDetails>(orders);
+                return new ResultDto<OrderDtoDetails>()
+                {
+                    Data = map,
+                    IsSuccess = false,
+                    Message = ResultMessages.NotFoundOrders,
+                    Total = 0
+                };
+            }
+            return new ResultDto<OrderDtoDetails>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.NotFoundOrders,
+                Total = 0
+            };
+        }
+
         public async Task<ResultDto<IEnumerable<OrderDtoList>>> GetOrders()
         {
             var orders = await _orderRepository.GetFullOrder();

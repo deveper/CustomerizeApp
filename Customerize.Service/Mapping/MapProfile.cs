@@ -46,6 +46,7 @@ namespace Customerize.Service.Mapping
             CreateMap<OrderDtoUpdate, Order>();
             CreateMap<Order, OrderDtoList>().ForMember(dest => dest.ShipperName, opt => opt.MapFrom(src => src.Shipper.Name)).ReverseMap();
             CreateMap<Order, OrderDtoWithOrderLineList>();
+            CreateMap<Order, OrderDtoDetails>().ReverseMap();
             #endregion
 
             #region Company

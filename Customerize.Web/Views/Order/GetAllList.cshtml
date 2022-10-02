@@ -29,7 +29,7 @@
                         <td>@item.CreatedDate.ToString("dd-MM-yyyy HH:mm")</td>
                         <td>@item.UpdatedDate</td>
                         <td>
-                            <a class="btn btn-warning" asp-route-id="@item.Id">Detay</a>
+                            <a asp-controller="Order" asp-action="OrderDetail" class="btn btn-warning" asp-route-id="@item.Id">Detay</a>
                             <a class="btn btn-primary" asp-route-id="@item.Id">İşleme Al</a>
                         </td>
                     </tr>

@@ -47,8 +47,8 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> OrderDetail(int Id)
         {
-            var result = await _orderService.GetOrders();
-            return View(result.Data.ToList());
+            var result = await _orderService.GetByIdOrderDetails(Id);
+            return View(result.Data);
         }
         public IActionResult Index()
         {

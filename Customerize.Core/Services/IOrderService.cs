@@ -10,6 +10,6 @@ namespace Customerize.Core.Services
     {
         Task<ResultDto> Create(OrderDtoInsert input);
         Task<ResultDto<IEnumerable<OrderDtoList>>> GetOrders();
-
+        Task<ResultDto<OrderDtoDetails>> GetByIdOrderDetails(int Id);
     }
 }
