@@ -67,7 +67,7 @@ namespace Customerize.Service.Services
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = ResultMessages.GeneralSuccess,
+                    Message = ResultMessages.GeneralAddedMessage,
                 };
 
             }
