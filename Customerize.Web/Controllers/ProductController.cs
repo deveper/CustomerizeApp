@@ -47,8 +47,6 @@ namespace Customerize.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductDtoInsert model)
         {
-
-            var map = _mapper.Map<Product>(model);
             var result = await _productService.Create(model);
             if (result.IsSuccess)
             {
