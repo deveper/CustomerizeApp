@@ -4,6 +4,7 @@ using Customerize.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Customerize.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221002120029_productDocumentEntity")]
+    partial class productDocumentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,7 @@ namespace Customerize.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("Advertisement");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.AppUser", b =>
@@ -311,7 +313,7 @@ namespace Customerize.Repository.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductDocuments");
+                    b.ToTable("ProductDocument");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.ProductType", b =>

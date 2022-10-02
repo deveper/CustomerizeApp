@@ -8,6 +8,6 @@ namespace Customerize.Core.Services
     {
         Task<ResultDto<IEnumerable<ProductDtoList>>> GetProductAllDetail();
         Task<ResultDto<IList<ProductDtoRemoveRange>>> RemoveRangeProduct(IList<ProductDtoRemoveRange> input);
-
+        Task<ResultDto> Create(ProductDtoInsert input);
     }
 }

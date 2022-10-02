@@ -1,4 +1,6 @@
-﻿namespace Customerize.Core.Entities
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Customerize.Core.Entities
 {
     public class Product : BaseEntity
     {
@@ -16,5 +18,7 @@
 
         //navigation property
         public ICollection<OrderLine> OrderLines { get; set; }
+        //navigation property
+        public ICollection<ProductDocument>? ProductDocuments { get; set; }
     }
 }

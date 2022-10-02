@@ -6,6 +6,7 @@ using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Customerize.Service.Services
 {
@@ -14,16 +15,79 @@ namespace Customerize.Service.Services
         private readonly IProductRepositroy _productRepositroy;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IGenericRepository<ProductDocument> _productDocumentRepository;
 
 
-        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepositroy productRepository, IMapper mapper) : base(repository, unitOfWork, mapper)
+        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepositroy productRepository, IMapper mapper, IGenericRepository<ProductDocument> productDocumentRepository) : base(repository, unitOfWork, mapper)
         {
             _productRepositroy = productRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _productDocumentRepository = productDocumentRepository;
         }
 
+        public async Task<ResultDto> Create(ProductDtoInsert input)
+        {
+            try
+            {
+                string uploadsFolder = Path.Combine("wwwroot\\Product");
 
+                if (input != null)
+                {
+
+                    var model = new Product()
+                    {
+                        Name = input.Name,
+                        Stock = input.Stock,
+                        Price = input.Price,
+                        CategoryId = input.CategoryId,
+                        ProductTypeId = input.ProductTypeId,
+                    };
+                    await _productRepositroy.AddAsync(model);
+                    await _unitOfWork.CommitAsync();
+                    foreach (var item in input.formFiles)
+                    {
+                        var path = uploadsFolder + "/" + item.FileName;
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+
+                            await item.CopyToAsync(stream);
+
+                        }
+                    };
+                    var productDocuments = new List<ProductDocument>();
+                    productDocuments.AddRange(input.formFiles.Select(x => new ProductDocument
+                    {
+                        ProductId = model.Id,
+                        Path = uploadsFolder + x.FileName,
+                        Title = x.FileName
+                    }));
+                    await _productDocumentRepository.AddRangeAsync(productDocuments);
+                    var succes = await _unitOfWork.CommitAsync();
+                    if (succes)
+                    {
+
+                        return new ResultDto()
+                        {
+                            IsSuccess = true,
+                            Message = ResultMessages.GeneralSuccess,
+                        };
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return new ResultDto()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.GeneralErrorMessage,
+                Total = 0
+            };
+        }
 
         public async Task<ResultDto<IEnumerable<ProductDtoList>>> GetProductAllDetail()
         {

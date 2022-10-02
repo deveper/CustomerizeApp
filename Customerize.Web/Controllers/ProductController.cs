@@ -49,7 +49,7 @@ namespace Customerize.Web.Controllers
         {
 
             var map = _mapper.Map<Product>(model);
-            var result = await _productService.AddAsync(map);
+            var result = await _productService.Create(model);
             if (result.IsSuccess)
             {
                 return Json(result.Message);

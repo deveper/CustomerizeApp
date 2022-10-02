@@ -4,6 +4,7 @@ using Customerize.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Customerize.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221002113655_productImage")]
+    partial class productImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,7 @@ namespace Customerize.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("Advertisement");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.AppUser", b =>
@@ -253,6 +255,10 @@ namespace Customerize.Repository.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -277,41 +283,6 @@ namespace Customerize.Repository.Migrations
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Customerize.Core.Entities.ProductDocument", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductDocuments");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.ProductType", b =>
@@ -513,17 +484,6 @@ namespace Customerize.Repository.Migrations
                     b.Navigation("ProductType");
                 });
 
-            modelBuilder.Entity("Customerize.Core.Entities.ProductDocument", b =>
-                {
-                    b.HasOne("Customerize.Core.Entities.Product", "Product")
-                        .WithMany("ProductDocuments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Customerize.Core.Entities.RegionShipper", b =>
                 {
                     b.HasOne("Customerize.Core.Entities.Region", "Region")
@@ -570,8 +530,6 @@ namespace Customerize.Repository.Migrations
             modelBuilder.Entity("Customerize.Core.Entities.Product", b =>
                 {
                     b.Navigation("OrderLines");
-
-                    b.Navigation("ProductDocuments");
                 });
 
             modelBuilder.Entity("Customerize.Core.Entities.ProductType", b =>

@@ -19,6 +19,8 @@ namespace Customerize.Repository
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<RegionShipper> RegionShippers { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<ProductDocument> ProductDocuments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

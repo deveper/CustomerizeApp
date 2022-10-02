@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<form asp-controller="Product" asp-action="Create" method="post">
+<form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
 
     <label>Ürün Adı:</label>
     <input asp-for="Name" class="form-control" />
@@ -23,6 +23,9 @@
     <label>Ürün Tipi:</label>
     <select asp-for="ProductTypeId" asp-items="ViewBag.productTypes" class="form-control"></select>
 
+    <label>Ürün Görselleri:</label>
+    <input class="form-control" type="file" name="formFiles" id="formFiles" multiple />
+    <br />
     <div class="form-group">
         <a type="button" href="#modal-table" role="button" class="btn btn btn-succes" data-toggle="modal"> Kaydet</a>
         <div id="modal-table" class="modal fade" tabindex="-1">
@@ -49,17 +52,4 @@
     </div>
 
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
