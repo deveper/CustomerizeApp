@@ -22,6 +22,8 @@ namespace Common.StaticClasses
         public const string NotFoundProducts = "Ürünler ve Detayları Bulunamadı";
         public const string NotFoundDeletedProducts = "Silenecek Ürün Bulunamadı";
         public const string DeletedProduct = "Ürünler Başarıyla Silindi";
+        public const string ProductInformationMissing = "Ürünler Bilgisi Yollamadınız Veya Eksik Yolladınız";
+
 
         public const string CreateOrder = "Siparişiniz Alınmıştır";
         public const string OrderSearch = "Siparişler Getirildi";

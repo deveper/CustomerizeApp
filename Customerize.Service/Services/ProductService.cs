@@ -28,23 +28,22 @@ namespace Customerize.Service.Services
 
         public async Task<ResultDto> Create(ProductDtoInsert input)
         {
-            try
+            if (input != null)
             {
-                string uploadsFolder = Path.Combine("wwwroot\\Product");
-
-                if (input != null)
+                var model = new Product()
                 {
+                    Name = input.Name,
+                    Stock = input.Stock,
+                    Price = input.Price,
+                    CategoryId = input.CategoryId,
+                    ProductTypeId = input.ProductTypeId,
+                };
+                await _productRepositroy.AddAsync(model);
+                await _unitOfWork.CommitAsync();
+                if (input.formFiles != null)
+                {
+                    string uploadsFolder = Path.Combine("wwwroot\\Product");
 
-                    var model = new Product()
-                    {
-                        Name = input.Name,
-                        Stock = input.Stock,
-                        Price = input.Price,
-                        CategoryId = input.CategoryId,
-                        ProductTypeId = input.ProductTypeId,
-                    };
-                    await _productRepositroy.AddAsync(model);
-                    await _unitOfWork.CommitAsync();
                     foreach (var item in input.formFiles)
                     {
                         var path = uploadsFolder + "/" + item.FileName;
@@ -63,22 +62,22 @@ namespace Customerize.Service.Services
                         Title = x.FileName
                     }));
                     await _productDocumentRepository.AddRangeAsync(productDocuments);
-                    var succes = await _unitOfWork.CommitAsync();
-                    if (succes)
-                    {
-
-                        return new ResultDto()
-                        {
-                            IsSuccess = true,
-                            Message = ResultMessages.GeneralSuccess,
-                        };
-                    }
+                    await _unitOfWork.CommitAsync();
                 }
-            }
-            catch (Exception)
-            {
+                return new ResultDto()
+                {
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess,
+                };
 
-                throw;
+            }
+            else if (input == null)
+            {
+                return new ResultDto()
+                {
+                    IsSuccess = false,
+                    Message = ResultMessages.ProductInformationMissing,
+                };
             }
 
             return new ResultDto()
