@@ -30,7 +30,7 @@
                         <td>@item.Name</td>
                         <td>@item.CategoryName</td>
                         <td>@item.ProductTypeName</td>
-                        <td>@item.Price</td>
+                        <td><input id="productPrice" type="text" value="@item.Price" disabled></td>
                         <td><input id="producStock" value="@item.Stock" disabled></td>
                         <td>
                             <input id="productPiece" class="productPiece" min="1" type="number">
@@ -69,11 +69,14 @@
                 var selectedRow = table.rows('.selected').data();
                 for (var i = 0; i < selectedRow.length; i++) {
 
+                    productPrice = $(selectedRow[i][3]).val();
+                    console.log(productPrice);
                     var productId = $(selectedRow[i][6]).val();
                     var productPiece = Object.values(selectedRow[i]);
 
                     var modelOrderLines = {
                         ProductId: productId,
+                        Price: productPrice,
                         ProductPiece: productPiece[7]
                     };
                     data.push(modelOrderLines);
