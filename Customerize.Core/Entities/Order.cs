@@ -10,7 +10,9 @@ namespace Customerize.Core.Entities
 
         }
         public string OrderCode { get; set; }
-        public long OrderStatusId { get; set; }
+        //navigation property
+        public OrderStatus OrderStatus { get; set; }
+        public int OrderStatusId { get; set; }
         //navigation property
         public int? ShipperId { get; set; }
         public Shipper? Shipper { get; set; }

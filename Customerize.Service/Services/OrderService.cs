@@ -69,7 +69,8 @@ namespace Customerize.Service.Services
 
         public async Task<ResultDto<OrderDtoDetails>> GetByIdOrderDetails(int Id)
         {
-            var orders = await _repository.GetByIdAsync(Id);
+            var orders = await _orderRepository.GetByIdOrder(Id);
+            
             if (orders != null)
             {
                 var map = _mapper.Map<OrderDtoDetails>(orders);
@@ -77,7 +78,7 @@ namespace Customerize.Service.Services
                 {
                     Data = map,
                     IsSuccess = false,
-                    Message = ResultMessages.NotFoundOrders,
+                    Message = ResultMessages.OrderDetail,
                     Total = 0
                 };
             }

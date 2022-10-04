@@ -28,6 +28,8 @@ namespace Common.StaticClasses
         public const string CreateOrder = "Siparişiniz Alınmıştır";
         public const string OrderSearch = "Siparişler Getirildi";
         public const string NotFoundOrders = "Siparişler Bulunamdı";
+        public const string OrderDetail = "Sipariş Detayı Bulundu";
+
 
 
 

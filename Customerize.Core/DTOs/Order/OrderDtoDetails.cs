@@ -13,9 +13,10 @@ namespace Customerize.Core.DTOs.Order
         public IList<OrderLineDtoList> OrderLines { get; set; }
         public decimal Amount { get; set; }
         public string Status { get; set; }
+        public string? ShipperName { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public int MyProperty { get; set; }
+
 
     }
 }

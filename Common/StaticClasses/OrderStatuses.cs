@@ -8,10 +8,10 @@ namespace Customerize.Common.StaticClasses
 {
     public class OrderStatuses
     {
-        public const long İşlemde = 1;
-        public const long Beklemede = 2;
-        public const long Hazır = 3;
-        public const long Dağıtımda = 4;
+        public const int İşlemde = 1;
+        public const int Beklemede = 2;
+        public const int Hazır = 3;
+        public const int Dağıtımda = 4;
 
     }
 }
