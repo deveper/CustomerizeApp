@@ -9,6 +9,7 @@ namespace Customerize.Core.Entities
             this.OrderCode = DateTime.Now.ToString("M/d/yy") + new Guid().ToString().Substring(0, 3);
 
         }
+        public decimal Amount { get; set; }
         public string OrderCode { get; set; }
         //navigation property
         public OrderStatus OrderStatus { get; set; }
