@@ -12,6 +12,8 @@ namespace Customerize.Core.DTOs.Order
         }
         public int UserId { get; set; } = 1;
         public int CompanyId { get; set; } = 3;
+        public string ContactPhone { get; set; }
+        public string ContactMail { get; set; }
         public List<OrderLineDtoInsert> OrderLines { get; set; }
         public List<ProductDtoList> Products { get; set; }
     }

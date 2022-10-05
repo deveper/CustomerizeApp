@@ -46,12 +46,42 @@
         </table>
     </div>
     <div class="bg-black mt-2">
-        <button type="button" id="submitOrder" class="btn btn-success btn-block mt-2 test">Sipariş Oluştur</button>
+        <button data-toggle="modal" data-target="#AddOrder" OnClientClick="return openmodal();return false;" class="btn btn-success btn-block">
+            Sipariş Oluştur
+        </button>
+    </div>
+</div>
+<div class="modal fade" id="AddOrder" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sipariş Tamamla</h5>
+            </div>
+            <div class="modal-body ">
+                <div class="form-group">
+                    <label>Sipariş için İletişim Numarası:</label>
+                    <input type="text" id="ContactPhone" name="ContactPhone" class="form-control"><br />
+                    <label>Sipariş için E-Mail Adresi:</label>
+                    <input type="email" id="ContactMail" name="ContactMail" class="form-control"><br />
+                    <label>Sipariş için Not Girebilirsiniz:</label>
+                    <textarea id="" name="" rows="4" class="form-control"></textarea><br />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitOrder" class="btn btn-primary test">Sipariş Oluştur</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+            </div>
+
+        </div>
     </div>
 </div>
 
+
+
+
 @section scripts
     {
+
     <script>
         $(document).ready(function () {
             var table = $('#ProductList').DataTable({
@@ -84,6 +114,8 @@
                 var model = {
                     UserId: $('#UserId').val(),
                     CompanyId: $('#CompanyId').val(),
+                    ContactPhone: $('#ContactPhone').val(),
+                    ContactMail: $('#ContactMail').val(),
                     OrderLines: data
                 }
                 $.ajax({

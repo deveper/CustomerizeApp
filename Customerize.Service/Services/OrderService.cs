@@ -39,6 +39,8 @@ namespace Customerize.Service.Services
                 UserId = input.UserId,
                 CompanyId = input.CompanyId,
                 OrderStatusId = OrderStatuses.Beklemede,
+                ContactMail = input.ContactMail,
+                ContactPhone = input.ContactPhone,
                 Amount = amount
             };
             await _repository.AddAsync(order);
