@@ -62,6 +62,7 @@ namespace Customerize.Web.Controllers
             return Json(result.Message);
         }
         #endregion
+        #region Invoice Order
         public async Task<IActionResult> InvoicePrint(int Id)
         {
             var result = await _orderService.GetByIdOrderDetails(Id);
@@ -70,8 +71,9 @@ namespace Customerize.Web.Controllers
                 return View(result.Data);
             }
 
-            return View();
+            return Json(result.Message);
         }
+        #endregion
 
         public IActionResult Index()
         {
