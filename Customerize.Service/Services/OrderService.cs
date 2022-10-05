@@ -32,7 +32,7 @@ namespace Customerize.Service.Services
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
-            var amount = _tools.OrderTotalAmount(input.OrderLines);
+            var orderAmount = _tools.OrderTotalAmount(input.OrderLines);
 
             var order = new Order()
             {
@@ -41,7 +41,7 @@ namespace Customerize.Service.Services
                 OrderStatusId = OrderStatuses.Beklemede,
                 ContactMail = input.ContactMail,
                 ContactPhone = input.ContactPhone,
-                Amount = amount
+                Amount = orderAmount
             };
             await _repository.AddAsync(order);
             await _unitOfWork.CommitAsync();
@@ -52,6 +52,7 @@ namespace Customerize.Service.Services
                 OrderId = order.Id,
                 ProductId = x.ProductId,
                 ProductPiece = x.ProductPiece,
+                LineAmount = Convert.ToDecimal(x.Price) * x.ProductPiece
             }));
             await _orderLineRepository.AddRangeAsync(orderlines);
 
