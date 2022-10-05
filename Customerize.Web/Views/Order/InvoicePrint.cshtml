@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_PrintLayout";
+}
+@model OrderDtoDetails
+<page size="A5">
+    <div>
+        <div style="text-align:center;">
+            <table class="table table-striped table-bordered" style="text-align:center;display:inline-block;">
+                <thead>
+                    <tr>
+                        <td width="200" style="background:#d1d1d1!important;-webkit-print-color-adjust:exact;">Ürün Adı</td>
+                        <td width="200" style="background:#d1d1d1!important;-webkit-print-color-adjust:exact;">Ürün Adeti</td>
+                        <td width="200" style="background:#d1d1d1!important;-webkit-print-color-adjust:exact;">Toplam </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderLines)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.ProductPiece</td>
+                            <td>@item.LineAmount</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+            <div class="row">
+                <div class="col-sm-5 pull-right">
+                    <h4 class="pull-right">
+                        Toplam Tutar :
+                        <span class="red">₺ @Model.Amount</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</page>

@@ -9,6 +9,8 @@ namespace Customerize.Core.DTOs.Order
 {
     public class OrderDtoDetails
     {
+        public int Id { get; set; }
+
         public string CompanyName { get; set; }
         public string Adress { get; set; }
         public string WorkArea { get; set; }

@@ -62,6 +62,17 @@ namespace Customerize.Web.Controllers
             return Json(result.Message);
         }
         #endregion
+        public async Task<IActionResult> InvoicePrint(int Id)
+        {
+            var result = await _orderService.GetByIdOrderDetails(Id);
+            if (result.IsSuccess)
+            {
+                return View(result.Data);
+            }
+
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
