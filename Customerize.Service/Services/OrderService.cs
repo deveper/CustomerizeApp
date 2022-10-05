@@ -2,12 +2,14 @@
 using Common.Dtos;
 using Common.StaticClasses;
 using Customerize.Common.StaticClasses;
+using Customerize.Common.Utilities;
 using Customerize.Core.DTOs.Order;
 using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
 using Customerize.Service.UnitOfWork;
+using System.Xml.Schema;
 
 namespace Customerize.Service.Services
 {
@@ -16,25 +18,28 @@ namespace Customerize.Service.Services
         private readonly IGenericRepository<Order> _repository;
         private readonly IGenericRepository<OrderLine> _orderLineRepository;
         private readonly IOrderRepository _orderRepository;
-
+        private readonly Tools _tools;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository) : base(repository, unitOfWork, mapper)
+        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools) : base(repository, unitOfWork, mapper)
         {
             _orderLineRepository = orderLineRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _repository = repository;
             _orderRepository = orderRepository;
+            _tools = tools;
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
+            var amount = _tools.OrderTotalAmount(input.OrderLines);
 
             var order = new Order()
             {
                 UserId = input.UserId,
                 CompanyId = input.CompanyId,
-                OrderStatusId = OrderStatuses.Beklemede
+                OrderStatusId = OrderStatuses.Beklemede,
+                Amount = amount
             };
             await _repository.AddAsync(order);
             await _unitOfWork.CommitAsync();
@@ -70,7 +75,7 @@ namespace Customerize.Service.Services
         public async Task<ResultDto<OrderDtoDetails>> GetByIdOrderDetails(int Id)
         {
             var orders = await _orderRepository.GetByIdOrder(Id);
-            
+
             if (orders != null)
             {
                 var map = _mapper.Map<OrderDtoDetails>(orders);

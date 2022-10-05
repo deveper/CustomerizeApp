@@ -1,3 +1,4 @@
+using Customerize.Common.Utilities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
@@ -25,7 +26,7 @@ builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDashBoardService, DashBoardService>();
-
+builder.Services.AddScoped<Tools>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
