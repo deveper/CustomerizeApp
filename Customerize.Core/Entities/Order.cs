@@ -11,6 +11,9 @@ namespace Customerize.Core.Entities
         }
         public decimal Amount { get; set; }
         public string OrderCode { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactMail { get; set; }
+
         //navigation property
         public OrderStatus OrderStatus { get; set; }
         public int OrderStatusId { get; set; }

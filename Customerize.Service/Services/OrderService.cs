@@ -82,9 +82,8 @@ namespace Customerize.Service.Services
                 return new ResultDto<OrderDtoDetails>()
                 {
                     Data = map,
-                    IsSuccess = false,
+                    IsSuccess = true,
                     Message = ResultMessages.OrderDetail,
-                    Total = 0
                 };
             }
             return new ResultDto<OrderDtoDetails>()

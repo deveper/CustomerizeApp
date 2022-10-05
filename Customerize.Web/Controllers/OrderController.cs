@@ -20,8 +20,13 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var products = await _productService.GetProductAllDetail();
-            return View(new OrderDtoInsert() { Products = products.Data.ToList() });
+            var result = await _productService.GetProductAllDetail();
+            if (result.IsSuccess)
+            {
+                return View(new OrderDtoInsert() { Products = result.Data.ToList() });
+            }
+            return Json(result.Message);
+
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OrderDtoInsert model)
@@ -50,7 +55,11 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> OrderDetail(int Id)
         {
             var result = await _orderService.GetByIdOrderDetails(Id);
-            return View(result.Data);
+            if (result.IsSuccess)
+            {
+                return View(result.Data);
+            }
+            return Json(result.Message);
         }
         #endregion
         public IActionResult Index()
