@@ -62,6 +62,7 @@ namespace Customerize.Web.Controllers
             return Json(result.Message);
         }
         #endregion
+
         #region Invoice Order
         public async Task<IActionResult> InvoicePrint(int Id)
         {

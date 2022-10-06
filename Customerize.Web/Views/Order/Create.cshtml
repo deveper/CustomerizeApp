@@ -64,7 +64,7 @@
                     <label>Sipariş için E-Mail Adresi:</label>
                     <input type="email" id="ContactMail" name="ContactMail" class="form-control"><br />
                     <label>Sipariş için Not Girebilirsiniz:</label>
-                    <textarea id="" name="" rows="4" class="form-control"></textarea><br />
+                    <textarea id="Description" name="Description" rows="4" class="form-control"></textarea><br />
                 </div>
             </div>
             <div class="modal-footer">
@@ -116,6 +116,7 @@
                     CompanyId: $('#CompanyId').val(),
                     ContactPhone: $('#ContactPhone').val(),
                     ContactMail: $('#ContactMail').val(),
+                    Description: $('#Description').val(),
                     OrderLines: data
                 }
                 $.ajax({

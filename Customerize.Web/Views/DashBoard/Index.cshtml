@@ -33,16 +33,19 @@
                 </div>
             </div>
         </a>
-        <div class="infobox infobox-pink">
-            <div class="infobox-icon">
-                <i class="ace-icon fa fa-shopping-cart"></i>
-            </div>
+        <a asp-action="GetAllList" asp-controller="Order">
+            <div class="infobox infobox-pink">
+                <div class="infobox-icon">
+                    <i class="ace-icon fa fa-shopping-cart"></i>
+                </div>
 
-            <div class="infobox-data">
-                <span class="infobox-data-number">@Model.OrdersCount</span>
-                <div class="infobox-content">Yeni Sipariş</div>
+                <div class="infobox-data">
+
+                    <span class="infobox-data-number">@Model.OrdersCount</span>
+                    <div class="infobox-content">Yeni Sipariş</div>
+                </div>
             </div>
-        </div>
+        </a>
 
         <a asp-action="GetAllList" asp-controller="Product">
             <div class="infobox infobox-red">

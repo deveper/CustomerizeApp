@@ -41,6 +41,7 @@ namespace Customerize.Service.Services
                 OrderStatusId = OrderStatuses.Beklemede,
                 ContactMail = input.ContactMail,
                 ContactPhone = input.ContactPhone,
+                Description = input.Description,
                 Amount = orderAmount
             };
             await _repository.AddAsync(order);

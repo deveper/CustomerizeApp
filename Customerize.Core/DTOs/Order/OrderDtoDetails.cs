@@ -18,7 +18,7 @@ namespace Customerize.Core.DTOs.Order
         public string FullName { get; set; }
         public string ContactMail { get; set; }
         public string CompanyPhoneNumber { get; set; }
-
+        public string Description { get; set; }
         public IList<OrderLineDtoList> OrderLines { get; set; }
         public decimal Amount { get; set; }
         public string Status { get; set; }

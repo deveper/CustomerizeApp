@@ -13,6 +13,7 @@ namespace Customerize.Core.Entities
         public string OrderCode { get; set; }
         public string ContactPhone { get; set; }
         public string ContactMail { get; set; }
+        public string? Description { get; set; }
 
         //navigation property
         public OrderStatus OrderStatus { get; set; }
