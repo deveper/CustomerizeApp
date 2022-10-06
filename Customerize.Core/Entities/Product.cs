@@ -17,7 +17,7 @@ namespace Customerize.Core.Entities
         public Category? Category { get; set; }
 
         //navigation property
-        public ICollection<OrderLine> OrderLines { get; set; }
+        public ICollection<OrderLine>? OrderLines { get; set; }
         //navigation property
         public ICollection<ProductDocument>? ProductDocuments { get; set; }
     }

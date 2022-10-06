@@ -52,8 +52,14 @@ namespace Customerize.Repository.Repostories
 
         public void Update(T entity)
         {
+
+            _dbset.Update(entity);
+        }
+
+        public void UpdateRange(IEnumerable<T> entity)
+        {
            
-                _dbset.Update(entity);
+                _dbset.UpdateRange(entity);
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)

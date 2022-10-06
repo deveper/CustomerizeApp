@@ -45,7 +45,6 @@ namespace Customerize.Repository
                             }
                         case EntityState.Modified:
                             {
-                                Entry(entityReferance).Property(x => x.CreatedDate).IsModified = false;
                                 entityReferance.UpdatedDate = DateTime.Now;
                                 break;
                             }

@@ -1,7 +1,7 @@
 ﻿
 using Customerize.Core.DTOs.OrderLine;
 
-namespace Customerize.Common.Utilities
+namespace Customerize.Core.Utilities
 {
 
     public class Tools

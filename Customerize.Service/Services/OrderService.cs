@@ -2,12 +2,12 @@
 using Common.Dtos;
 using Common.StaticClasses;
 using Customerize.Common.StaticClasses;
-using Customerize.Common.Utilities;
 using Customerize.Core.DTOs.Order;
 using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
+using Customerize.Core.Utilities;
 using Customerize.Service.UnitOfWork;
 using System.Xml.Schema;
 
@@ -18,10 +18,11 @@ namespace Customerize.Service.Services
         private readonly IGenericRepository<Order> _repository;
         private readonly IGenericRepository<OrderLine> _orderLineRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly IGenericRepository<Product> _productReposistory;
         private readonly Tools _tools;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools) : base(repository, unitOfWork, mapper)
+        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools, IGenericRepository<Product> productReposistory) : base(repository, unitOfWork, mapper)
         {
             _orderLineRepository = orderLineRepository;
             _unitOfWork = unitOfWork;
@@ -29,6 +30,7 @@ namespace Customerize.Service.Services
             _repository = repository;
             _orderRepository = orderRepository;
             _tools = tools;
+            _productReposistory = productReposistory;
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
@@ -60,6 +62,23 @@ namespace Customerize.Service.Services
             var succes = await _unitOfWork.CommitAsync();
             if (succes)
             {
+                List<Product> updatedProducts = input.OrderLines.Select(x => new Product()
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Price = Decimal.Parse(x.Price),
+                    ProductTypeId = x.ProductTypeId,
+                    CategoryId = x.CategoryId,
+                    Stock = x.LastStock - x.ProductPiece
+                }).ToList();
+                if (updatedProducts != null)
+                {
+
+                    updatedProducts.AddRange(updatedProducts);
+                    _productReposistory.UpdateRange(updatedProducts);
+                    _unitOfWork.Commit();
+
+                }
                 return new ResultDto()
                 {
                     IsSuccess = true,

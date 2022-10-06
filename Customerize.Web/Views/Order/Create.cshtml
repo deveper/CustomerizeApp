@@ -27,11 +27,11 @@
                 @foreach (var item in Model.Products)
                 {
                     <tr>
-                        <td>@item.Name</td>
-                        <td>@item.CategoryName</td>
-                        <td>@item.ProductTypeName</td>
-                        <td><input id="productPrice" type="text" value="@item.Price" disabled></td>
-                        <td><input id="producStock" value="@item.Stock" disabled></td>
+                        <td><input id="productName" type="hidden" value="@item.Name">@item.Name</td>
+                        <td><input id="categoryId" type="hidden" value="@item.CategoryId">@item.CategoryName</td>
+                        <td><input id="productTypeId" type="hidden" value="@item.ProductTypeId">@item.ProductTypeName</td>
+                        <td><input id="productPrice" type="hidden" value="@item.Price" disabled>@item.Price</td>
+                        <td><input id="LastStock" type="hidden" value="@item.Stock" disabled>@item.Stock</td>
                         <td>
                             <input id="productPiece" class="productPiece" min="1" type="number">
                         </td>
@@ -98,15 +98,21 @@
                 var data = [];
                 var selectedRow = table.rows('.selected').data();
                 for (var i = 0; i < selectedRow.length; i++) {
-
-                    productPrice = $(selectedRow[i][3]).val();
-                    console.log(productPrice);
+                    var productName = $(selectedRow[i][0]).val();
+                    var categoryId = $(selectedRow[i][1]).val()
+                    var productTypeId = $(selectedRow[i][2]).val();
+                    var productPrice = $(selectedRow[i][3]).val();
+                    var lastStock = $(selectedRow[i][4]).val();
                     var productId = $(selectedRow[i][6]).val();
                     var productPiece = Object.values(selectedRow[i]);
 
                     var modelOrderLines = {
                         ProductId: productId,
                         Price: productPrice,
+                        CategoryId: categoryId,
+                        Name: productName,
+                        LastStock: lastStock,
+                        ProductTypeId: productTypeId,
                         ProductPiece: productPiece[7]
                     };
                     data.push(modelOrderLines);

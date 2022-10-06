@@ -1,7 +1,7 @@
-using Customerize.Common.Utilities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
+using Customerize.Core.Utilities;
 using Customerize.Repository;
 using Customerize.Repository.Repostories;
 using Customerize.Service.Mapping;
