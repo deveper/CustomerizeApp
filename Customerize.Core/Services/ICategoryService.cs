@@ -1,4 +1,5 @@
 ﻿using Common.Dtos;
+using Customerize.Common.Dtos;
 using Customerize.Core.DTOs.Category;
 using Customerize.Core.Entities;
 namespace Customerize.Core.Services
@@ -9,5 +10,7 @@ namespace Customerize.Core.Services
         Task<CategoryDtoWithProductList> GetCategoryWithProductId(int id);
         Task<ResultDto<CategoryDtoUpdate>> GetCategoryById(int Id);
         Task<ResultDto> UpdateCategory(CategoryDtoUpdate input);
+
+        ResultDto<List<CategoryDtoList>> GetAllCategoryForDataTable(DataTableModel input);
     }
 }
