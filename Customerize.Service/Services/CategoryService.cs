@@ -25,44 +25,54 @@ namespace Customerize.Service.Services
         public ResultDto<List<CategoryDtoList>> GetAllCategoryForDataTable(DataTableModel input)
         {
             var categories = _categoryRepository.GetAll();
-            if (!(string.IsNullOrEmpty(input.SortColumn) && string.IsNullOrEmpty(input.SortColumnDirection)))
+            if (categories != null)
             {
-
-                categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => input.SortColumn) : categories.OrderByDescending(x => input.SortColumn);
-                switch (input.SortColumn)
+                if (!(string.IsNullOrEmpty(input.SortColumn) && string.IsNullOrEmpty(input.SortColumnDirection)))
                 {
-                    case "Id":
-                        categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Id) : categories.OrderByDescending(x => x.Id);
-                        break;
-                    case "CreatedDate":
-                        categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.CreatedDate) : categories.OrderByDescending(x => x.CreatedDate);
-                        break;
-                    case "Code":
-                        categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Code) : categories.OrderByDescending(x => x.Code);
-                        break;
-                    case "Name":
-                        categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Name) : categories.OrderByDescending(x => x.Name);
-                        break;
 
+                    categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => input.SortColumn) : categories.OrderByDescending(x => input.SortColumn);
+                    switch (input.SortColumn)
+                    {
+                        case "Id":
+                            categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Id) : categories.OrderByDescending(x => x.Id);
+                            break;
+                        case "CreatedDate":
+                            categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.CreatedDate) : categories.OrderByDescending(x => x.CreatedDate);
+                            break;
+                        case "Code":
+                            categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Code) : categories.OrderByDescending(x => x.Code);
+                            break;
+                        case "Name":
+                            categories = input.SortColumnDirection == "asc" ? categories.OrderBy(x => x.Name) : categories.OrderByDescending(x => x.Name);
+                            break;
+
+                    }
                 }
-            }
-            if (!string.IsNullOrEmpty(input.SsearchValue))
-            {
-                categories = categories.Where(x => x.Name.Contains(input.SsearchValue));
-            }
-            var map = _mapper.Map<List<CategoryDtoList>>(categories);
-            var data = map.Skip(input.Skip).Take(input.PageSize);
-            var recordsTotal = map.Count();
+                if (!string.IsNullOrEmpty(input.SsearchValue))
+                {
+                    categories = categories.Where(x => x.Name.Contains(input.SsearchValue));
+                }
+                var map = _mapper.Map<List<CategoryDtoList>>(categories);
+                var data = map.Skip(input.Skip).Take(input.PageSize);
+                var recordsTotal = map.Count();
 
+                return new ResultDto<List<CategoryDtoList>>()
+                {
+                    Data = data.ToList(),
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess,
+                    Total = recordsTotal,
+                    Req = input.Draw
+
+                };
+            }
             return new ResultDto<List<CategoryDtoList>>()
             {
-                Data = data.ToList(),
-                IsSuccess = true,
-                Message = ResultMessages.GeneralSuccess,
-                Total = recordsTotal,
-                Req = input.Draw
-
+                IsSuccess = false,
+                Message = ResultMessages.GeneralErrorMessage,
+                Total = 0,
             };
+
         }
 
         public async Task<ResultDto<CategoryDtoUpdate>> GetCategoryById(int Id)

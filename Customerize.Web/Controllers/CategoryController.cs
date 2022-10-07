@@ -69,31 +69,6 @@ namespace Customerize.Web.Controllers
 
         #endregion
 
-        public async Task<IActionResult> CategoryList()
-        {
-            var dataTableModel = new DataTableModel()
-            {
-                Draw = Request.Form["draw"].FirstOrDefault(),
-                Start = Request.Form["start"].FirstOrDefault(),
-                Length = Request.Form["length"].FirstOrDefault(),
-                SortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault(),
-                SortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault(),
-                SsearchValue = Request.Form["search[value]"].FirstOrDefault(),
-                PageSize = Request.Form["length"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["length"].FirstOrDefault()) : 0,
-                Skip = Request.Form["start"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["start"].FirstOrDefault()) : 0,
-                RecordsTotal = 0
-            };
-
-            var result = _categoryService.GetAllCategoryForDataTable(dataTableModel);
-            var jsondata = new { draw = result.Req, recordsfiltered = result.Total, recordstotal = result.Total, data = result.Data };
-
-            //var map = _mapper.Map<IEnumerable<CategoryDtoList>>(result.Data);
-            //var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = new ActivityDto() };
-
-            //return Ok(jsonData);
-            return Ok(jsondata);
-        }
-
         #region CategoryList
         public async Task<IActionResult> GetAllList()
         {
@@ -130,6 +105,32 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
+        #region DataTableFunction
+        public async Task<IActionResult> CategoryList()
+        {
+            #region DataTableModel
+            var dataTableModel = new DataTableModel()
+            {
+                Draw = Request.Form["draw"].FirstOrDefault(),
+                Start = Request.Form["start"].FirstOrDefault(),
+                Length = Request.Form["length"].FirstOrDefault(),
+                SortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault(),
+                SortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault(),
+                SsearchValue = Request.Form["search[value]"].FirstOrDefault(),
+                PageSize = Request.Form["length"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["length"].FirstOrDefault()) : 0,
+                Skip = Request.Form["start"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["start"].FirstOrDefault()) : 0,
+                RecordsTotal = 0
+            };
+            #endregion
+            var result = _categoryService.GetAllCategoryForDataTable(dataTableModel);
+            if (result.IsSuccess)
+            {
+                return Json(new { draw = result.Req, recordsfiltered = result.Total, recordstotal = result.Total, data = result.Data });
+            }
+            return Json(result.Message);
+        }
+
+        #endregion
         public IActionResult Index()
         {
             return View();
