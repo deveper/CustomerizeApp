@@ -36,8 +36,10 @@ namespace Customerize.Service.Mapping
             CreateMap<Category, CategoryDtoInsert>().ReverseMap();
             CreateMap<Category, CategoryDtoUpdate>().ReverseMap();
             CreateMap<Category, CategoryDtoList>()
-                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate))
+                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => ((DateTime)src.CreatedDate).ToString("dd-MM-yyyy")))
+                .ForMember(dest => dest.UpdatedDate, opt => opt.MapFrom(src => src.UpdatedDate == null ? "" : ((DateTime)src.UpdatedDate).ToString("dd-MM-yyyy")))
                 .ReverseMap();
+
             CreateMap<Category, CategoryDtoWithProductList>().ReverseMap();
             CreateMap<CategoryDto, CategoryDtoUpdate>().ReverseMap();
             #endregion

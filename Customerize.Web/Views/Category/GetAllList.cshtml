@@ -7,9 +7,12 @@
     <thead>
         <tr>
             <th>id</th>
+            <th>Kategori Kodu</th>
             <th>Adı</th>
             <th>Oluşturma Tarihi</th>
             <th>Güncelleme Tarihi</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -18,7 +21,6 @@
 @section scripts
     {
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
     <script>
         $(document).ready(function () {
 
@@ -37,8 +39,6 @@
                         "targets": [0],
                         "visible": false,
                         "searchable": false,
-
-
                         "render": function (data, type, row) {
                             return data + ' (' + data[0] + ')';
 
@@ -47,9 +47,20 @@
                 ],
                 "columns": [
                     { "data": "id", "name": "Id", "autoWidth": true },
+                    { "data": "code", "name": "Code", "autoWidth": true },
                     { "data": "name", "name": "Name", "autoWidth": true },
                     { "data": "createdDate", "name": "CreatedDate", "autoWidth": true },
-                    { "data": "updatedDate", "name": "UpdatedDate", "autoWidth": true }
+                    { "data": "updatedDate", "name": "UpdatedDate", "autoWidth": true },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a type="button" id="' + data + '" class="btn btn-primary btn-xs btnEdit"><i class="fa fa-edit"></i></a>'
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a type="button" id="' + data + '" class="btn btn-warning btn-xs btnEdit"><i class="fa fa-trash"></i></a>'
+                        }
+                    }
                 ]
             });
         });
