@@ -8,7 +8,10 @@ using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
 using Customerize.Core.Utilities;
+using Customerize.Repository;
 using Customerize.Service.UnitOfWork;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Transactions;
 using System.Xml.Schema;
 
 namespace Customerize.Service.Services
@@ -22,7 +25,8 @@ namespace Customerize.Service.Services
         private readonly Tools _tools;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools, IGenericRepository<Product> productReposistory) : base(repository, unitOfWork, mapper)
+        private readonly AppDbContext _context;
+        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools, IGenericRepository<Product> productReposistory, AppDbContext context) : base(repository, unitOfWork, mapper)
         {
             _orderLineRepository = orderLineRepository;
             _unitOfWork = unitOfWork;
@@ -31,61 +35,81 @@ namespace Customerize.Service.Services
             _orderRepository = orderRepository;
             _tools = tools;
             _productReposistory = productReposistory;
+            _context = context;
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
-            var orderAmount = _tools.OrderTotalAmount(input.OrderLines);
-
-            var order = new Order()
+            using var transaction = _context.Database.BeginTransaction();
+            try
             {
-                UserId = input.UserId,
-                CompanyId = input.CompanyId,
-                OrderStatusId = OrderStatuses.Beklemede,
-                ContactMail = input.ContactMail,
-                ContactPhone = input.ContactPhone,
-                Description = input.Description,
-                Amount = orderAmount
-            };
-            await _repository.AddAsync(order);
-            await _unitOfWork.CommitAsync();
-
-            var orderlines = new List<OrderLine>();
-            orderlines.AddRange(input.OrderLines.Select(x => new OrderLine
-            {
-                OrderId = order.Id,
-                ProductId = x.ProductId,
-                ProductPiece = x.ProductPiece,
-                LineAmount = Convert.ToDecimal(x.Price) * x.ProductPiece
-            }));
-            await _orderLineRepository.AddRangeAsync(orderlines);
-
-            var succes = await _unitOfWork.CommitAsync();
-            if (succes)
-            {
-                List<Product> updatedProducts = input.OrderLines.Select(x => new Product()
+                var orderAmount = _tools.OrderTotalAmount(input.OrderLines);
+                var order = new Order()
                 {
-                    Id = x.ProductId,
-                    Name = x.Name,
-                    Price = Decimal.Parse(x.Price),
-                    ProductTypeId = x.ProductTypeId,
-                    CategoryId = x.CategoryId,
-                    Stock = x.LastStock - x.ProductPiece
-                }).ToList();
-                if (updatedProducts != null)
+                    UserId = input.UserId,
+                    CompanyId = input.CompanyId,
+                    OrderStatusId = OrderStatuses.Beklemede,
+                    ContactMail = input.ContactMail,
+                    ContactPhone = input.ContactPhone,
+                    Description = input.Description,
+                    Amount = orderAmount
+                };
+
+                await _repository.AddAsync(order);
+                await _unitOfWork.CommitAsync();
+
+                var orderlines = new List<OrderLine>();
+                orderlines.AddRange(input.OrderLines.Select(x => new OrderLine
                 {
+                    OrderId = order.Id,
+                    ProductId = x.ProductId,
+                    ProductPiece = x.ProductPiece,
+                    LineAmount = Convert.ToDecimal(x.Price) * x.ProductPiece
+                }));
 
-                    updatedProducts.AddRange(updatedProducts);
-                    _productReposistory.UpdateRange(updatedProducts);
-                    _unitOfWork.Commit();
+                await _orderLineRepository.AddRangeAsync(orderlines);
+                var succes = await _unitOfWork.CommitAsync();
 
+                transaction.Commit();
+
+                if (succes)
+                {
+                    List<Product> updatedProducts = input.OrderLines.Select(x => new Product()
+                    {
+                        Id = x.ProductId,
+                        Name = x.Name,
+                        Price = Decimal.Parse(x.Price),
+                        ProductTypeId = x.ProductTypeId,
+                        CategoryId = x.CategoryId,
+                        Stock = x.LastStock - x.ProductPiece
+                    }).ToList();
+                    if (updatedProducts != null)
+                    {
+
+                        updatedProducts.AddRange(updatedProducts);
+                        _productReposistory.UpdateRange(updatedProducts);
+                        _unitOfWork.Commit();
+                        //ToDo : Transaction Burdada Takip Edilip Hata Mesajları ayarlanmalı
+                    }
+                    return new ResultDto()
+                    {
+                        IsSuccess = true,
+                        Message = ResultMessages.CreateOrder,
+                        Total = input.OrderLines.Count,
+                    };
                 }
+            }
+            catch
+            {
+                transaction.Rollback();
                 return new ResultDto()
                 {
-                    IsSuccess = true,
-                    Message = ResultMessages.CreateOrder,
-                    Total = input.OrderLines.Count,
+                    IsSuccess = false,
+                    Message = ResultMessages.GeneralErrorMessage,
+                    Total = 0
                 };
             }
+
+
 
             return new ResultDto()
             {
