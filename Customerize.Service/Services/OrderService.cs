@@ -8,6 +8,7 @@ using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
 using Customerize.Core.Utilities;
+using Customerize.Core.Utilities.Tools;
 using Customerize.Repository;
 using Customerize.Service.UnitOfWork;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -22,20 +23,20 @@ namespace Customerize.Service.Services
         private readonly IGenericRepository<OrderLine> _orderLineRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly IGenericRepository<Product> _productReposistory;
-        private readonly Tools _tools;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly AppDbContext _context;
-        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, Tools tools, IGenericRepository<Product> productReposistory, AppDbContext context) : base(repository, unitOfWork, mapper)
+        private readonly ITools _tools;
+        public OrderService(IGenericRepository<OrderLine> orderLineRepository, IMapper mapper, IUnitOfWork unitOfWork, IGenericRepository<Order> repository, IOrderRepository orderRepository, IGenericRepository<Product> productReposistory, AppDbContext context, ITools tools) : base(repository, unitOfWork, mapper)
         {
             _orderLineRepository = orderLineRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _repository = repository;
             _orderRepository = orderRepository;
-            _tools = tools;
             _productReposistory = productReposistory;
             _context = context;
+            _tools = tools;
         }
         public async Task<ResultDto> Create(OrderDtoInsert input)
         {
@@ -43,6 +44,7 @@ namespace Customerize.Service.Services
             try
             {
                 var orderAmount = _tools.OrderTotalAmount(input.OrderLines);
+
                 var order = new Order()
                 {
                     UserId = input.UserId,
@@ -82,13 +84,12 @@ namespace Customerize.Service.Services
                         CategoryId = x.CategoryId,
                         Stock = x.LastStock - x.ProductPiece
                     }).ToList();
+
                     if (updatedProducts != null)
                     {
-
                         updatedProducts.AddRange(updatedProducts);
                         _productReposistory.UpdateRange(updatedProducts);
                         _unitOfWork.Commit();
-                        //ToDo : Transaction Burdada Takip Edilip Hata Mesajları ayarlanmalı
                     }
                     return new ResultDto()
                     {

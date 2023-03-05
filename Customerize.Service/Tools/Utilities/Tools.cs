@@ -1,12 +1,11 @@
-﻿
-using Customerize.Core.DTOs.OrderLine;
+﻿using Customerize.Core.DTOs.OrderLine;
+using Customerize.Core.Utilities.Tools;
 
-namespace Customerize.Core.Utilities
+namespace Customerize.Service.Tools.Utilities
 {
 
-    public class Tools
+    public class Tools : ITools
     {
-
         public decimal OrderTotalAmount(List<OrderLineDtoInsert> list)
         {
             decimal amount = 0;
@@ -18,7 +17,6 @@ namespace Customerize.Core.Utilities
             }
             return amount;
         }
-
     }
 }
 

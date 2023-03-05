@@ -1,17 +1,19 @@
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
-using Customerize.Core.Utilities;
+using Customerize.Core.Utilities.Tools;
 using Customerize.Repository;
 using Customerize.Repository.Repostories;
 using Customerize.Service.Mapping;
 using Customerize.Service.Services;
+using Customerize.Service.Tools.Utilities;
 using Customerize.Service.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+#region Services DI
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -26,9 +28,10 @@ builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDashBoardService, DashBoardService>();
-builder.Services.AddScoped<Tools>();
+builder.Services.AddScoped<ITools, Tools>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
-builder.Services.AddSession();
+builder.Services.AddSession(); 
+#endregion
 
 
 
