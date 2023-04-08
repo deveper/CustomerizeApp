@@ -1,10 +1,13 @@
 ﻿using Customerize.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using static System.Web.Razor.Parser.SyntaxConstants;
 
 namespace Customerize.Repository
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -22,13 +25,18 @@ namespace Customerize.Repository
         public DbSet<Advertisement> Advertisements { get; set; }
         public DbSet<ProductDocument> ProductDocuments { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<AspNetUser> AspNetUsers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());//All configurations in the working assembly
 
             base.OnModelCreating(modelBuilder);
+
+            
         }
+
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

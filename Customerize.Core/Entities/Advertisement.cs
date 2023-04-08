@@ -7,7 +7,7 @@
         public string Description { get; set; }
 
         //navigation property
-        public int? UserId { get; set; }
-        public AppUser? AppUser { get; set; }
+        public long UserId { get; set; }
+        public AspNetUser AppUser { get; set; }
     }
 }

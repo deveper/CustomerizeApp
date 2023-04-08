@@ -30,7 +30,7 @@ namespace Customerize.Core.Entities
         public ICollection<OrderLine> OrderLines { get; set; }
 
         //navigation property
-        public int UserId { get; set; }
-        public AppUser AppUser { get; set; }
+        public long UserId { get; set; }
+        public AspNetUser User { get; set; }
     }
 }

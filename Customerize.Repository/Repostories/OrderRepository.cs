@@ -20,7 +20,7 @@ namespace Customerize.Repository.Repostories
         {
             var order = await _context.Orders
                 .Include(x => x.Company)
-                .Include(x => x.AppUser)
+                //.Include(x => x.User)
                 .Include(x => x.OrderLines)
                    .ThenInclude(x => x.Product)
                 .Include(x => x.Shipper)
@@ -32,7 +32,7 @@ namespace Customerize.Repository.Repostories
         public async Task<List<Order>> GetFullOrder()
         {
             var fullOrder = await _context.Orders
-                .Include(x => x.AppUser)
+                //.Include(x => x.User)
                 .Include(x => x.Shipper)
                 .Include(x => x.Company)
                 .ToListAsync();

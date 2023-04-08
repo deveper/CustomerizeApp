@@ -4,16 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Customerize.Repository.EntitiesConfigurations
 {
-    internal class AppUserConfiguration : IEntityTypeConfiguration<AspNetUser>
+    internal class AspNetUserConfiguration : IEntityTypeConfiguration<AspNetUser>
     {
         public void Configure(EntityTypeBuilder<AspNetUser> builder)
         {
+            builder.HasOne(o => o.Company)
+                    .WithMany(o => o.AppUsers)
+                    .HasForeignKey(o => o.CompanyId)
+                    .OnDelete(DeleteBehavior.NoAction);
 
-            //Company
-            builder.HasOne(a => a.Company)
-                .WithMany(a => a.AppUsers)
-                .HasForeignKey(a => a.CompanyId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

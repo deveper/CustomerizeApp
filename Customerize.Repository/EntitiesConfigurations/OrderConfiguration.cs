@@ -17,10 +17,10 @@ namespace Customerize.Repository.EntitiesConfigurations
                 .HasForeignKey(o => o.CompanyId)
                 .OnDelete(DeleteBehavior.NoAction);
             //AppUser
-            builder.HasOne(o => o.AppUser)
-                .WithMany(o => o.Orders)
-                .HasForeignKey(o => o.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            //builder.HasOne(o => o.User)
+            //    .WithMany(o => o.Orders)
+            //    .HasForeignKey(o => o.UserId)
+            //    .OnDelete(DeleteBehavior.NoAction);
             //Shipper
             builder.HasOne(o => o.Shipper)
                 .WithMany(o => o.Orders)
