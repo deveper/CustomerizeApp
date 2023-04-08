@@ -16,6 +16,7 @@ Project is created with:
 * N Layer Architecture
 * Bootstrap
 * Javascript
+* AspNetCore.Identity
 
 	
 ## Setup
