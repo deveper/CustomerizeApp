@@ -9,7 +9,7 @@
         public string WorkArea { get; set; }
         public string CompanyPhoneNumber { get; set; }
         //navigation property
-        public ICollection<AspNetUser> AppUsers { get; set; }
+        public ICollection<AppUser> AppUsers { get; set; }
         //navigation property
         public ICollection<Order> Orders { get; set; }
     }

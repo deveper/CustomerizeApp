@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Customerize.Repository.EntitiesConfigurations
 {
-    internal class AppUserConfiguration : IEntityTypeConfiguration<AspNetUser>
+    internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<AspNetUser> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
 
             //Company

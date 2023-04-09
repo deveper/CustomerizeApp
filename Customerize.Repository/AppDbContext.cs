@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using static System.Web.Razor.Parser.SyntaxConstants;
 
 namespace Customerize.Repository
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<AppUser, Role, int>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -25,7 +24,6 @@ namespace Customerize.Repository
         public DbSet<Advertisement> Advertisements { get; set; }
         public DbSet<ProductDocument> ProductDocuments { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
-        public DbSet<AspNetUser> AspNetUsers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,7 +32,7 @@ namespace Customerize.Repository
 
             base.OnModelCreating(modelBuilder);
 
-            
+
         }
 
 

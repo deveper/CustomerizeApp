@@ -31,6 +31,6 @@ namespace Customerize.Core.Entities
 
         //navigation property
         public long UserId { get; set; }
-        public AspNetUser User { get; set; }
+        public AppUser User { get; set; }
     }
 }

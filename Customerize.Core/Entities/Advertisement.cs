@@ -8,6 +8,6 @@
 
         //navigation property
         public long UserId { get; set; }
-        public AspNetUser AppUser { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

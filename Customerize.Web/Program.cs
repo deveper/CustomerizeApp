@@ -1,3 +1,4 @@
+using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
@@ -8,11 +9,14 @@ using Customerize.Service.Mapping;
 using Customerize.Service.Services;
 using Customerize.Service.Tools.Utilities;
 using Customerize.Service.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
 #region Services DI
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -30,7 +34,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDashBoardService, DashBoardService>();
 builder.Services.AddScoped<ITools, Tools>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
-builder.Services.AddSession(); 
+builder.Services.AddSession();
 #endregion
 
 
@@ -41,6 +45,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 
+builder.Services.AddIdentity<AppUser, Role>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
 var app = builder.Build();
@@ -59,6 +64,7 @@ app.UseSession();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
