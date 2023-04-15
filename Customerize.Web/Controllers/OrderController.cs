@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Customerize.Common.Dtos;
 using Customerize.Core.DTOs.Order;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -74,6 +75,33 @@ namespace Customerize.Web.Controllers
 
             return Json(result.Message);
         }
+        #endregion
+
+        #region DataTableFunction
+        public async Task<IActionResult> ProductList()
+        {
+            #region DataTableModel
+            var dataTableModel = new DataTableModel()
+            {
+                Draw = Request.Form["draw"].FirstOrDefault(),
+                Start = Request.Form["start"].FirstOrDefault(),
+                Length = Request.Form["length"].FirstOrDefault(),
+                SortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault(),
+                SortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault(),
+                SsearchValue = Request.Form["search[value]"].FirstOrDefault(),
+                PageSize = Request.Form["length"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["length"].FirstOrDefault()) : 0,
+                Skip = Request.Form["start"].FirstOrDefault() != null ? Convert.ToInt32(Request.Form["start"].FirstOrDefault()) : 0,
+                RecordsTotal = 0
+            };
+            #endregion
+            var result = _productService.GetAllProductForDataTable(dataTableModel);
+            if (result.IsSuccess)
+            {
+                return Json(new { draw = result.Req, recordsfiltered = result.Total, recordstotal = result.Total, data = result.Data });
+            }
+            return Json(result.Message);
+        }
+
         #endregion
 
         public IActionResult Index()

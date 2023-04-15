@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Common.Dtos;
 using Common.StaticClasses;
+using Customerize.Common.Dtos;
+using Customerize.Core.DTOs.Category;
 using Customerize.Core.DTOs.Product;
 using Customerize.Core.Entities;
 using Customerize.Core.Repositories;
 using Customerize.Core.Services;
 using Customerize.Core.UnitOfWorks;
+using Customerize.Repository.Repostories;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Customerize.Service.Services
@@ -85,6 +88,57 @@ namespace Customerize.Service.Services
                 IsSuccess = false,
                 Message = ResultMessages.GeneralErrorMessage,
                 Total = 0
+            };
+        }
+
+        public ResultDto<List<ProductDtoList>> GetAllProductForDataTable(DataTableModel input)
+        {
+            var products = _productRepositroy.GetAll();
+            if (products != null)
+            {
+                if (!(string.IsNullOrEmpty(input.SortColumn) && string.IsNullOrEmpty(input.SortColumnDirection)))
+                {
+
+                    products = input.SortColumnDirection == "asc" ? products.OrderBy(x => input.SortColumn) : products.OrderByDescending(x => input.SortColumn);
+                    switch (input.SortColumn)
+                    {
+                        case "Id":
+                            products = input.SortColumnDirection == "asc" ? products.OrderBy(x => x.Id) : products.OrderByDescending(x => x.Id);
+                            break;
+                        case "CreatedDate":
+                            products = input.SortColumnDirection == "asc" ? products.OrderBy(x => x.CreatedDate) : products.OrderByDescending(x => x.CreatedDate);
+                            break;
+                        case "Name":
+                            products = input.SortColumnDirection == "asc" ? products.OrderBy(x => x.Name) : products.OrderByDescending(x => x.Name);
+                            break;
+
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(input.SsearchValue))
+                {
+                    products = products.Where(x => x.Name.Contains(input.SsearchValue));
+                }
+
+                var map = _mapper.Map<List<ProductDtoList>>(products);
+                var data = map.Skip(input.Skip).Take(input.PageSize);
+                var recordsTotal = map.Count();
+
+                return new ResultDto<List<ProductDtoList>>()
+                {
+                    Data = data.ToList(),
+                    IsSuccess = true,
+                    Message = ResultMessages.GeneralSuccess,
+                    Total = recordsTotal,
+                    Req = input.Draw
+
+                };
+            }
+            return new ResultDto<List<ProductDtoList>>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.GeneralErrorMessage,
+                Total = 0,
             };
         }
 

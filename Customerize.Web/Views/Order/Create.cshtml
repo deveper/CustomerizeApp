@@ -21,28 +21,9 @@
                     <th>Stok Adedi</th>
                     <th>Adet</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var item in Model.Products)
-                {
-                    <tr>
-                        <td><input id="productName" type="hidden" value="@item.Name">@item.Name</td>
-                        <td><input id="categoryId" type="hidden" value="@item.CategoryId">@item.CategoryName</td>
-                        <td><input id="productTypeId" type="hidden" value="@item.ProductTypeId">@item.ProductTypeName</td>
-                        <td><input id="productPrice" type="hidden" value="@item.Price" disabled>@item.Price</td>
-                        <td><input id="LastStock" type="hidden" value="@item.Stock" disabled>@item.Stock</td>
-                        <td>
-                            <input id="productPiece" class="productPiece" min="1" type="number">
-                        </td>
-                        <td>
-                            <input id="productId" value="@item.Id" disabled type="hidden">
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-            </tfoot>
         </table>
     </div>
     <div class="bg-black mt-2">
@@ -91,7 +72,44 @@
                         var rowData = table.row($row).data();
                         rowData.MarkupValue = $(this).val();
                     });
-                }
+                    $('input[type="number"]').on('keypress', function (e) {
+                        if (e.which < 48 || e.which > 57) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+                    $('#ProductList tbody').on('click', 'tr', function () {
+                        $(this).toggleClass('selected');
+                    });
+                },
+
+                "processing": true,
+                "serverSide": true,
+                "filter": true,
+                "ajax": {
+                    "url": "/order/productlist",
+                    "type": "POST",
+                    "datatype": "json",
+                    "contentType ": "application/json; charset=utf-8",
+                },
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false,
+                        "render": function (data, type, row) {
+                            return data + ' (' + data[0] + ')';
+
+                        }
+                    }
+                ],
+                "columns": [
+                    { "data": "id", "name": "Id", "autoWidth": true },
+                    { "data": "code", "name": "Code", "autoWidth": true },
+                    { "data": "name", "name": "Name", "autoWidth": true },
+                    { "data": "createdDate", "name": "CreatedDate", "autoWidth": true },
+                    { "data": "updatedDate", "name": "UpdatedDate", "autoWidth": true },
+                ]
             });
             $("#submitOrder").click(function () {
 
@@ -136,15 +154,7 @@
                 });
             });
         });
-        $('input[type="number"]').on('keypress', function (e) {
-            if (e.which < 48 || e.which > 57) {
-                e.preventDefault();
-                return false;
-            }
-        });
-        $('#ProductList tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
-        });
+
 
     </script>
 
