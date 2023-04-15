@@ -14,6 +14,9 @@ namespace Customerize.Repository.EntitiesConfigurations
                 .WithMany(a => a.AppUsers)
                 .HasForeignKey(a => a.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+           
+          
         }
     }
 }

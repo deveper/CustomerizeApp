@@ -28,7 +28,9 @@ namespace Customerize.Service.Services
 
         public async Task<ResultDto<T>> AddAsync(T entity)
         {
+
             await _repository.AddAsync(entity);
+
             var success = await _unitOfWork.CommitAsync();
             if (success)
             {

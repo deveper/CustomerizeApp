@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic;
 
 namespace Customerize.Core.Entities
 {
@@ -9,5 +10,6 @@ namespace Customerize.Core.Entities
         public Company Company { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public ICollection<Advertisement>? Advertisements { get; set; }
     }
 }
