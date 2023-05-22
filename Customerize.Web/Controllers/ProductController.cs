@@ -48,11 +48,7 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> Create(ProductDtoInsert model)
         {
             var result = await _productService.Create(model);
-            if (result.IsSuccess)
-            {
-                return Json(result.Message);
-            }
-            return Json(result.Message);
+            return RedirectToAction("GetAllList");
         }
         #endregion
 
@@ -98,11 +94,7 @@ namespace Customerize.Web.Controllers
             var product = await _productService.GetByIdAsync(Id);
             var result = await _productService.RemoveAsync(product.Data);
             #endregion
-            if (result.IsSuccess)
-            {
-                return Json(result.Message);
-            }
-            return Json(result.Message);
+            return RedirectToAction("GetAllList");
 
         }
         #endregion
@@ -134,7 +126,7 @@ namespace Customerize.Web.Controllers
         }
         #endregion
 
-        
+
 
         public IActionResult Index()
         {
