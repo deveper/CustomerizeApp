@@ -61,6 +61,7 @@ namespace Customerize.Service.Services
                     Adress = input.Adress,
                     TaxNumber = input.TaxNumber,
                     WorkArea = input.WorkArea,
+                    CompanyPhoneNumber = input.CompanyPhoneNumber
                 };
                 await _companyRepository.AddAsync(model);
                 await _unitOfWork.CommitAsync();

@@ -1,4 +1,4 @@
-﻿@model ProductDtoInsert
+﻿@model CompanyDtoInsert
 @{
     ViewData["Title"] = "Create";
 
@@ -6,25 +6,22 @@
 
 <h1>Create</h1>
 
-<form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Company" asp-action="Create" method="post" enctype="multipart/form-data">
 
-    <label>Ürün Adı:</label>
-    <input asp-for="Name" class="form-control" />
+        <label>Cari Adı</label>
+        <input asp-for="Name" class="form-control" />
 
-    <label>Stok Adedi:</label>
-    <input asp-for="Stock" class="form-control" />
+        <label>Adres</label>
+        <input asp-for="Adress" class="form-control" />
 
-    <label>Ürün Fiyatı:</label>
-    <input asp-for="Price" class="form-control" />
+        <label>Vergi Numarası</label>
+        <input asp-for="TaxNumber" class="form-control" />
 
-    <label>Kategori Adi:</label>
-    <select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control"></select>
+        <label>Çalışma Alanı</label>
+        <input asp-for="WorkArea" class="form-control" />
+        <label>Şirket Telefonu</label>
+        <input asp-for="CompanyPhoneNumber" class="form-control" />
 
-    <label>Ürün Tipi:</label>
-    <select asp-for="ProductTypeId" asp-items="ViewBag.productTypes" class="form-control"></select>
-
-    <label>Ürün Görselleri:</label>
-    <input class="form-control" type="file" name="formFiles" id="formFiles" multiple />
     <br />
     <div class="form-group">
         <a type="button" href="#modal-table" role="button" class="btn btn btn-succes" data-toggle="modal"> Kaydet</a>
