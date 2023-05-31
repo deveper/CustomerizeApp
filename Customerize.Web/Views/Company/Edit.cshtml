@@ -1,26 +1,27 @@
-﻿@model ProductDtoUpdate
+﻿@model CompanyDtoUpdate
 @{
     ViewData["Title"] = "Edit";
 }
 
 <h1>Edit</h1>
 
-<form asp-controller="Product" asp-action="Edit" method="post">
+<form asp-controller="Company" asp-action="Edit" method="post">
     <input asp-for="Id" type="hidden" />
     <label asp-for="Name"></label>
     <input asp-for="Name" value="@Model.Name" class="form-control" />
 
-    <label asp-for="Stock"></label>
-    <input asp-for="Stock" value="@Model.Stock" class="form-control" />
+    <label asp-for="Adress"></label>
+    <input asp-for="Adress" value="@Model.Adress" class="form-control" />
 
-    <label asp-for="Price"></label>
-    <input asp-for="Price" value="@Model.Price" class="form-control" />
+    <label asp-for="TaxNumber"></label>
+    <input asp-for="TaxNumber" value="@Model.TaxNumber" class="form-control" />
 
-    <label asp-for="CategoryId"></label>
-    <select asp-for="CategoryId" value="@Model.CategoryId" asp-items="ViewBag.categories" class="form-control"></select>
+    <label asp-for="WorkArea"></label>
+    <input asp-for="WorkArea" value="@Model.WorkArea" class="form-control"></input>
 
-    <label asp-for="ProductTypeId"></label>
-    <select asp-for="ProductTypeId" value="@Model.ProductTypeId" asp-items="ViewBag.productTypes" class="form-control"></select>
+    @* companyPhoneNumber *@
+    <label asp-for="CompanyPhoneNumber"></label>
+    <input asp-for="CompanyPhoneNumber" value="@Model.CompanyPhoneNumber" class="form-control" />
 
     <div class="form-group">
         <input type="submit" value="Kaydet" class="btn  btn-primary" />

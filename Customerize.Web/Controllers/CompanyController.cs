@@ -63,12 +63,6 @@ namespace Customerize.Web.Controllers
             var result = await _companyService.GetByIdAsync(id);
             if (result.IsSuccess)
             {
-                var companyTypes = await _companyTypeService.GetAllProductType();
-                ViewBag.companyTypes = new SelectList(companyTypes, "Id", "Name");
-
-                var categories = await _categoryService.GetAllAsync();
-                ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
-
                 var companyDto = _mapper.Map<CompanyDtoUpdate>(result.Data);
                 return View(companyDto);
             }
@@ -82,9 +76,9 @@ namespace Customerize.Web.Controllers
             var result = await _companyService.UpdateAsync(map);
             if (result.IsSuccess)
             {
-                return Json(result.Message);
+                return RedirectToAction("GetAllList");
             }
-            return RedirectToAction("Edit");
+            return View(model);
         }
         #endregion
 
