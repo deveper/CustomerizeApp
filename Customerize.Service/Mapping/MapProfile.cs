@@ -65,6 +65,7 @@ namespace Customerize.Service.Mapping
             CreateMap<CompanyDtoUpdate, Company>();
             CreateMap<Company, CompanyDtoList>();
             CreateMap<Company, CompanyDtoWithOrderList>();
+            CreateMap<Company, CompanyDtoUpdate>();
             #endregion
 
             #region OrderLine
