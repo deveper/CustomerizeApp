@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AdvertisementDtoList>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="widget-box ui-sortable-handle" id="widget-box-1">
+    <div class="widget-header">
+        <h5 class="widget-title">DUYURULAR</h5>
+
+        <div class="widget-toolbar">
+            <div class="widget-menu">
+            </div>
+
+            <a href="#" data-action="fullscreen" class="orange2">
+                <i class="ace-icon fa fa-expand"></i>
+            </a>
+
+
+
+            <a href="#" data-action="collapse">
+                <i class="ace-icon fa fa-chevron-up"></i>
+            </a>
+
+            <a href="#" data-action="close">
+                <i class="ace-icon fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="widget-body" style="display: block;">
+        <div class="widget-main ace-scroll scroll-disabled" style="position: relative;">
+
+            <div class="scroll-track" style="display: none;"><div class="scroll-bar" style="top: 0px;"></div></div>
+
+            <div class="scroll-content" style="">
+                <table class="table" border="0">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Tarih</th>
+                            <th scope="col" class="text-center">Açıklama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <p class="alert alert-info text-center">
+                                        @item.CreatedDate.ToString("dd/MM/yyyy")
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="alert alert-info text-center">
+                                        <b>@item.Description</b>
+                                    </p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
