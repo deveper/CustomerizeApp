@@ -878,6 +878,12 @@ namespace Customerize.Repository.Migrations
 
                     b.Navigation("RegionShippers");
                 });
+
+                modelBuilder.Entity("Customerize.Core.Entities.WorkArea", b =>
+                {
+                    b.Navigation("WorkAreas");
+
+                });
 #pragma warning restore 612, 618
         }
     }
