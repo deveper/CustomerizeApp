@@ -25,6 +25,8 @@ namespace Customerize.Repository
         public DbSet<ProductDocument> ProductDocuments { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
 
+        public DbSet<WorkArea> WorkAreas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
