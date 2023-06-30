@@ -662,6 +662,13 @@
                     <ul class="submenu">
                         <li class="">
                             <a asp-controller="WorkArea" asp-action="Create">
+                                <i class="menu-icon fa fa-eye pink"></i>
+                                Çalışma Bölgesi Ekle
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a asp-controller="WorkArea" asp-action="GetAllList">
                                 <i class="menu-icon fa fa-plus blue"></i>
                                 Çalışma Bölgeleri
                             </a>
@@ -672,6 +679,13 @@
                             <a asp-controller="Company" asp-action="GetAllList">
                                 <i class="menu-icon fa fa-eye pink"></i>
                                 Cari Listesi
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a asp-controller="Company" asp-action="Create">
+                                <i class="menu-icon fa fa-eye pink"></i>
+                                Cari Ekle
                             </a>
                             <b class="arrow"></b>
                         </li>
@@ -688,7 +702,6 @@
                 </li>
                 <li class="active">
                     <a asp-controller="Order" asp-action="Create">
-
                         <i class="menu-icon fa fa-plus orange"></i>
                         <span class="menu-text">Sipariş Oluştur</span>
                     </a>

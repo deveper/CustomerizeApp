@@ -17,13 +17,16 @@ namespace Customerize.Web.Controllers
         private readonly ICompanyService _companyService;
         private readonly ICategoryService _categoryService;
         private readonly IProductTypeService _companyTypeService;
+
+        private readonly IWorkAreaService _workAreaService;
         #endregion
-        public CompanyController(IMapper mapper, ICompanyService companyService, ICategoryService categoryService, IProductTypeService companyTypeService)
+        public CompanyController(IMapper mapper, ICompanyService companyService,IWorkAreaService workAreaService, ICategoryService categoryService, IProductTypeService companyTypeService)
         {
             _mapper = mapper;
             _companyService = companyService;
             _categoryService = categoryService;
             _companyTypeService = companyTypeService;
+            _workAreaService = workAreaService;
         }
         #region CompanyList
         [HttpGet]
@@ -43,6 +46,9 @@ namespace Customerize.Web.Controllers
 
             var categories = await _categoryService.GetAllAsync();
             ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
+
+            var workAreas  = await _workAreaService.GetAllAsync();
+            ViewBag.workAreas = new SelectList(workAreas.Data, "Id", "Name");
 
             return View();
         }
