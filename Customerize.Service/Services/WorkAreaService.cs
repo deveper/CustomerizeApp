@@ -74,16 +74,6 @@ namespace Customerize.Service.Services
             };
         }
 
-        Task<ResultDto<IEnumerable<WorkAreaDtoList>>> IWorkAreaService.GetWorkAreaAllDetail()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<ResultDto> IWorkAreaService.Create(WorkAreaDtoInsert input)
-        {
-            throw new NotImplementedException();
-        }
-
         ResultDto<List<WorkAreaDtoList>> IWorkAreaService.GetAllWorkAreaForDataTable(DataTableModel input)
         {
             throw new NotImplementedException();

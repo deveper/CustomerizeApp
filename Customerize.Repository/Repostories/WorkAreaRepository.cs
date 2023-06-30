@@ -10,16 +10,12 @@ namespace Customerize.Repository.Repostories
         {
         }
 
-        public Task<List<WorkArea>> GetAllWorkAreas()
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task<List<WorkArea>> GetFullWorkAreas()
+        public async Task<List<WorkArea>> GetAllWorkAreas()
         {
-            var fullCompany = await _context.WorkAreas
+            var allWorkAreas = await _context.WorkAreas
                 .ToListAsync();
-            return fullCompany;
+            return allWorkAreas;
         }
     }
 }

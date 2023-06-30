@@ -1,0 +1,44 @@
+﻿
+
+@model WorkAreaDtoInsert
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create</h1>
+
+<form asp-controller="WorkArea" asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <label>Çalışma Bölgesi Adı:</label>
+    <input asp-for="Name" class="form-control" />
+
+    <label>Yurt İçi ?</label>
+    <input type="checkbox" asp-for="isInternal" class="form-control"></input>
+    <div class="form-group">
+        <a type="button" href="#modal-table" role="button" class="btn btn btn-succes" data-toggle="modal"> Kaydet</a>
+        <div id="modal-table" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+
+                            Kayıt İşlemini Onaylıyor Musunuz?
+                        </div>
+                    </div>
+                    <div class="modal-body no-padding text-center">
+                        <br />
+                        <br />
+                        <button type="submit" class="btn btn-success">Onayla</button>
+                        <button class="btn btn-dark" data-dismiss="modal">Vazgeç</button>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+

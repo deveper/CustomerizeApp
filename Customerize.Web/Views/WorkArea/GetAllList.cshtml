@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WorkAreaDtoList>
+@{
+    ViewData["Title"] = "GetAllList";
+}
+
+<h1>GetAllList</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Adı</th>
+            <th scope="col">Yurt İçi</th>
+            <th scope="col">Güncelleme Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.isInternal</td>
+                <td>@item.UpdatedDate</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id">Güncelle</a>
+                </td>
+                <td>
+                    <form method="post" asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id">
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Sil</a>
+                        <div class="modal fade" tabindex="-1" id="confirm-delete" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="table-header">
+                                        <div>
+                                            <p class="text-right"><b>@DateTime.Now.ToString("dd/MM/yyyy")</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3 class="text-center">Aşğıda Bilgileri Bulunan Ürün Silinecektir</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Adı</th>
+                                                    <th scope="col">Yurt İçi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.isInternal</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Onayla</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

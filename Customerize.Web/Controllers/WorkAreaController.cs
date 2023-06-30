@@ -19,10 +19,10 @@ namespace Customerize.Web.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IProductTypeService _companyTypeService;
         #endregion
-        public WorkAreaController(IMapper mapper, IWorkAreaService companyService, ICategoryService categoryService, IProductTypeService companyTypeService)
+        public WorkAreaController(IMapper mapper, IWorkAreaService workAreaService, ICategoryService categoryService, IProductTypeService companyTypeService)
         {
             _mapper = mapper;
-            _workAreaService = companyService;
+            _workAreaService = workAreaService;
             _categoryService = categoryService;
             _companyTypeService = companyTypeService;
         }
@@ -39,13 +39,8 @@ namespace Customerize.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var companyTypes = await _companyTypeService.GetAllAsync();
-            ViewBag.companyTypes = new SelectList(companyTypes.Data, "Id", "Name");
 
-            var categories = await _categoryService.GetAllAsync();
-            ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
-
-            return View();
+            return View("Create");
         }
 
         [HttpPost]
