@@ -20,6 +20,5 @@ namespace Common.Dtos
         public T Data { get; set; }
         public int Total { get; set; }
         public string Req { get; set; }
-
     }
 }

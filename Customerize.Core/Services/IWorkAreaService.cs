@@ -9,7 +9,8 @@ namespace Customerize.Core.Services
     {
         Task<ResultDto<IEnumerable<WorkAreaDtoList>>> GetWorkAreaAllDetail();
         Task<ResultDto> Create(WorkAreaDtoInsert input);
-        ResultDto<List<WorkAreaDtoList>> GetAllWorkAreaForDataTable(DataTableModel input);
+
+        Task<ResultDto<WorkAreaDtoList>> GetWorkAreaDetail(int workAreaId);
 
     }
 }

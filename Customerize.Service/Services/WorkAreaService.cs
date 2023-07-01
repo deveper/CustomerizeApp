@@ -74,9 +74,23 @@ namespace Customerize.Service.Services
             };
         }
 
-        ResultDto<List<WorkAreaDtoList>> IWorkAreaService.GetAllWorkAreaForDataTable(DataTableModel input)
-        {
-            throw new NotImplementedException();
+        async public Task<ResultDto<WorkAreaDtoList>> GetWorkAreaDetail(int workAreaId){
+            var workArea = await _workAreaRepository.GetWorkAreaDetail(workAreaId);
+            if (workArea != null)
+            {
+                var map = _mapper.Map<WorkAreaDtoList>(workArea);
+                return new ResultDto<WorkAreaDtoList>()
+                {
+                    Data = map,
+                    IsSuccess = true,
+                    Message = ResultMessages.ProductsAllDetail
+                };
+            }
+            return new ResultDto<WorkAreaDtoList>()
+            {
+                IsSuccess = false,
+                Message = ResultMessages.NotFoundProducts
+            };
         }
     }
 }

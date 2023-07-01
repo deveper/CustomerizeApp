@@ -618,26 +618,19 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="">
+                <li>
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon  fa fa-shopping-cart  badge-yellow"></i>
-                        <span class="menu-text">
-                            <small>Cari İşlemleri</small>
-                        </span>
-
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Cari İşlemleri
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
-
                     <b class="arrow"></b>
-
                     <ul class="submenu">
                         <li class="">
                             <a asp-controller="Company" asp-action="Create">
                                 <i class="menu-icon fa fa-plus blue"></i>
-                                Stok Girişi
+                                Cari Ekle
                             </a>
-
                             <b class="arrow"></b>
                         </li>
                         <li class="">
@@ -660,35 +653,32 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="">
-                            <a asp-controller="WorkArea" asp-action="Create">
-                                <i class="menu-icon fa fa-eye pink"></i>
-                                Çalışma Bölgesi Ekle
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="menu-text">
+                                    <small>Çalışma Bölgeleri</small>
+                                </span>
+                                <b class="arrow fa fa-angle-down"></b>
                             </a>
-                            <b class="arrow"></b>
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="WorkArea" asp-action="Create">
+                                        <i class="menu-icon fa fa-eye pink"></i>
+                                        Çalışma Bölgesi Ekle
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                                <li class="">
+                                    <a asp-controller="WorkArea" asp-action="GetAllList">
+                                        <i class="menu-icon fa fa-plus blue"></i>
+                                        Çalışma Bölgeleri Listesi
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="">
-                            <a asp-controller="WorkArea" asp-action="GetAllList">
-                                <i class="menu-icon fa fa-plus blue"></i>
-                                Çalışma Bölgeleri
-                            </a>
 
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a asp-controller="Company" asp-action="GetAllList">
-                                <i class="menu-icon fa fa-eye pink"></i>
-                                Cari Listesi
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="">
-                            <a asp-controller="Company" asp-action="Create">
-                                <i class="menu-icon fa fa-eye pink"></i>
-                                Cari Ekle
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
                     </ul>
                 </li>
 

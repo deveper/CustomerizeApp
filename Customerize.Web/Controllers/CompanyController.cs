@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Customerize.Core.DTOs.Company;
 using Customerize.Core.DTOs.Product;
+using Customerize.Core.DTOs.WorkArea;
 using Customerize.Core.Entities;
 using Customerize.Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ namespace Customerize.Web.Controllers
 
         private readonly IWorkAreaService _workAreaService;
         #endregion
-        public CompanyController(IMapper mapper, ICompanyService companyService,IWorkAreaService workAreaService, ICategoryService categoryService, IProductTypeService companyTypeService)
+        public CompanyController(IMapper mapper, ICompanyService companyService, IWorkAreaService workAreaService, ICategoryService categoryService, IProductTypeService companyTypeService)
         {
             _mapper = mapper;
             _companyService = companyService;
@@ -33,6 +34,13 @@ namespace Customerize.Web.Controllers
         public async Task<IActionResult> GetAllList()
         {
             var result = await _companyService.GetCompanyAllDetail();
+            foreach (var item in result.Data)
+            {
+                var workAreaResult = await _workAreaService.GetWorkAreaDetail(item.WorkArea);
+                item.WorkAreaDetail = workAreaResult.Data;
+                item.WorkAreaName = item.WorkAreaDetail.Name;
+                item.WorkAreaIsInternal = item.WorkAreaDetail.isInternal ? "Evet" : "Hayır";
+            }
             return View(result.Data);
         }
         #endregion
@@ -47,7 +55,7 @@ namespace Customerize.Web.Controllers
             var categories = await _categoryService.GetAllAsync();
             ViewBag.categories = new SelectList(categories.Data, "Id", "Name");
 
-            var workAreas  = await _workAreaService.GetAllAsync();
+            var workAreas = await _workAreaService.GetAllAsync();
             ViewBag.workAreas = new SelectList(workAreas.Data, "Id", "Name");
 
             return View();
