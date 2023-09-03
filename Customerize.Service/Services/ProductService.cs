@@ -63,7 +63,7 @@ namespace Customerize.Service.Services
 
                         }
 
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             return new ResultDto()
                             {
