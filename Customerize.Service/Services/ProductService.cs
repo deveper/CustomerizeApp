@@ -43,17 +43,33 @@ namespace Customerize.Service.Services
                 };
                 await _productRepositroy.AddAsync(model);
                 await _unitOfWork.CommitAsync();
+
+                var path = "";
                 if (input.formFiles != null)
                 {
                     string uploadsFolder = Path.Combine("wwwroot\\Product");
 
                     foreach (var item in input.formFiles)
                     {
-                        var path = uploadsFolder + "/" + item.FileName;
-                        using (var stream = new FileStream(path, FileMode.Create))
+                        try
                         {
+                            path = uploadsFolder + "/" + item.FileName;
+                            using (var stream = new FileStream(path, FileMode.Create))
+                            {
 
-                            await item.CopyToAsync(stream);
+                                await item.CopyToAsync(stream);
+                                stream.Close();
+                            }
+
+                        }
+
+                        catch (Exception ex)
+                        {
+                            return new ResultDto()
+                            {
+                                IsSuccess = false,
+                                Message = ResultMessages.ProductDocumentUploadError,
+                            };
 
                         }
                     };
@@ -61,7 +77,7 @@ namespace Customerize.Service.Services
                     productDocuments.AddRange(input.formFiles.Select(x => new ProductDocument
                     {
                         ProductId = model.Id,
-                        Path = uploadsFolder + x.FileName,
+                        Path = path,
                         Title = x.FileName
                     }));
                     await _productDocumentRepository.AddRangeAsync(productDocuments);
