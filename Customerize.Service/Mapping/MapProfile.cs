@@ -9,6 +9,7 @@ using Customerize.Core.DTOs.Product;
 using Customerize.Core.DTOs.ProductType;
 using Customerize.Core.DTOs.Region;
 using Customerize.Core.DTOs.Shipper;
+using Customerize.Core.DTOs.WorkArea;
 using Customerize.Core.Entities;
 
 namespace Customerize.Service.Mapping
@@ -65,6 +66,7 @@ namespace Customerize.Service.Mapping
             CreateMap<CompanyDtoUpdate, Company>();
             CreateMap<Company, CompanyDtoList>();
             CreateMap<Company, CompanyDtoWithOrderList>();
+            CreateMap<Company, CompanyDtoUpdate>();
             #endregion
 
             #region OrderLine
@@ -95,6 +97,13 @@ namespace Customerize.Service.Mapping
             CreateMap<RegionDtoInsert, Region>();
             CreateMap<RegionDtoUpdate, Region>();
             CreateMap<Region, RegionDtoList>();
+            #endregion
+
+            #region WorkArea
+            CreateMap<WorkArea, WorkAreaDto>().ReverseMap();
+            CreateMap<WorkAreaDtoInsert, WorkArea>();
+            CreateMap<WorkAreaDtoUpdate, WorkArea>();
+            CreateMap<WorkArea, WorkAreaDtoList>();
             #endregion
 
             #region Advertisement

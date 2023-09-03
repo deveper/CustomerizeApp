@@ -1,0 +1,70 @@
+﻿@model IList<ProductDtoRemoveRange>
+@{
+    ViewData["Title"] = "RemoveRange";
+}
+@if (@Model == null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Adı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Stok Adedi</th>
+                <th scope="col">Kategori Adı</th>
+                <th scope="col">Ürün Tipi</th>
+                <th scope="col">Toplu Seçim</th>
+            </tr>
+        </thead>
+    </table>
+}
+else
+{
+    <form asp-action="RemoveRangeConfirm" asp-controller="Product" method="post">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Adı</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Stok Adedi</th>
+                    <th scope="col">Kategori Adı</th>
+                    <th scope="col">Ürün Tipi</th>
+                    <th scope="col">Silmek İstenilen Ürün</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model[i].Id</td>
+                        <td>@Model[i].Name</td>
+                        <td>@Model[i].Price</td>
+                        <td>@Model[i].Stock</td>
+                        <td>@Model[i].CategoryName</td>
+                        <td>@Model[i].ProductTypeName</td>
+                        <td>
+                            <input type="hidden" asp-for="@Model[i].DeleteProducts.Value" />
+                            <input type="hidden" asp-for="@Model[i].Id" />
+                            <input asp-for="@Model[i].DeleteProducts.Selected" />
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                
+                    <input value="Sil" type="submit" class="btn btn-danger btn-block" />
+                
+            </div>
+        </div>
+    </form>
+
+}
+
+

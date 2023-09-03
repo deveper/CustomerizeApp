@@ -1,6 +1,4 @@
-﻿using Customerize.Core.DTOs.Category;
-
-namespace Customerize.Core.Entities
+﻿namespace Customerize.Core.Entities
 {
     public class Category : BaseEntity
     {

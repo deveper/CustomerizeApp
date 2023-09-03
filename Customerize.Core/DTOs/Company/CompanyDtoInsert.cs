@@ -6,5 +6,7 @@
         public string Adress { get; set; }
         public string TaxNumber { get; set; }
         public string WorkArea { get; set; }
+
+        public string? CompanyPhoneNumber { get; set; }
     }
 }

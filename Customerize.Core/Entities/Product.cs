@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Customerize.Core.Entities
+﻿namespace Customerize.Core.Entities
 {
     public class Product : BaseEntity
     {

@@ -1,0 +1,56 @@
+﻿@model CompanyDtoInsert
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create</h1>
+
+<form asp-controller="Company" asp-action="Create" method="post" enctype="multipart/form-data">
+
+        <label>Cari Adı</label>
+        <input asp-for="Name" class="form-control" />
+
+        <label>Adres</label>
+        <input asp-for="Adress" class="form-control" />
+
+        @* workareas *@
+        <label>Çalışma Bölgesi</label>
+        <select asp-for="WorkArea" class="form-control" asp-items="ViewBag.WorkAreas"></select>
+
+        <label>Vergi Numarası</label>
+        <input asp-for="TaxNumber" class="form-control" />
+
+        <label>Çalışma Alanı</label>
+        <input asp-for="WorkArea" class="form-control" />
+        <label>Şirket Telefonu</label>
+        <input asp-for="CompanyPhoneNumber" class="form-control" />
+
+    <br />
+    <div class="form-group">
+        <a type="button" href="#modal-table" role="button" class="btn btn btn-succes" data-toggle="modal"> Kaydet</a>
+        <div id="modal-table" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header no-padding">
+                        <div class="table-header">
+
+                            Kayıt İşlemini Onaylıyor Musunuz?
+                        </div>
+                    </div>
+                    <div class="modal-body no-padding text-center">
+                        <br />
+                        <br />
+                        <button type="submit" class="btn btn-success">Onayla</button>
+                        <button class="btn btn-dark" data-dismiss="modal">Vazgeç</button>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+

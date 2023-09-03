@@ -1,0 +1,3 @@
+dotnet ef database update  --context AppDbContext --startup-project ../Customerize.Web/Customerize.Web.csproj
+
+dotnet ef migrations add asdasdas --context AppDbContext --startup-project ../Customerize.Web/Customerize.Web.csproj

@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
@@ -76,7 +77,8 @@
                             <span class="badge badge-important">5</span>
                         </a>
 
-                        <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                        <ul
+                            class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                             <li class="dropdown-header">
                                 <i class="ace-icon fa fa-exclamation-triangle"></i>
                                 8 Notifications
@@ -154,7 +156,8 @@
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Panel/assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <img src="~/Panel/assets/images/avatars/avatar.png" class="msg-photo"
+                                                alt="Alex's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Alex:</span>
@@ -171,7 +174,8 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Panel/assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                            <img src="~/Panel/assets/images/avatars/avatar3.png" class="msg-photo"
+                                                alt="Susan's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Susan:</span>
@@ -188,7 +192,8 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Panel/assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                            <img src="~/Panel/assets/images/avatars/avatar4.png" class="msg-photo"
+                                                alt="Bob's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Bob:</span>
@@ -205,7 +210,8 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Panel/assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                            <img src="~/Panel/assets/images/avatars/avatar2.png" class="msg-photo"
+                                                alt="Kate's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Kate:</span>
@@ -222,11 +228,12 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Panel/assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                            <img src="~/Panel/assets/images/avatars/avatar5.png" class="msg-photo"
+                                                alt="Fred's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Fred:</span>
-                                                    Vestibulum id penatibus et auctor  ...
+                                                    Vestibulum id penatibus et auctor ...
                                                 </span>
 
                                                 <span class="msg-time">
@@ -250,7 +257,8 @@
 
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="~/Panel/assets/images/avatars/user.jpg" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="~/Panel/assets/images/avatars/user.jpg"
+                                alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Welcome,</small>
                                 Jason
@@ -259,7 +267,8 @@
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
 
-                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <ul
+                            class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-cog"></i>
@@ -301,7 +310,8 @@
 
             <div class="sidebar-shortcuts" id="sidebar-shortcuts">
                 <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <button id="btnAddAdvertisement" data-toggle="modal" data-target="#AddAdvertisement" OnClientClick="return openmodal();return false;" class="btn btn-info">
+                    <button id="btnAddAdvertisement" data-toggle="modal" data-target="#AddAdvertisement"
+                        OnClientClick="return openmodal();return false;" class="btn btn-info">
                         <i class="ace-icon fa fa-pencil"></i>
                     </button>
                     <button class="btn btn-warning">
@@ -608,6 +618,69 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Cari İşlemleri
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a asp-controller="Company" asp-action="Create">
+                                <i class="menu-icon fa fa-plus blue"></i>
+                                Cari Ekle
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a asp-controller="Company" asp-action="GetAllList">
+                                <i class="menu-icon fa fa-eye pink"></i>
+                                Cari Listesi
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon  fa fa-shopping-cart  badge-yellow"></i>
+                        <span class="menu-text">
+                            <small>Tanımlamalar</small>
+                        </span>
+
+                        <b class="arrow fa fa-globe"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="menu-text">
+                                    <small>Çalışma Bölgeleri</small>
+                                </span>
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+                            <ul class="submenu">
+                                <li class="">
+                                    <a asp-controller="WorkArea" asp-action="Create">
+                                        <i class="menu-icon fa fa-eye pink"></i>
+                                        Çalışma Bölgesi Ekle
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                                <li class="">
+                                    <a asp-controller="WorkArea" asp-action="GetAllList">
+                                        <i class="menu-icon fa fa-plus blue"></i>
+                                        Çalışma Bölgeleri Listesi
+                                    </a>
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
 
                 <li class="">
                     <a href="widgets.html">
@@ -619,7 +692,6 @@
                 </li>
                 <li class="active">
                     <a asp-controller="Order" asp-action="Create">
-
                         <i class="menu-icon fa fa-plus orange"></i>
                         <span class="menu-text">Sipariş Oluştur</span>
                     </a>
@@ -629,7 +701,8 @@
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+                    data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
         </div>
 
@@ -647,7 +720,8 @@
                     <div class="nav-search" id="nav-search">
                         <form class="form-search">
                             <span class="input-icon">
-                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                                <input type="text" placeholder="Search ..." class="nav-search-input"
+                                    id="nav-search-input" autocomplete="off" />
                                 <i class="ace-icon fa fa-search nav-search-icon"></i>
                             </span>
                         </form>
@@ -1045,4 +1119,5 @@
 
     <!-- end -->
 </body>
+
 </html>
